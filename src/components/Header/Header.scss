@@ -1,4 +1,4 @@
-@import "../../styles/_themes.sass";
+@import "../../styles/_theme";
 
 .header {
 	display: flex;
@@ -6,8 +6,7 @@
 	flex-wrap: nowrap;
 	align-items: center;
 	justify-content: space-between;
-	position: absolute;
-	top: 0px; left: 0px;
+	position: static;
 	margin: none;
 	padding: none;
 	width: 100%;

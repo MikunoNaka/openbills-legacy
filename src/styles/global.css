@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
+/* Experimental color scheme */
 * {
   font-family: "Quicksand", sans-serif; }
 
 body {
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #000000;
   padding: 0;
   margin: 0; }
