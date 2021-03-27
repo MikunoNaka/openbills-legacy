@@ -1,0 +1,42 @@
+@import "../../styles/_themes.sass";
+
+.header {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-between;
+	position: absolute;
+	top: 0px; left: 0px;
+	margin: none;
+	padding: none;
+	width: 100%;
+	height: 5rem;
+	background-color: $altBG;
+
+	box-shadow: $defShadow;
+}
+
+.header div {
+	margin: auto 1rem;
+}
+
+nav a {
+	text-decoration: none;
+	padding: 0.3rem;
+	color: $defLink;
+}
+
+.placeholder {
+	width: 5rem;
+	height: 3rem;
+}
+
+.inlineBlock {
+	display: inline-block;
+}
+
+
+p, h1, h2, h3, h4, h5, h6 {
+	color: $defFG;
+}

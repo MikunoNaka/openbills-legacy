@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
+/* Experimental color scheme */
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: none;
+  padding: none;
+  width: 100%;
+  height: 5rem;
+  background-color: lightgray;
+  box-shadow: 2px 0px 4px #232627; }
+
+.header div {
+  margin: auto 1rem; }
+
+nav a {
+  text-decoration: none;
+  padding: 0.3rem;
+  color: brown; }
+
+.placeholder {
+  width: 5rem;
+  height: 3rem; }
+
+.inlineBlock {
+  display: inline-block; }
+
+p, h1, h2, h3, h4, h5, h6 {
+  color: #000000; }

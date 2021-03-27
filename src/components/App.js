@@ -1,10 +1,10 @@
 import React from "react";
+import Header from "./Header/Header";
 
 const App = () => {
-	const txt = "sldjflksjdfljsd";
 	return (
-		<p>{txt}</p>
+		<Header />
 	)
 }
 
-export default App
+export default App;

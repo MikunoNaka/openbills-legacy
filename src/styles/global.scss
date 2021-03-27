@@ -1,0 +1,12 @@
+@import "themes";
+
+* {
+	font-family: $defFont
+}
+
+body {
+	background-color: $defBG;
+	color: $defFG;
+	padding: $bodyPadding;
+	margin: $bodyMargin;
+}
