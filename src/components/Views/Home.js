@@ -1,14 +1,13 @@
 import React from "react";
 // import React, { useState } from "react";
+import "./../Tile/Tile";
 import "./Home.css";
 
-const HomeView = (procs) => {
-	const tileHeight = procs.height;
-	const tileWidth = procs.width;
+const HomeView = () => {
 	// const [activeLink, updateActiveLink] = useState("home")
 	return (
 		<div className={"view"}>
-			<div className={"tile"}></div>
+			<Tile height="1rem" width="1rem"></Tile>
 		</div>
 	)
 }

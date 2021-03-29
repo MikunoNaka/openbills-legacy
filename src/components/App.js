@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header/Header";
-import HomeView from "./Views/Home/Home";
+import HomeView from "./Views/Home";
 
 const App = () => {
 	const currentview = "home";

@@ -1,20 +1,15 @@
 import React from "react";
 // import React, { useState } from "react";
-import "./Tile.css";
+// import "./Tile.css";
 
 const Tile = (props) => {
-	// const [,] = useState()
-	
-	const style = {
-		height: props.height;
-		width: props.width;
-		backgroundColor: props.colorBG
-		// textColor: props.colorFG
-	}
-
+	// const [activeLink, updateActiveLink] = useState("home")
 	return (
-		<div className={"tile"} style={style}></div>
+		<div className={"tile"} style={{
+			"height": props.height,
+			"width": props.width
+		}}></div>
 	)
 }
 
-export default Tile
+export default Tile;
