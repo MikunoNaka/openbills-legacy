@@ -1,55 +1,60 @@
 import React, { useState } from "react";
 import "./Form.css";
 
-const BillingForm = () => {
-  /*
-  const sampleData = [
-    {
-      "Model": "Kisan Chair",
-      "Description":"Very good chair",
-      "Price":"10000",
-      "Discount":"3%"
-    },
-    {
-      "Model": "Supreme Chair",
-      "Description":"Even better chair",
-      "Price":"2134983",
-      "Discount":"9%"
-    }
-  ]
-  */
+
+const BillingForm = (props) => {
   const [itemValue, setItemValue] = useState("");
   const [descValue, setDescValue] = useState("");
 
+  const savedItems = props.savedItems;
+  let savedItemNames = []
+  for (let i = 0; i < savedItems.length; i++) {
+    savedItemNames.push(savedItems[i].Model)
+  }
 
-
+  const filteredItems = savedItemNames.filter(
+    (item) => {
+      // case insensitive
+      return item.toLowerCase().includes(itemValue.toLowerCase());
+    }
+  );
+  
   return (
-    <form onSubmit={
-      (event) => {
-        event.preventDefault();
-        console.log(itemValue, descValue);
-      }
-    }>
+    <div>
+      <form onSubmit={
+        (event) => {
+          event.preventDefault();
+          console.log(itemValue, descValue);
+        }
+      }>
+  
+        <label>
+          Item: <input type="text" value={itemValue} onChange={
+            (event) => {
+              setItemValue(event.target.value);
+            }
+          } />
+        </label>
+  
+        <label>
+          Description: <input type="text" value={descValue} onChange={
+            (event) => {
+              setDescValue(event.target.value);
+            }
+          } />
+        </label>
 
-      <label>
-        Item: <input type="text" value={itemValue} onChange={
-          (event) => {
-            setItemValue(event.target.value);
+        <input type="submit" value="add" />
+      </form>
+
+      <ul>
+        {filteredItems.map(
+          (i) => {
+            return <li key={i}>{i}</li>
           }
-        } />
-      </label>
-
-      <label>
-        Description: <input type="text" value={descValue} onChange={
-          (event) => {
-            setDescValue(event.target.value);
-          }
-        } />
-      </label>
-
-      <input type="submit" value="add" />
-
-    </form>
+        )}
+      </ul>
+    </div>
   )
 }
 
