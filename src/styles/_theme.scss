@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
+$defFont: 'Quicksand', sans-serif;
+
 /* Experimental color scheme */
+/* light theme */
+/* 
 $defBG: #FFFFFF;
 $altBG: lightgray;
 $defFG: #000000;
@@ -8,10 +12,16 @@ $altFG: #232627;
 $defLink: brown;
 $altLink: brown;
 
-$defShadow: 2px 0px 4px #232627;
+$defShadow: 0px 0px 4px #232627;
+*/
 
-$bodyPadding: 0;
-$bodyMargin: 0;
+/* Inspired by Dracula */
+$defBG: #282A36;
+$altBG: #383A59;
+$defFG: #F2F2F2;
+$altFG: #FF79C6;
+$defLink: $defFG;
+$altLink: $altFG;
 
-$defFont: 'Quicksand', sans-serif;
+$defShadow: 0px 4px 4px $altBG;
 

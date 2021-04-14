@@ -1,12 +1,16 @@
 @import "theme";
 
 * {
-	font-family: $defFont
+  font-family: $defFont
 }
 
 body {
-	background-color: $defBG;
-	color: $defFG;
-	padding: $bodyPadding;
-	margin: $bodyMargin;
+  background-color: $defBG;
+  color: $defFG;
+  margin: 0;
+}
+
+.root-content {
+  width: 90%;
+  margin: auto;
 }

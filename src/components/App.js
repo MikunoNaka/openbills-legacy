@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "./Header/Header";
-import HomeView from "./Views/Home";
+import BillingForm from "./Form/Form.js";
 
 const App = () => {
-	const currentview = "home";
 	return (
 		<>
 			<Header/>
-			{currentview === "home" && <HomeView/>}
+			<div className={"root-content"}>
+				<BillingForm/>
+			</div>
 		</>
 	)
 }
