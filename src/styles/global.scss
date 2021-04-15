@@ -14,3 +14,9 @@ body {
   width: 95%;
   margin: auto;
 }
+
+@media only screen and (max-device-width: 480px) {
+  .root-content {
+    width: 95%;
+  }
+}

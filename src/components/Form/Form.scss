@@ -19,7 +19,7 @@ label {
   flex-direction: row;
   justify-content: space-between;
 
-  height: 50vh;
+  height: 85%;
 }
 
 .addNewItemForm .textInputs,
@@ -66,4 +66,21 @@ label {
   justify-content: space-between;
   padding: 0.8rem 0;
   border-bottom: 1px dotted $labelUnderlineColor;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .formContainer {
+    padding: 0.5rem;
+    height: auto;
+  }
+  .addNewItemForm {
+    flex-direction: column;
+  }
+  .addNewItemForm .textInputs,
+  .addNewItemForm .numericInputs,
+  .addNewItemForm .menuButtons {
+    width: 90%;
+    padding: 1rem;
+    margin: 1rem auto;
+  }
 }
