@@ -1,5 +1,69 @@
-form {
-  border: 1px solid purple;
+@import "../../styles/theme";
+
+.formContainer {
+  border: 1px solid pink;
+  padding: 2rem;
+
+  height: 60vh;
+  border-radius: 1rem;
+}
+
+.addNewItemForm .textInputs,
+.addNewItemForm .numericInputs
+label {
+  font-size: 1.5rem;
+}
+
+.addNewItemForm {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-between;
+
+  height: 50vh;
+}
+
+.addNewItemForm .textInputs,
+.addNewItemForm .numericInputs {
+  border: 1px solid $altBorderColor;
+  width: 30%;
+  justify-content: space-around;
+}
+
+.addNewItemForm .numericInputs input {
+  width: 5.5rem;
+}
+
+.addNewItemForm .menuButtons {
+  justify-content: space-around;
+  border: 1px solid $defBorderColor;
+  width: 15%;
+}
+
+.addNewItemForm .menuButtons * {
+  width: 100%;
+}
+
+.addNewItemForm div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  padding: 1.5rem;
+
+  overflow: scroll;
+}
+
+/* hide scrollbars */
+.addNewItemForm div::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+.addNewItemForm div {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.addNewItemForm label {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px dotted $labelUnderlineColor;
 }
