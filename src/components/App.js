@@ -5,20 +5,16 @@ import BillingForm from "./Form/Form.js";
 const sampleData = [
   {
     "Model": "Kisan Chair",
-    "Description":"Very good chair",
-    "Price":"10000",
-    "Discount":"3%",},
-  {
+    "Description": "Very good chair",
+    "Price": "10000",
+    "Discount": ""}
+  , {
     "Model": "Supreme Chair",
-    "Description":"Even better chair",
-    "Price":"2134983",
-    "Discount":"9%",
+    "Description": "Even better chair",
+    "Price": "2134983",
+    "Discount": ""
   }
 ]
-
-console.log("sample data:", sampleData);
-
-
 
 const App = () => {
 	return (
