@@ -27,3 +27,7 @@ body {
 @media only screen and (max-device-width: 480px) {
   .root-content {
     width: 95%; } }
+
+.BillingPage .ItemsList {
+  background-color: red;
+  min-height: 7rem; }

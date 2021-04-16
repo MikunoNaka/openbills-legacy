@@ -1,6 +1,6 @@
-import React from "react";
-import AddNewItemForm from "./Form/AddNewItemForm.js";
-
+import React, { useState } from "react";
+import AddNewItemForm from "./Form/AddNewItemForm";
+import ItemsDisplay from "./Display/ItemsDisplay";
 
 const sampleData = [
   {
@@ -21,19 +21,24 @@ const sampleData = [
   }
 ];
 
-// called when AddNewItemForm is submitted
-let addedItems = [];
-const getAddedItems = (item) => {
-  addedItems.push(item);
-}
-
-const defGSTValue = 18;
 
 const BillingPage = () => {
+  const [items, setItems] = useState([]);
+  const defGSTValue = 18;
+
+  const getItems = (item) => {
+    setItems(
+        [...items, item]
+    );
+  }
+
+  console.log(items)
   return (
-    <>
-      <AddNewItemForm savedItems={sampleData} addItem={getAddedItems} defGSTValue={defGSTValue}/>
-    </>
+    <div>
+      <AddNewItemForm savedItems={sampleData} addItem={getItems} defGSTValue={defGSTValue}/>
+
+      <ItemsDisplay/>
+    </div>
   );
 }
 
