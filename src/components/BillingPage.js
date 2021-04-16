@@ -1,5 +1,5 @@
 import React from "react";
-import BillingForm from "./Form/Form.js";
+import AddNewItemForm from "./Form/AddNewItemForm.js";
 
 
 const sampleData = [
@@ -13,13 +13,21 @@ const sampleData = [
     "Description": "Even better chair",
     "Price": "2134983",
     "Discount": ""
+  }, {
+    "Model": "Action Houseware",
+    "Description": "Not a chair",
+    "Price": "69",
+    "Discount": ""
   }
 ];
 
 const BillingPage = () => {
   return (
     <>
-      <BillingForm savedItems={sampleData} />
+      <AddNewItemForm savedItems={sampleData} />
+      <AddNewItemForm savedItems={sampleData} />
+      <AddNewItemForm savedItems={sampleData} />
+      <AddNewItemForm savedItems={sampleData} />
     </>
   );
 }

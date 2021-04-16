@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import "./Form.css";
 
 
-const BillingForm = (props) => {
+const AddNewItemForm = (props) => {
   const [itemNameValue, setItemNameValue] = useState("");
   const [itemDescValue, setItemDescValue] = useState("");
   const [itemPriceValue, setItemPriceValue] = useState(0.00);
   const [itemDiscountValue, setItemDiscountValue] = useState(0.00);
   const [itemGSTValue, setItemGSTValue] = useState(18);
   const [itemQtyValue, setItemQtyValue] = useState(1);
+
+  const enterItemNamePrompt = "Start typing here";
+  const registerItemPrompt = "add new";
+
+  const emptyItemNames = [enterItemNamePrompt, registerItemPrompt, ""];
 
   // Extract the model names from savedItems
   const savedItems = props.savedItems;
@@ -24,6 +29,22 @@ const BillingForm = (props) => {
     }
   );
 
+  // set description and price
+  // when item is entered
+  const setItemInfo = (itemName) => {
+  for (let i = 0; i <= props.savedItems.length - 1; i++) {
+    const mod = props.savedItems[i].Model.toLowerCase();
+    const desc = props.savedItems[i].Description;
+    const price = props.savedItems[i].Price;
+
+    if (mod === itemName) {
+      setItemDescValue(desc);
+      setItemPriceValue(price);
+      break;
+      }
+    }
+  }
+
   return (
     <div className={"formContainer"}>
       <form className={"addNewItemForm"} onSubmit={
@@ -34,22 +55,24 @@ const BillingForm = (props) => {
       }>
         <div className={"textInputs"}>
           <label>
-            Item:<input type="text" value={itemNameValue} onChange={
-              (event) => {
-                setItemNameValue(event.target.value);
-                // set description and price value
-                for (let i = 0; i <= props.savedItems.length - 1; i++) {
-                  const mod = props.savedItems[i].Model;
-                  const desc = props.savedItems[i].Description;
-                  const price = props.savedItems[i].Price;
-                  if (mod === event.target.value) {
-                    setItemDescValue(desc);
-                    setItemPriceValue(price);
-                    break;
+            Item:
+              <select
+                value={itemNameValue} 
+                onChange={
+                  (event) => {
+                    setItemNameValue(event.target.value);
+                    setItemInfo(event.target.value.toLowerCase());
                   }
-                }
-              }
-            } />
+              }>
+                <option key={enterItemNamePrompt}>{enterItemNamePrompt}</option>
+                {savedItemNames.map(
+                  (i) => {
+                    return <option key={i}>{i}</option>
+                  }
+                )}
+                <option key={registerItemPrompt}>{registerItemPrompt}</option>
+              </select>
+
           </label>
   
           <label>
@@ -62,6 +85,14 @@ const BillingForm = (props) => {
         </div>
 
         <div className={"numericInputs"}>
+          <label>
+            Quantity: <input type="number" min="1" value={itemQtyValue} onChange={
+              (event) => {
+                setItemQtyValue(event.target.value);
+              }
+            } />
+          </label>
+
           <label>
             Price: <input type="number" min="0" value={itemPriceValue} onChange={
               (event) => {
@@ -86,33 +117,22 @@ const BillingForm = (props) => {
             } />
           </label>
 
-          <label>
-            Quantity: <input type="number" min="1" value={itemQtyValue} onChange={
-              (event) => {
-                setItemQtyValue(event.target.value);
-              }
-            } />
-          </label>
         </div>
 
         <div className={"menuButtons"}>
-          <input type="submit" value="Placeholder1" />
-          <input type="submit" value="Placeholder2" />
-          <input type="submit" value="Placeholder3" />
-          <input type="submit" value="Placeholder4" />
-          <input type="submit" value="add" />
+          <input type="button" value="Placeholder1" />
+          <input type="button" value="Placeholder2" />
+          <input type="button" value="Placeholder3" />
+          <input type="button" value="Placeholder4" />
+            <input 
+              type="submit" 
+              value="add" 
+              disabled={ emptyItemNames.includes(itemNameValue) ? "disabled" : "" }
+            />
         </div>
       </form>
-
-      <ul>
-        {filteredItems.map(
-          (i) => {
-            return <li key={i}>{i}</li>
-          }
-        )}
-      </ul>
     </div>
   )
 }
 
-export default BillingForm;
+export default AddNewItemForm;
