@@ -6,18 +6,18 @@ const sampleData = [
   {
     "Model": "Kisan Chair",
     "Description": "Very good chair",
-    "Price": "10000",
-    "Discount": ""
+    "Price": 10000,
+    "Discount": 0
   }, {
     "Model": "Supreme Chair",
     "Description": "Even better chair",
     "Price": "2134983",
-    "Discount": ""
+    "Discount": 0
   }, {
     "Model": "Action Houseware",
     "Description": "Not a chair",
-    "Price": "69",
-    "Discount": ""
+    "Price": 69,
+    "Discount": 0
   }
 ];
 

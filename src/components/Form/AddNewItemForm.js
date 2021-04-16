@@ -22,13 +22,6 @@ const AddNewItemForm = (props) => {
     savedItemNames.push(savedItems[i].Model);
   }
 
-  const filteredItems = savedItemNames.filter(
-    (item) => {
-      // case insensitive
-      return item.toLowerCase().includes(itemNameValue.toLowerCase());
-    }
-  );
-
   // set description and price
   // when item is entered
   const setItemInfo = (itemName) => {
@@ -50,7 +43,15 @@ const AddNewItemForm = (props) => {
       <form className={"addNewItemForm"} onSubmit={
         (event) => {
           event.preventDefault();
-          console.log(itemNameValue, itemDescValue, itemPriceValue);
+          const newInvoiceItem = {
+            "Model": itemNameValue,
+            "Description": itemDescValue,
+            "Quantity": itemQtyValue,
+            "Price": itemPriceValue,
+            "Discount": itemDiscountValue,
+            "GST": itemGSTValue
+          };
+          console.log(newInvoiceItem);
         }
       }>
         <div className={"textInputs"}>
@@ -63,7 +64,7 @@ const AddNewItemForm = (props) => {
                     setItemNameValue(event.target.value);
                     setItemInfo(event.target.value.toLowerCase());
                   }
-              }>
+              } >
                 <option key={enterItemNamePrompt}>{enterItemNamePrompt}</option>
                 {savedItemNames.map(
                   (i) => {
@@ -72,11 +73,10 @@ const AddNewItemForm = (props) => {
                 )}
                 <option key={registerItemPrompt}>{registerItemPrompt}</option>
               </select>
-
           </label>
   
           <label>
-            Description:<input type="text" min="0" step="0.1" value={itemDescValue} onChange={
+            Description:<input type="text" step="0.1" value={itemDescValue} onChange={
               (event) => {
                 setItemDescValue(event.target.value);
               }
@@ -86,25 +86,28 @@ const AddNewItemForm = (props) => {
 
         <div className={"numericInputs"}>
           <label>
-            Quantity: <input type="number" min="1" value={itemQtyValue} onChange={
+            Quantity: <input type="number" min="1" value={itemQtyValue} onInput={
               (event) => {
-                setItemQtyValue(event.target.value);
+                const value = event.target.value;
+                setItemQtyValue(value);
               }
-            } />
+            } required />
           </label>
 
           <label>
-            Price: <input type="number" min="0" value={itemPriceValue} onChange={
+            Price: <input type="number" min="1" value={itemPriceValue} onChange={
               (event) => {
-                setItemPriceValue(event.target.value);
+                const value = event.target.value;
+                setItemPriceValue(value);
               }
-            } />
+            } required />
           </label>
 
           <label>
             Discount: <input type="number" min="0" value={itemDiscountValue} onChange={
               (event) => {
-                setItemDiscountValue(event.target.value);
+                const value = event.target.value;
+                setItemDiscountValue(value);
               }
             } />
           </label>
@@ -112,23 +115,29 @@ const AddNewItemForm = (props) => {
           <label>
             GST: <input type="number" min="0" value={itemGSTValue} onChange={
               (event) => {
-                setItemGSTValue(event.target.value);
+                const value = event.target.value;
+                setItemGSTValue(value);
               }
-            } />
+            } required />
           </label>
-
         </div>
 
         <div className={"menuButtons"}>
           <input type="button" value="Placeholder1" />
           <input type="button" value="Placeholder2" />
           <input type="button" value="Placeholder3" />
-          <input type="button" value="Placeholder4" />
-            <input 
-              type="submit" 
-              value="add" 
-              disabled={ emptyItemNames.includes(itemNameValue) ? "disabled" : "" }
-            />
+          <input type="submit" value="Placeholder4" />
+          <input 
+            type="submit" 
+            value="add" 
+            disabled={ 
+              (emptyItemNames.includes(itemNameValue)
+              || itemQtyValue <= 0
+              || itemPriceValue <= 0
+              || itemGSTValue <= 0 
+              ) ? "disabled" : ""
+            }
+          />
         </div>
       </form>
     </div>
