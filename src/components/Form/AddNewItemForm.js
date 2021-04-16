@@ -7,7 +7,7 @@ const AddNewItemForm = (props) => {
   const [itemDescValue, setItemDescValue] = useState("");
   const [itemPriceValue, setItemPriceValue] = useState(0.00);
   const [itemDiscountValue, setItemDiscountValue] = useState(0.00);
-  const [itemGSTValue, setItemGSTValue] = useState(18);
+  const [itemGSTValue, setItemGSTValue] = useState(props.defGSTValue);
   const [itemQtyValue, setItemQtyValue] = useState(1);
 
   const enterItemNamePrompt = "Start typing here";
@@ -38,6 +38,15 @@ const AddNewItemForm = (props) => {
     }
   }
 
+  const resetAllValues = () => {
+    setItemNameValue("");
+    setItemDescValue("");
+    setItemQtyValue(0);
+    setItemPriceValue(0);
+    setItemDiscountValue(0);
+    setItemGSTValue(props.defGSTValue);
+  }
+
   return (
     <div className={"formContainer"}>
       <form className={"addNewItemForm"} onSubmit={
@@ -46,12 +55,13 @@ const AddNewItemForm = (props) => {
           const newInvoiceItem = {
             "Model": itemNameValue,
             "Description": itemDescValue,
-            "Quantity": itemQtyValue,
-            "Price": itemPriceValue,
-            "Discount": itemDiscountValue,
-            "GST": itemGSTValue
+            "Quantity": parseInt(itemQtyValue),
+            "Price": parseInt(itemPriceValue),
+            "Discount": parseInt(itemDiscountValue),
+            "GST": parseInt(itemGSTValue)
           };
-          console.log(newInvoiceItem);
+          props.addItem(newInvoiceItem);
+          resetAllValues();
         }
       }>
         <div className={"textInputs"}>
@@ -64,7 +74,7 @@ const AddNewItemForm = (props) => {
                     setItemNameValue(event.target.value);
                     setItemInfo(event.target.value.toLowerCase());
                   }
-              } >
+              }>
                 <option key={enterItemNamePrompt}>{enterItemNamePrompt}</option>
                 {savedItemNames.map(
                   (i) => {

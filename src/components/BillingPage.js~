@@ -21,18 +21,17 @@ const sampleData = [
   }
 ];
 
-// called when AddNewItemForm is submitted
 let addedItems = [];
 const getAddedItems = (item) => {
+  console.log(item);
   addedItems.push(item);
+  console.log(addedItems);
 }
-
-const defGSTValue = 18;
 
 const BillingPage = () => {
   return (
     <>
-      <AddNewItemForm savedItems={sampleData} addItem={getAddedItems} defGSTValue={defGSTValue}/>
+      <AddNewItemForm savedItems={sampleData} addItem={getAddedItems} defGSTValue={18}/>
     </>
   );
 }
