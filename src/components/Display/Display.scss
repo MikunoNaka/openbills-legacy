@@ -6,22 +6,28 @@
 }
 
 .ItemsDisplay {
-  $sideBorder: 1px dashed $tableBorderColor;
-  border-right: $sideBorder;
-  border-left: $sideBorder;
+  margin: 3rem auto;
+}
 
-  padding: 1rem 0.5rem;
+.ItemsDisplay .legend {
+  background-color: $altBG;
+}
+
+.ItemsDisplay th {
+  font-size: 1.2rem;
 }
 
 .ItemsDisplay td {
   text-align: center;
-  border-bottom: 1px solid $labelUnderlineColor;
+  border-bottom: 1px solid $tableDefBorderColor;
+  font-size: 1.5rem;
 }
 
 .ItemsDisplay .leftAlign {
   text-align: left;
 }
 
-.ItemsDisplay .legend {
-  background-color: $altBG;
+.ItemsDisplay .altBorder {
+  border-bottom: 1px solid $tableAltBorderColor;
 }
+

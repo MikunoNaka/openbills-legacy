@@ -25,15 +25,15 @@ const AddNewItemForm = (props) => {
   // set description and price
   // when item is entered
   const setItemInfo = (itemName) => {
-  for (let i = 0; i <= props.savedItems.length - 1; i++) {
-    const mod = props.savedItems[i].Model.toLowerCase();
-    const desc = props.savedItems[i].Description;
-    const price = props.savedItems[i].Price;
+    for (let i = 0; i < props.savedItems.length - 1; i++) {
+      const mod = props.savedItems[i].Model.toLowerCase();
+      const desc = props.savedItems[i].Description;
+      const price = props.savedItems[i].Price;
 
-    if (mod === itemName) {
-      setItemDescValue(desc);
-      setItemPriceValue(price);
-      break;
+      if (mod === itemName) {
+        setItemDescValue(desc);
+        setItemPriceValue(price);
+        break;
       }
     }
   }
@@ -56,7 +56,7 @@ const AddNewItemForm = (props) => {
             "Model": itemNameValue,
             "Description": itemDescValue,
             "Quantity": parseInt(itemQtyValue),
-            "Price": parseInt(itemPriceValue),
+            "Price": parseFloat(itemPriceValue),
             "Discount": parseInt(itemDiscountValue),
             "GST": parseInt(itemGSTValue)
           };
@@ -105,7 +105,7 @@ const AddNewItemForm = (props) => {
           </label>
 
           <label>
-            Price: <input type="number" min="1" value={itemPriceValue} onChange={
+            Price: <input type="number" min="1.00" step="0.001" value={itemPriceValue} onChange={
               (event) => {
                 const value = event.target.value;
                 setItemPriceValue(value);
@@ -114,7 +114,7 @@ const AddNewItemForm = (props) => {
           </label>
 
           <label>
-            Discount: <input type="number" min="0" value={itemDiscountValue} onChange={
+            Discount: <input type="number" min="0" step="0.001" value={itemDiscountValue} onChange={
               (event) => {
                 const value = event.target.value;
                 setItemDiscountValue(value);

@@ -17,16 +17,21 @@ $defShadow: 0px 0px 4px #232627;
   width: 100%; }
 
 .ItemsDisplay {
-  border-right: 1px dashed lightblue;
-  border-left: 1px dashed lightblue;
-  padding: 1rem 0.5rem; }
+  margin: 3rem auto; }
+
+.ItemsDisplay .legend {
+  background-color: #383A59; }
+
+.ItemsDisplay th {
+  font-size: 1.2rem; }
 
 .ItemsDisplay td {
   text-align: center;
-  border-bottom: 1px solid lightblue; }
+  border-bottom: 1px solid lightblue;
+  font-size: 1.5rem; }
 
 .ItemsDisplay .leftAlign {
   text-align: left; }
 
-.ItemsDisplay .legend {
-  background-color: #383A59; }
+.ItemsDisplay .altBorder {
+  border-bottom: 1px solid gray; }

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Display.css";
 import DisplayItem from "./DisplayItem";
+import SummaryDisplayTR from "./SummaryDisplay";
 
 const ItemsDisplay = (props) => {
   const items = props.items;
@@ -27,37 +28,10 @@ const ItemsDisplay = (props) => {
           );
         }
       )}
+
+      <SummaryDisplayTR items={props.items}/>
     </table>
-  )
-
-
-  /*return (
-    <div className={"ItemsDisplay"}>
-      <div className={"legend"}>
-        <ul>
-          <li className={"num"}>S. Num.</li>
-          <li className={"text"}>Name</li>
-          <li className={"text"}>Description</li>
-          <li className={"num"}>Quantity</li>
-          <li className={"num"}>Price</li>
-          <li className={"num"}>Discount</li>
-          <li className={"num"}>GST</li>
-        </ul>
-      </div>
-
-      <div className={"items"}>
-        {items.map( 
-          (item) => {
-            itemNumber++
-            return (
-              <DisplayItem itemNumber={itemNumber} item={item}/>
-            );
-          }
-        )}
-      </div>
-
-    </div>
-  );*/
+  );
 }
 
 export default ItemsDisplay;
