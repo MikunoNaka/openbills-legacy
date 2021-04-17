@@ -26,9 +26,13 @@ $defBorderColor: lightgreen;
 $altBorderColor: #FF79C6;
 
 $tableDefBorderColor: lightblue;
-$tableAltBorderColor: gray;
+$tableAltBorderColor: #FF79C6;
+$tableDisabledBorderColor: gray;
 
 $labelUnderlineColor: lightblue;
+
+$warningColor: red;
+$warningBorderColor: $warningColor;
 
 
 $defShadow: 0px 4px 4px $altBG;

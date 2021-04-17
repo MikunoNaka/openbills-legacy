@@ -23,11 +23,20 @@
   font-size: 1.5rem;
 }
 
+.ItemsDisplay .disabledBorder {
+  border-bottom: 1px solid $tableDisabledBorderColor;
+}
+
+.ItemsDisplay .warningBorder {
+  border-bottom: 1px solid $warningBorderColor;
+}
+
 .ItemsDisplay .leftAlign {
   text-align: left;
 }
 
-.ItemsDisplay .altBorder {
-  border-bottom: 1px solid $tableAltBorderColor;
+.SummaryDisplayTR {
+  color: $altFG;
 }
+
 

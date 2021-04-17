@@ -9,11 +9,11 @@ const DisplayItem = (props) => {
     <tr>
       <td>{itemNumber}</td>
       <td className={"leftAlign"}>{item.Model}</td>
-      <td className={"leftAlign"}>{item.Description}</td>
+      <td className={item.Description === "" ? "leftAlign disabledBorder" : "leftAlign"}>{item.Description}</td>
       <td>{item.Quantity}</td>
+      <td className={item.Discount === 0 ? "disabledBorder" : ""}>{item.Discount}</td>
+      <td className={item.GST === props.defGSTValue ? "" : "warningBorder"}>{item.GST}</td>
       <td>{item.Price}</td>
-      <td>{item.Discount}</td>
-      <td>{item.GST}</td>
     </tr>
   );
 }

@@ -30,8 +30,14 @@ $defShadow: 0px 0px 4px #232627;
   border-bottom: 1px solid lightblue;
   font-size: 1.5rem; }
 
+.ItemsDisplay .disabledBorder {
+  border-bottom: 1px solid gray; }
+
+.ItemsDisplay .warningBorder {
+  border-bottom: 1px solid red; }
+
 .ItemsDisplay .leftAlign {
   text-align: left; }
 
-.ItemsDisplay .altBorder {
-  border-bottom: 1px solid gray; }
+.SummaryDisplayTR {
+  color: #FF79C6; }

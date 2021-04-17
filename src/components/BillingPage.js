@@ -45,7 +45,7 @@ const BillingPage = () => {
   return (
     <div>
       <AddNewItemForm savedItems={sampleData} addItem={getItems} defGSTValue={defGSTValue}/>
-      <ItemsDisplay items={items}/>
+      <ItemsDisplay items={items} defGSTValue={defGSTValue}/>
     </div>
   );
 }
