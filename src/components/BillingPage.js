@@ -26,22 +26,10 @@ const BillingPage = () => {
   // to be handled by backend
   const defGSTValue = 18;
 
-  /* Note to the dumbass coding this alone
-   * Right now only the models are getting passed
-   * into ItemsDisplay because I wanted to
-   * take screenshots and shit. 
-   * Implement a feature such that I can pass in a
-   * whole array of objects and ItemsDisplay processes
-   * the itemNames, prices and shit. 
-   * This file should only handle 
-   * getting the items from AddNewItemForm
-   * putting it into the list
-   * and pass it into ItemsDisplay 
-   */
   const [items, setItems] = useState([]);
   const getItems = (item) => {
     setItems(
-      [...items, item.Model]
+      [...items, item]
     );
   };
 
