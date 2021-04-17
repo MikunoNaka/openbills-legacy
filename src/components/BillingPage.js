@@ -33,7 +33,6 @@ const BillingPage = () => {
     );
   };
 
-  console.log(items)
   return (
     <div>
       <AddNewItemForm savedItems={sampleData} addItem={getItems} defGSTValue={defGSTValue}/>

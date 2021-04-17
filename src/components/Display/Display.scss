@@ -1,6 +1,27 @@
-.ItemsDisplay {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+@import "../../styles/theme";
 
-  
+.ItemsDisplay,
+.ItemsDisplay table {
+  width: 100%;
+}
+
+.ItemsDisplay {
+  $sideBorder: 1px dashed $tableBorderColor;
+  border-right: $sideBorder;
+  border-left: $sideBorder;
+
+  padding: 1rem 0.5rem;
+}
+
+.ItemsDisplay td {
+  text-align: center;
+  border-bottom: 1px solid $labelUnderlineColor;
+}
+
+.ItemsDisplay .leftAlign {
+  text-align: left;
+}
+
+.ItemsDisplay .legend {
+  background-color: $altBG;
 }

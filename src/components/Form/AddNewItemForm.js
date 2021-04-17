@@ -41,8 +41,8 @@ const AddNewItemForm = (props) => {
   const resetAllValues = () => {
     setItemNameValue("");
     setItemDescValue("");
-    setItemQtyValue(0);
-    setItemPriceValue(0);
+    setItemQtyValue(1);
+    setItemPriceValue(1);
     setItemDiscountValue(0);
     setItemGSTValue(props.defGSTValue);
   }
