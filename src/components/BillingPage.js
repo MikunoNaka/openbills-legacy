@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddNewItemForm from "./Form/AddNewItemForm";
 import ItemsDisplay from "./Display/ItemsDisplay";
 import SummaryDisplay from "./Display/SummaryDisplay";
@@ -38,6 +38,9 @@ const sampleData = [
 ];
 
 const BillingPage = () => {
+  useEffect(() => {
+    alert("yo this app in beta");
+  }, []);
   // to be handled by backend
   const defGSTValue = 18;
 
@@ -47,6 +50,9 @@ const BillingPage = () => {
       [...items, item]
     );
   };
+
+  useEffect(() => {
+  }, [items]);
 
   return (
     <div>
