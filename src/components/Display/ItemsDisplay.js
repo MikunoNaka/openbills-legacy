@@ -1,7 +1,7 @@
 import React from "react";
 import "./Display.css";
 import DisplayItem from "./DisplayItem";
-import SummaryDisplayTR from "./SummaryDisplay";
+import {SummaryDisplayTR} from "./SummaryDisplay";
 
 const ItemsDisplay = (props) => {
   const items = props.items;
@@ -18,6 +18,7 @@ const ItemsDisplay = (props) => {
         <th>Quantity(NOS)</th>
         <th>Discount(%)</th>
         <th>GST(%)</th>
+        <th>HSN</th>
         <th>Price</th>
       </tr>
 

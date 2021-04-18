@@ -18,7 +18,7 @@ const getSummary = (items) => {
   );
 }
 
-const SummaryDisplayTR = (props) => {
+export const SummaryDisplayTR = (props) => {
   const summary = getSummary(props.items);
 
   return (
@@ -29,9 +29,18 @@ const SummaryDisplayTR = (props) => {
       <td>{summary.TotalQuantity}</td>
       <td className={"disabledBorder"}></td>
       <td className={"disabledBorder"}></td>
+      <td className={"disabledBorder"}></td>
       <td>{summary.TotalRawPrice}</td>
     </tr>
   );
 }
 
-export default SummaryDisplayTR;
+const SummaryDisplay = (props) => {
+  const summary = getSummary(props.items);
+
+  return (
+    <p>Total: {summary.TotalRawPrice}</p>
+  );
+}
+
+export default SummaryDisplay;

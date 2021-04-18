@@ -9,8 +9,9 @@ const AddNewItemForm = (props) => {
   const [itemDiscountValue, setItemDiscountValue] = useState(0.00);
   const [itemGSTValue, setItemGSTValue] = useState(props.defGSTValue);
   const [itemQtyValue, setItemQtyValue] = useState(1);
+  const [itemHSNValue, setItemHSNValue] = useState(0);
 
-  const enterItemNamePrompt = "Start typing here";
+  const enterItemNamePrompt = "start typing here";
   const registerItemPrompt = "add new";
 
   const emptyItemNames = [enterItemNamePrompt, registerItemPrompt, ""];
@@ -25,14 +26,16 @@ const AddNewItemForm = (props) => {
   // set description and price
   // when item is entered
   const setItemInfo = (itemName) => {
-    for (let i = 0; i < props.savedItems.length - 1; i++) {
+    for (let i = 0; i < props.savedItems.length; i++) {
       const mod = props.savedItems[i].Model.toLowerCase();
       const desc = props.savedItems[i].Description;
       const price = props.savedItems[i].Price;
+      const hsn = props.savedItems[i].HSN;
 
       if (mod === itemName) {
         setItemDescValue(desc);
         setItemPriceValue(price);
+        setItemHSNValue(hsn);
         break;
       }
     }
@@ -44,6 +47,7 @@ const AddNewItemForm = (props) => {
     setItemQtyValue(1);
     setItemPriceValue(1);
     setItemDiscountValue(0);
+    setItemHSNValue(0);
     setItemGSTValue(props.defGSTValue);
   }
 
@@ -58,6 +62,7 @@ const AddNewItemForm = (props) => {
             "Quantity": parseInt(itemQtyValue),
             "Price": parseFloat(itemPriceValue),
             "Discount": parseInt(itemDiscountValue),
+            "HSN": parseInt(itemHSNValue),
             "GST": parseInt(itemGSTValue)
           };
           props.addItem(newInvoiceItem);
@@ -123,6 +128,15 @@ const AddNewItemForm = (props) => {
           </label>
 
           <label>
+            HSN: <input type="number" min="0" value={itemHSNValue} onChange={
+              (event) => {
+                const value = event.target.value;
+                setItemHSNValue(value);
+              }
+            } required />
+          </label>
+
+          <label>
             GST: <input type="number" min="0" value={itemGSTValue} onChange={
               (event) => {
                 const value = event.target.value;
@@ -136,7 +150,7 @@ const AddNewItemForm = (props) => {
           <input type="button" value="Placeholder1" />
           <input type="button" value="Placeholder2" />
           <input type="button" value="Placeholder3" />
-          <input type="submit" value="Placeholder4" />
+          <input type="submit" value="Panic" />
           <input 
             type="submit" 
             value="add" 

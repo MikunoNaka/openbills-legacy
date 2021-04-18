@@ -39,5 +39,6 @@ $defShadow: 0px 0px 4px #232627;
 .ItemsDisplay .leftAlign {
   text-align: left; }
 
-.SummaryDisplayTR {
-  color: #FF79C6; }
+.SummaryDisplayTR td {
+  color: #FF79C6;
+  font-size: 1.7rem; }
