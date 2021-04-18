@@ -60,7 +60,8 @@ const AddNewItemForm = (props) => {
             "Model": itemNameValue,
             "Description": itemDescValue,
             "Quantity": parseInt(itemQtyValue),
-            "Price": parseFloat(itemPriceValue),
+            "SinglePrice": parseFloat(itemPriceValue),
+            "TotalPrice": parseFloat(itemPriceValue * itemQtyValue),
             "Discount": parseInt(itemDiscountValue),
             "HSN": parseInt(itemHSNValue),
             "GST": parseInt(itemGSTValue)

@@ -14,7 +14,7 @@ const DisplayItem = (props) => {
       <td className={item.Discount === 0 ? "disabledBorder" : ""}>{item.Discount}</td>
       <td className={item.GST === props.defGSTValue ? "" : "warningBorder"}>{item.GST}</td>
       <td>{item.HSN}</td>
-      <td>{item.Price}</td>
+      <td>{item.TotalPrice}</td>
     </tr>
   );
 }

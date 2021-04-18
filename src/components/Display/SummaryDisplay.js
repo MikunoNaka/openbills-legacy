@@ -6,7 +6,7 @@ const getSummary = (items) => {
   let totalQuantity = 0;
 
   for (let i = 0; i < items.length; i++) {
-    totalRawPrice += items[i].Price;
+    totalRawPrice += items[i].TotalPrice;
     totalQuantity += items[i].Quantity
   }
 
