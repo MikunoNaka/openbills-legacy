@@ -13,10 +13,11 @@ $defShadow: 0px 0px 4px #232627;
 */
 /* Inspired by Dracula */
 .formContainer {
-  border: 1px solid pink;
-  padding: 2rem;
-  height: 60vh;
-  border-radius: 1rem; }
+  /*border: 1px solid pink;*/
+  /*padding: 2rem;*/
+  height: 50vh;
+  border-radius: 1rem;
+  padding: 1.5rem 0; }
 
 .addNewItemForm .textInputs,
 .addNewItemForm .numericInputs
@@ -27,11 +28,11 @@ label {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 85%; }
+  height: 100%; }
 
 .addNewItemForm .textInputs,
 .addNewItemForm .numericInputs {
-  border: 1px solid #FF79C6;
+  border: 1px dashed #FF79C6;
   width: 30%;
   justify-content: space-around; }
 
@@ -39,9 +40,9 @@ label {
   width: 5.5rem; }
 
 .addNewItemForm .menuButtons {
-  justify-content: space-around;
-  border: 1px solid lightgreen;
-  width: 15%; }
+  border: 1px dashed #FF79C6;
+  width: 15%;
+  justify-content: space-around; }
 
 .addNewItemForm .menuButtons * {
   width: 100%; }
@@ -49,7 +50,7 @@ label {
 .addNewItemForm div {
   display: flex;
   flex-direction: column;
-  border-radius: 1rem;
+  /*border-radius: 1rem;*/
   padding: 1.5rem;
   overflow: scroll; }
 

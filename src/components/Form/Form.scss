@@ -1,11 +1,14 @@
 @import "../../styles/theme";
 
-.formContainer {
-  border: 1px solid pink;
-  padding: 2rem;
+$inputBorders: 1px dashed $altFG;
 
-  height: 60vh;
+.formContainer {
+  /*border: 1px solid pink;*/
+  /*padding: 2rem;*/
+
+  height: 50vh;
   border-radius: 1rem;
+  padding: 1.5rem 0;
 }
 
 .addNewItemForm .textInputs,
@@ -19,12 +22,12 @@ label {
   flex-direction: row;
   justify-content: space-between;
 
-  height: 85%;
+  height: 100%;
 }
 
 .addNewItemForm .textInputs,
 .addNewItemForm .numericInputs {
-  border: 1px solid $altBorderColor;
+  border: $inputBorders;
   width: 30%;
   justify-content: space-around;
 }
@@ -34,9 +37,9 @@ label {
 }
 
 .addNewItemForm .menuButtons {
-  justify-content: space-around;
-  border: 1px solid $defBorderColor;
+  border: $inputBorders;
   width: 15%;
+  justify-content: space-around;
 }
 
 .addNewItemForm .menuButtons * {
@@ -46,7 +49,7 @@ label {
 .addNewItemForm div {
   display: flex;
   flex-direction: column;
-  border-radius: 1rem;
+  /*border-radius: 1rem;*/
   padding: 1.5rem;
 
   overflow: scroll;
