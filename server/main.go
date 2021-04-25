@@ -2,14 +2,16 @@ package main
 
 import (
   "github.com/gin-gonic/gin"
-  // "net/http"
+  "github.com/gin-gonic/contrib/static"
 )
 
 func main() {
-  myRouter := gin.New()
-  // myRouter.Use(gin.Logger())
+  myRouter := gin.Default()
+  myRouter.Use(gin.Logger())
 
-  myRouter.Static("/app", "./app")
+  // serve static front end on /
+  myRouter.Use(static.Serve("/", 
+    static.LocalFile("./app", true)))
 
   myRouter.Run(":8080")
 }

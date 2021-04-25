@@ -1,7 +1,7 @@
 import React from "react";
 import "./Display.css";
 
-const getSummary = (items) => {
+const getBasicSummary = (items) => {
   let totalRawPrice = 0;
   let totalQuantity = 0;
 
@@ -18,8 +18,30 @@ const getSummary = (items) => {
   );
 }
 
+const getFullSummary = (items) => {
+  let totalRawPrice = 0;
+  let totalDiscountPrice = 0; // to be subtracted from totalRawPrice
+
+  for (let i = 0; i < items.length; i++) {
+    const itemTotalPrice = items[i].TotalPrice;
+    const itemDiscount = items[i].Discount;
+
+    totalRawPrice += itemTotalPrice;
+    totalDiscountPrice += (itemDiscount / 100) * itemTotalPrice;
+  }
+
+  // TODO: add support for calculating gst from TotalPriceAfterDiscount
+
+  return (
+    {
+      "TotalRawPrice":           totalRawPrice,
+      "TotalPriceAfterDiscount": totalRawPrice - totalDiscountPrice
+    }
+  );
+}
+
 export const SummaryDisplayTR = (props) => {
-  const summary = getSummary(props.items);
+  const summary = getBasicSummary(props.items);
 
   return (
     <tr className={"SummaryDisplayTR"}>
@@ -36,10 +58,13 @@ export const SummaryDisplayTR = (props) => {
 }
 
 const SummaryDisplay = (props) => {
-  const summary = getSummary(props.items);
+  const summary = getFullSummary(props.items);
 
   return (
-    <p>Total: {summary.TotalRawPrice}</p>
+    <>
+      <p>Total: {summary.TotalRawPrice}</p>
+      <p>Total after discount: {summary.TotalPriceAfterDiscount}</p>
+    </>
   );
 }
 
