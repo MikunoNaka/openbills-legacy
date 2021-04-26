@@ -13,6 +13,18 @@ body {
 .root-content {
   width: 95%;
   margin: auto;
+  margin-bottom: 3rem;
+}
+
+.BillingPageFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 70vh;
+}
+.BillingPageFlex div {
+  width: 45%;
+  border: 1px solid pink;
 }
 
 @media only screen and (max-device-width: 480px) {

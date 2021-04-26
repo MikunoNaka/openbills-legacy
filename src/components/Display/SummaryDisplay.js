@@ -20,14 +20,16 @@ const getBasicSummary = (items) => {
 
 const getFullSummary = (items) => {
   let totalRawPrice = 0;
-  let totalDiscountPrice = 0; // to be subtracted from totalRawPrice
+  let totalDiscount = 0; // to be subtracted from totalRawPrice
+  let totalTax = 0;
 
   for (let i = 0; i < items.length; i++) {
     const itemTotalPrice = items[i].TotalPrice;
     const itemDiscount = items[i].Discount;
 
     totalRawPrice += itemTotalPrice;
-    totalDiscountPrice += (itemDiscount / 100) * itemTotalPrice;
+    totalDiscount += (itemDiscount / 100) * itemTotalPrice;
+    totalTax += (items[i].GST / 100) * itemTotalPrice;
   }
 
   // TODO: add support for calculating gst from TotalPriceAfterDiscount
@@ -35,7 +37,10 @@ const getFullSummary = (items) => {
   return (
     {
       "TotalRawPrice":           totalRawPrice,
-      "TotalPriceAfterDiscount": totalRawPrice - totalDiscountPrice
+      "TotalDiscountPrice":      totalDiscount,
+      "TotalPriceAfterDiscount": totalRawPrice - totalDiscount,
+      "TotalTaxAmount":          totalTax,
+      "TotalPrice":              (totalRawPrice - totalDiscount) + totalTax,
     }
   );
 }
@@ -61,10 +66,12 @@ const SummaryDisplay = (props) => {
   const summary = getFullSummary(props.items);
 
   return (
-    <>
-      <p>Total: {summary.TotalRawPrice}</p>
-      <p>Total after discount: {summary.TotalPriceAfterDiscount}</p>
-    </>
+    <div className={"SummaryDisplay"}>
+      <p>Total raw: {summary.TotalRawPrice}</p>
+      <p>Total after discount: {summary.TotalRawPrice} - {summary.TotalDiscountPrice} = {summary.TotalPriceAfterDiscount}</p>
+      <p>Total tax: {summary.TotalTaxAmount}</p>
+      <p>Total: {summary.TotalPriceAfterDiscount} + {summary.TotalTaxAmount} = {summary.TotalPrice}</p>
+    </div>
   );
 }
 

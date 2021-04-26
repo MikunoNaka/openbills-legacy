@@ -42,3 +42,6 @@ $defShadow: 0px 0px 4px #232627;
 .SummaryDisplayTR td {
   color: #FF79C6;
   font-size: 1.7rem; }
+
+.SummaryDisplay {
+  border: 1px solid pink; }

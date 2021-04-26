@@ -31,11 +31,14 @@ const BillingPage = () => {
   };
 
   return (
-    <div>
+    <>
       <AddNewItemForm savedItems={savedItems} addItem={getItems} defGSTValue={defGSTValue}/>
       <ItemsDisplay items={items} defGSTValue={defGSTValue}/>
-      <SummaryDisplay items={items}/>
-    </div>
+      <div className={"BillingPageFlex"}>
+        <div>placeholder for extras menu</div>
+        <SummaryDisplay items={items}/>
+      </div>
+    </>
   );
 }
 
