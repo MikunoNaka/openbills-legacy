@@ -59,3 +59,7 @@ $defShadow: 0px 0px 4px #232627;
 .SummaryDisplay td {
   font-size: 1.25rem;
   padding: 0.2rem 0; }
+
+.SummaryDisplay .grandTotal td {
+  font-size: 2rem;
+  color: #FF79C6; }

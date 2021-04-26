@@ -1,6 +1,6 @@
 @import "../../styles/theme";
 
-$inputBorders: 1px dashed $altFG;
+$inputBorders: 1px solid $altBorderColor;
 
 .formContainer {
   /*border: 1px solid pink;*/

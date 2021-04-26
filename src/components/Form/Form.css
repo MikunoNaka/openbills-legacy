@@ -32,7 +32,7 @@ label {
 
 .addNewItemForm .textInputs,
 .addNewItemForm .numericInputs {
-  border: 1px dashed #FF79C6;
+  border: 1px solid pink;
   width: 30%;
   justify-content: space-around; }
 
@@ -40,7 +40,7 @@ label {
   width: 5.5rem; }
 
 .addNewItemForm .menuButtons {
-  border: 1px dashed #FF79C6;
+  border: 1px solid pink;
   width: 15%;
   justify-content: space-around; }
 

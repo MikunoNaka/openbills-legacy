@@ -36,12 +36,12 @@ const getFullSummary = (items) => {
   const totalRoundedOff = Math.abs(totalPriceAfterTax - Math.round(totalPriceAfterTax));
   return (
     {
-      "TotalRawPrice":           totalRawPrice.toFixed(2),
-      "TotalDiscountPrice":      totalDiscount.toFixed(2),
-      "TotalPriceAfterDiscount": (totalRawPrice - totalDiscount).toFixed(2),
-      "TotalTaxAmount":          totalTax.toFixed(2),
-      "TotalPriceAfterTax":      totalPriceAfterTax.toFixed(2),
-      "RoundedOff":              totalRoundedOff.toFixed(2),
+      "TotalRawPrice":           parseFloat(totalRawPrice.toFixed(2)),
+      "TotalDiscountPrice":      parseFloat(totalDiscount.toFixed(2)),
+      "TotalPriceAfterDiscount": parseFloat((totalRawPrice - totalDiscount).toFixed(2)),
+      "TotalTaxAmount":          parseFloat(totalTax.toFixed(2)),
+      "TotalPriceAfterTax":      parseFloat(totalPriceAfterTax.toFixed(2)),
+      "RoundedOff":              parseFloat(totalRoundedOff.toFixed(2)),
       "TotalPrice":              Math.round(totalPriceAfterTax)
     }
   );
@@ -76,7 +76,7 @@ const SummaryDisplay = (props) => {
           <td>{summary.TotalRawPrice}</td>
         </tr>
 
-        {true &&// summary.TotalDiscountPrice !== 0 &&
+        {summary.TotalDiscountPrice !== 0.00 &&
           <tr>
             <td>After Discount</td>
             <td>{summary.TotalPriceAfterDiscount}</td>
@@ -90,14 +90,14 @@ const SummaryDisplay = (props) => {
           <td>(+{summary.TotalTaxAmount})</td>
         </tr>
 
-        {true && //summary.RoundedOff !== 0 &&
+        {summary.RoundedOff !== 0.00 &&
           <tr>
             <td>Rounded Off</td>
             <td>{summary.RoundedOff}</td>
           </tr>
         }
 
-        <tr>
+        <tr className={"grandTotal"}>
           <td>Grand Total</td> 
           <td>{summary.TotalPrice}</td>
         </tr>
