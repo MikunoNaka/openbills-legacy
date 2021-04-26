@@ -31,14 +31,40 @@ func main() {
 }
 
 func getAllItems(ctx *gin.Context) {
-  allItems := [1]Item{
+  allItems := [6]Item{
     {
       "Kisan Chair",
       "Very Good Chair",
       100,
       9403,
+    }, {
+      "Supreme Chair",
+      "Even Better Chair",
+      200,
+      9403,
+    }, {
+      "Action Houseware",
+      "Not a chair",
+      50,
+      69,
+    }, {
+      "Coirfit Mattress",
+      "I wanna sleep",
+      900,
+      420,
+    }, {
+      "AVRO Chair",
+      "Formerly AVON lol",
+      150,
+      9403,
+    }, {
+      "Mystery Item",
+      "hehe hehehehe",
+      1000,
+      177013,
     },
   }
 
+  ctx.Header("Content-Type", "application/json")
   ctx.JSON(http.StatusOK, allItems)
 }
