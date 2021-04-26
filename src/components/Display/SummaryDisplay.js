@@ -25,22 +25,24 @@ const getFullSummary = (items) => {
 
   for (let i = 0; i < items.length; i++) {
     const itemTotalPrice = items[i].TotalPrice;
-    const itemDiscount = items[i].Discount;
+    const itemDiscount = (items[i].Discount / 100) * itemTotalPrice;
 
     totalRawPrice += itemTotalPrice;
-    totalDiscount += (itemDiscount / 100) * itemTotalPrice;
-    totalTax += (items[i].GST / 100) * itemTotalPrice;
+    totalDiscount += itemDiscount;
+    totalTax += (items[i].GST / 100) * (itemTotalPrice - itemDiscount);
   }
 
-  // TODO: add support for calculating gst from TotalPriceAfterDiscount
-
+  const totalPriceAfterTax = (totalRawPrice - totalDiscount) + totalTax;
+  const totalRoundedOff = Math.abs(totalPriceAfterTax - Math.round(totalPriceAfterTax));
   return (
     {
-      "TotalRawPrice":           totalRawPrice,
-      "TotalDiscountPrice":      totalDiscount,
-      "TotalPriceAfterDiscount": totalRawPrice - totalDiscount,
-      "TotalTaxAmount":          totalTax,
-      "TotalPrice":              (totalRawPrice - totalDiscount) + totalTax,
+      "TotalRawPrice":           totalRawPrice.toFixed(2),
+      "TotalDiscountPrice":      totalDiscount.toFixed(2),
+      "TotalPriceAfterDiscount": (totalRawPrice - totalDiscount).toFixed(2),
+      "TotalTaxAmount":          totalTax.toFixed(2),
+      "TotalPriceAfterTax":      totalPriceAfterTax.toFixed(2),
+      "RoundedOff":              totalRoundedOff.toFixed(2),
+      "TotalPrice":              Math.round(totalPriceAfterTax)
     }
   );
 }
@@ -67,10 +69,39 @@ const SummaryDisplay = (props) => {
 
   return (
     <div className={"SummaryDisplay"}>
-      <p>Total raw: {summary.TotalRawPrice}</p>
-      <p>Total after discount: {summary.TotalRawPrice} - {summary.TotalDiscountPrice} = {summary.TotalPriceAfterDiscount}</p>
-      <p>Total tax: {summary.TotalTaxAmount}</p>
-      <p>Total: {summary.TotalPriceAfterDiscount} + {summary.TotalTaxAmount} = {summary.TotalPrice}</p>
+      <h1>Summary</h1>
+      <table>
+        <tr>
+          <td>Base Total</td>
+          <td>{summary.TotalRawPrice}</td>
+        </tr>
+
+        {true &&// summary.TotalDiscountPrice !== 0 &&
+          <tr>
+            <td>After Discount</td>
+            <td>{summary.TotalPriceAfterDiscount}</td>
+            <td>(-{summary.TotalDiscountPrice})</td>
+          </tr>
+        }
+
+        <tr>
+          <td>After Tax</td>
+          <td>{summary.TotalPriceAfterTax}</td>
+          <td>(+{summary.TotalTaxAmount})</td>
+        </tr>
+
+        {true && //summary.RoundedOff !== 0 &&
+          <tr>
+            <td>Rounded Off</td>
+            <td>{summary.RoundedOff}</td>
+          </tr>
+        }
+
+        <tr>
+          <td>Grand Total</td> 
+          <td>{summary.TotalPrice}</td>
+        </tr>
+      </table>
     </div>
   );
 }

@@ -44,4 +44,18 @@ $defShadow: 0px 0px 4px #232627;
   font-size: 1.7rem; }
 
 .SummaryDisplay {
-  border: 1px solid pink; }
+  width: 30%;
+  padding: 0.5rem 2rem; }
+
+.SummaryDisplay h1 {
+  font-size: 3rem;
+  margin: 0.5rem -1.5rem;
+  border-bottom: 1px dotted lightblue; }
+
+.SummaryDisplay table {
+  width: 100%;
+  margin: auto; }
+
+.SummaryDisplay td {
+  font-size: 1.25rem;
+  padding: 0.2rem 0; }

@@ -4,6 +4,7 @@ import axios from "axios";
 import AddNewItemForm from "./Form/AddNewItemForm";
 import ItemsDisplay from "./Display/ItemsDisplay";
 import SummaryDisplay from "./Display/SummaryDisplay";
+import MetaInfoForm from "./Form/MetaInfoForm";
 
 const BillingPage = () => {
   const [savedItems, getSavedItems] = useState([])
@@ -35,7 +36,7 @@ const BillingPage = () => {
       <AddNewItemForm savedItems={savedItems} addItem={getItems} defGSTValue={defGSTValue}/>
       <ItemsDisplay items={items} defGSTValue={defGSTValue}/>
       <div className={"BillingPageFlex"}>
-        <div>placeholder for extras menu</div>
+        <MetaInfoForm/>
         <SummaryDisplay items={items}/>
       </div>
     </>

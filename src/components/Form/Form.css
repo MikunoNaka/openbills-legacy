@@ -82,6 +82,9 @@ input[type=number] {
   padding: 0.8rem 0;
   border-bottom: 1px dotted lightblue; }
 
+.MetaInfoForm {
+  width: 60%; }
+
 @media only screen and (max-device-width: 480px) {
   .formContainer {
     padding: 0.5rem;

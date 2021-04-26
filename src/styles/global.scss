@@ -23,7 +23,7 @@ body {
   height: 70vh;
 }
 .BillingPageFlex div {
-  width: 45%;
+  box-sizing: border-box;
   border: 1px solid pink;
 }
 

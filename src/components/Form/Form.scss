@@ -84,6 +84,10 @@ input[type=number] {
   border-bottom: 1px dotted $labelUnderlineColor;
 }
 
+.MetaInfoForm {
+  width: 60%;
+}
+
 @media only screen and (max-device-width: 480px) {
   .formContainer {
     padding: 0.5rem;
