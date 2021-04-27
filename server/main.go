@@ -15,6 +15,9 @@ import (
   "net/http"
   "github.com/gin-gonic/gin"
   "github.com/gin-gonic/contrib/static"
+
+  // this handles all the database functions
+  db "github.com/MikunoNaka/openbills/database"
 )
 
 type Item struct {
@@ -25,6 +28,7 @@ type Item struct {
 }
 
 func main() {
+  db.SayHello()
   myRouter := gin.New()
   myRouter.Use(gin.Logger())
 
