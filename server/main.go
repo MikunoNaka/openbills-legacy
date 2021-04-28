@@ -12,23 +12,15 @@
 package main
 
 import (
-  "net/http"
   "github.com/gin-gonic/gin"
   "github.com/gin-gonic/contrib/static"
+  "net/http"
 
   // this handles all the database functions
   db "github.com/MikunoNaka/openbills/database"
 )
 
-type Item struct {
-  Model  string 
-  Desc   string `json:"Description"`
-  Price  float32
-  HSN    int   
-}
-
 func main() {
-  db.SayHello()
   myRouter := gin.New()
   myRouter.Use(gin.Logger())
 
@@ -46,40 +38,6 @@ func main() {
 }
 
 func getAllItems(ctx *gin.Context) {
-  allItems := [6]Item{
-    {
-      "Kisan Chair",
-      "Very Good Chair",
-      100,
-      9403,
-    }, {
-      "Supreme Chair",
-      "Even Better Chair",
-      200,
-      9403,
-    }, {
-      "Action Houseware",
-      "Not a chair",
-      50,
-      69,
-    }, {
-      "Coirfit Mattress",
-      "I wanna sleep",
-      900,
-      420,
-    }, {
-      "AVRO Chair",
-      "Formerly AVON lol",
-      150,
-      9403,
-    }, {
-      "Mystery Item",
-      "hehe hehehehe",
-      1000,
-      177013,
-    },
-  }
-
   ctx.Header("Content-Type", "application/json")
-  ctx.JSON(http.StatusOK, allItems)
+  ctx.JSON(http.StatusOK, db.GetAllItems())
 }
