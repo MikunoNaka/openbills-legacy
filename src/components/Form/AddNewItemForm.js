@@ -80,7 +80,7 @@ const AddNewItemForm = (props) => {
       }>
         <div className={"textInputs"}>
           <label>
-            Item:
+            Item/Service:
               <select
                 value={itemNameValue} 
                 onChange={
@@ -110,7 +110,7 @@ const AddNewItemForm = (props) => {
 
         <div className={"numericInputs"}>
           <label>
-            Quantity: <input type="number" min="1" value={itemQtyValue} onInput={
+            Quantity:<input type="number" min="1" value={itemQtyValue} onInput={
               (event) => {
                 const value = event.target.value;
                 setItemQtyValue(value);
@@ -156,10 +156,12 @@ const AddNewItemForm = (props) => {
         </div>
 
         <div className={"menuButtons"}>
+          <input type="button" value="Register New Item" onClick={() => {
+            alert("Coming Soon")
+          }} />
           <input type="button" value="Placeholder1" />
           <input type="button" value="Placeholder2" />
-          <input type="button" value="Placeholder3" />
-          <input type="submit" value="Panic" />
+          <input type="submit" value="Force Add" />
           <input 
             type="submit" 
             value="add" 

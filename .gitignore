@@ -25,6 +25,8 @@ yarn-error.log*
 /server/openbills
 /server/build
 /server/app
+/server/openbills.db
+/server/database/openbills.db
 
 /build
 /app

@@ -10,6 +10,20 @@
 
 $inputBorders: 1px solid $altBorderColor;
 
+/* hide arrows in numericInputs */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
 .formContainer {
   /*border: 1px solid pink;*/
   /*padding: 2rem;*/
@@ -72,24 +86,37 @@ label {
   scrollbar-width: none;  /* Firefox */
 }
 
-/* hide arrows in numericInputs */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
 .addNewItemForm label {
   display: flex;
   justify-content: space-between;
   padding: 0.8rem 0;
   border-bottom: 1px dotted $labelUnderlineColor;
+}
+
+.RegisterItemFormContainer {
+  /*display: none;*/
+  position: fixed;
+
+  width: 95%;
+  height: 70vh;
+
+  left: 0;right: 0;
+  margin: auto;
+  top: 15vh;
+
+  background-color: $altBG;
+}
+
+.RegisterItemForm .textInputs,
+.RegisterItemForm .numericInputs {
+  width: 40%;
+}
+
+.RegisterItemForm {
+  width: 95%;
+  height: 60vh;
+  margin: 1rem auto;
+  justify-content: space-around;
 }
 
 .MetaInfoForm {

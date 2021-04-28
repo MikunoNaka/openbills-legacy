@@ -10,15 +10,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import AddNewItemForm from "./Form/AddNewItemForm";
+import RegisterItemForm from "./Form/RegisterItemForm";
+import MetaInfoForm from "./Form/MetaInfoForm";
 import ItemsDisplay from "./Display/ItemsDisplay";
 import SummaryDisplay from "./Display/SummaryDisplay";
-import MetaInfoForm from "./Form/MetaInfoForm";
 
 const BillingPage = () => {
   const [savedItems, getSavedItems] = useState([])
 
-  // get data from server on startup
-  useEffect(() => {
+  const getRegisteredItems = () => {
     axios.get(`/api/items`)
       .then((res) => {
         getSavedItems(res.data);
@@ -27,8 +27,13 @@ const BillingPage = () => {
         alert("The promise returned an error idk what to do");
         console.log(res);
       })
+  }
+
+  // get data from server on startup
+  useEffect(() => {
+    getRegisteredItems();
   }, []);
-  // to be handled by backend
+  // TODO: to be handled by backend
   const defGSTValue = 18;
 
   // update the items from AddNewItemForm
@@ -42,6 +47,7 @@ const BillingPage = () => {
   return (
     <>
       <AddNewItemForm savedItems={savedItems} addItem={getItems} defGSTValue={defGSTValue}/>
+      <RegisterItemForm/>
       <ItemsDisplay items={items} defGSTValue={defGSTValue}/>
       <div className={"BillingPageFlex"}>
         <MetaInfoForm/>

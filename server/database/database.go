@@ -12,43 +12,67 @@
 package database
 
 import (
-  _ "github.com/mattn/go-sqlite3"
   "database/sql"
+  _ "github.com/mattn/go-sqlite3"
 )
 
 type Item struct {
   Model  string
   Desc   string `json:"Description"`
-  Price  int // *float32
+  Price  float64
   HSN    int
 }
 
-
 var myDatabase *sql.DB
+var registered_items *sql.Stmt
+var register_item *sql.Stmt
 func init() {
   myDatabase, _ = sql.Open("sqlite3", "./openbills.db")
-}
 
-var myItems *sql.Stmt
-var addToMyItems *sql.Stmt
-func init() {
-  myItems, _ = myDatabase.Prepare("CREATE TABLE IF NOT EXISTS RegisteredItems (id INTEGER PRIMARY KEY, model TEXT, desc TEXT, price INTEGER, HSN INTEGER)")
-  myItems.Exec()
+  registered_items, _ = myDatabase.Prepare(
+    `CREATE TABLE IF NOT EXISTS registered_items
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    model TEXT NOT NULL,
+    desc TEXT,
+    price REAL,
+    hsn BLOB)`,
+  )
+  registered_items.Exec()
 
-  addToMyItems, _ = myDatabase.Prepare("INSERT INTO RegisteredItems (id, model, desc, price, hsn) VALUES (?, ?, ?, ?, ?)")
+  register_item, _ = myDatabase.Prepare(
+    `INSERT INTO registered_items
+    (model, desc, price, hsn) 
+    VALUES (?, ?, ?, ?)`,
+  )
 }
 
 func GetAllItems() []Item {
   var allItems []Item
-  rows, _ := myDatabase.Query("SELECT model, desc, price, hsn FROM RegisteredItems")
+  rows, _ := myDatabase.Query(
+    `SELECT model, desc, price, hsn FROM registered_items`,
+  )
 
-  var model string
-  var desc string
-  var price int
-  var hsn int
+  var (
+    model, desc string
+    price float64
+    HSN int
+  )
+
   for rows.Next() {
-    rows.Scan(&model, &desc, &price, &hsn)
-    allItems = append(allItems, Item{model, desc, price, hsn})
+    rows.Scan(&model, &desc, &price, &HSN)
+    allItems = append(allItems, Item{model, desc, price, HSN})
   }
+
   return allItems
+}
+
+func RegisterItem(model string, desc string, price float64, HSN int) {
+  /*
+  var item Item = Item{
+    model, desc, price, HSN,
+  }
+
+  register_item.Exec(item.Model, item.Desc, item.Price, item.HSN)
+  */
+  register_item.Exec(model, desc, price, HSN)
 }

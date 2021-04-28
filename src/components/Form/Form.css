@@ -1,3 +1,10 @@
+/*
+ * OpenBills - Self hosted browser app to generate and keep track of simple invoices
+ * Version - 0
+ * Licensed under the MIT license - https://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2021 Vidhu Kant Sharma
+*/
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
 /* Experimental color scheme */
 /* light theme */
@@ -81,6 +88,27 @@ input[type=number] {
   justify-content: space-between;
   padding: 0.8rem 0;
   border-bottom: 1px dotted lightblue; }
+
+.RegisterItemFormContainer {
+  /*display: none;*/
+  position: fixed;
+  width: 95%;
+  height: 70vh;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 15vh;
+  background-color: #383A59; }
+
+.RegisterItemForm .textInputs,
+.RegisterItemForm .numericInputs {
+  width: 40%; }
+
+.RegisterItemForm {
+  width: 95%;
+  height: 60vh;
+  margin: 1rem auto;
+  justify-content: space-around; }
 
 .MetaInfoForm {
   width: 60%; }
