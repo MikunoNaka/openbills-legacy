@@ -19,6 +19,17 @@ $altLink: brown;
 $defShadow: 0px 0px 4px #232627;
 */
 /* Inspired by Dracula */
+/* hide arrows in numericInputs */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield; }
+
 .formContainer {
   /*border: 1px solid pink;*/
   /*padding: 2rem;*/
@@ -72,17 +83,6 @@ label {
   scrollbar-width: none;
   /* Firefox */ }
 
-/* hide arrows in numericInputs */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0; }
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield; }
-
 .addNewItemForm label {
   display: flex;
   justify-content: space-between;
@@ -109,6 +109,15 @@ input[type=number] {
   height: 60vh;
   margin: 1rem auto;
   justify-content: space-around; }
+
+.RegisterItemFormContainer .menu {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.25rem; }
+
+.RegisterItemFormContainer input[type=submit],
+.RegisterItemFormContainer input[type=button] {
+  margin: 1rem; }
 
 .MetaInfoForm {
   width: 60%; }

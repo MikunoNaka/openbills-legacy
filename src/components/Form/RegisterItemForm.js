@@ -7,16 +7,19 @@
 */
 
 // TODO: Code isn't tested properly
-// I'd be surprised if it has no bugs
+// I'd be surprised if it < 10 bugs
+
+// TODO: Implement override protection
 
 import React, { useState } from "react";
 import axios from "axios";
 import "./Form.css";
 
 
-const RegisterItemForm = () => {
+const RegisterItemForm = (props) => {
   // show/hide this component
-  const [visibility, setVisibility] = useState(true)// useState(props.visibility);
+  // experimental
+  const [visibility, setVisibility] = useState(true);
 
   const [newItemNameValue, setNewItemNameValue] = useState("");
   const [newItemDescValue, setNewItemDescValue] = useState("");
@@ -29,9 +32,13 @@ const RegisterItemForm = () => {
 
   return (
     <div className={"formContainer RegisterItemFormContainer"} style={{display: visibility ? "fixed" : "none"}}>
-      <form className={"addNewItemForm RegisterItemForm"} onSubmit={
+      <form onSubmit={
           (event) => {
             event.preventDefault();
+
+            // experimental
+            // make sure it shows confirmation
+            // before hiding itself
             setVisibility(false);
 
             axios.post(`/api/items/?model=${newItemNameValue}&desc=${newItemDescValue}&price=${newItemPriceValue}&hsn=${newItemHSNValue}&gst=${newItemGSTValue}`)
@@ -41,60 +48,75 @@ const RegisterItemForm = () => {
               .catch((err) => {
                 console.log(err);
               });
+            props.updateItemsList();
           }
         }>
-        <div className={"textInputs"}>
-          <label>
-            Item/Service: <input type="text" value={newItemNameValue} onChange={
-              (event) => {
-                setNewItemNameValue(event.target.value);
-              }
-            } required />
-          </label>
+        <div className={"addNewItemForm RegisterItemForm"}>
+          <div className={"textInputs"}>
+            <label>
+              Item/Service: <input type="text" value={newItemNameValue} onChange={
+                (event) => {
+                  setNewItemNameValue(event.target.value);
+                }
+              } required />
+            </label>
 
-          <label>
-            Description: <input type="text" value={newItemDescValue} onChange={
-              (event) => {
-                setNewItemDescValue(event.target.value);
-              }
-            } />
-          </label>
+            <label>
+              Description: <input type="text" value={newItemDescValue} onChange={
+                (event) => {
+                  setNewItemDescValue(event.target.value);
+                }
+              } />
+            </label>
+          </div>
+
+          <div className={"numericInputs"}>
+            <label>
+              Price: <input type="number" min="1.00" step="0.001" value={newItemPriceValue} onChange={
+                (event) => {
+                  const value = event.target.value;
+                  setNewItemPriceValue(value);
+                }
+              } />
+            </label>
+
+            <label>
+              HSN: <input type="number" min="0" value={newItemHSNValue} onChange={
+                (event) => {
+                  const value = event.target.value;
+                  setNewItemHSNValue(value);
+                }
+              } />
+            </label>
+
+            <label>
+              GST: <input type="number" min="0" value={newItemGSTValue} onChange={
+                (event) => {
+                  const value = event.target.value;
+                  setNewItemGSTValue(value);
+                }
+              } />
+            </label>
+          </div>
         </div>
 
-        <div className={"numericInputs"}>
-          <label>
-            Price: <input type="number" min="1.00" step="0.001" value={newItemPriceValue} onChange={
-              (event) => {
-                const value = event.target.value;
-                setNewItemPriceValue(value);
+        <div className={"menu"}>
+          <input
+            type="button"
+            value="cancel"
+            onClick={
+              () => {
+                setVisibility(false);
               }
-            } />
-          </label>
+            }
+          />
 
-          <label>
-            HSN: <input type="number" min="0" value={newItemHSNValue} onChange={
-              (event) => {
-                const value = event.target.value;
-                setNewItemHSNValue(value);
-              }
-            } />
-          </label>
-
-          <label>
-            GST: <input type="number" min="0" value={newItemGSTValue} onChange={
-              (event) => {
-                const value = event.target.value;
-                setNewItemGSTValue(value);
-              }
-            } />
-          </label>
+          <input
+            type="submit"
+            value="Register/Add"
+            disabled={newItemNameValue !== "" ? "" : "disabled"}
+          />
         </div>
-
-        <input
-          type="submit"
-          value="Register/Add"
-          disabled={newItemNameValue !== "" ? "" : "disabled"}
-        />
       </form>
     </div>
   );

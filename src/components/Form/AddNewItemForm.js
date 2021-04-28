@@ -157,11 +157,13 @@ const AddNewItemForm = (props) => {
 
         <div className={"menuButtons"}>
           <input type="button" value="Register New Item" onClick={() => {
-            alert("Coming Soon")
+            alert("this shit refuses to work")
           }} />
+
           <input type="button" value="Placeholder1" />
           <input type="button" value="Placeholder2" />
           <input type="submit" value="Force Add" />
+
           <input 
             type="submit" 
             value="add" 

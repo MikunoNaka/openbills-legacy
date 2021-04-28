@@ -16,7 +16,7 @@ import ItemsDisplay from "./Display/ItemsDisplay";
 import SummaryDisplay from "./Display/SummaryDisplay";
 
 const BillingPage = () => {
-  const [savedItems, getSavedItems] = useState([])
+  const [savedItems, getSavedItems] = useState([]);
 
   const getRegisteredItems = () => {
     axios.get(`/api/items`)
@@ -47,7 +47,7 @@ const BillingPage = () => {
   return (
     <>
       <AddNewItemForm savedItems={savedItems} addItem={getItems} defGSTValue={defGSTValue}/>
-      <RegisterItemForm/>
+      <RegisterItemForm updateItemsList={getRegisteredItems}/>
       <ItemsDisplay items={items} defGSTValue={defGSTValue}/>
       <div className={"BillingPageFlex"}>
         <MetaInfoForm/>

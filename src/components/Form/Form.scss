@@ -119,6 +119,16 @@ label {
   justify-content: space-around;
 }
 
+.RegisterItemFormContainer .menu {
+  position: absolute;
+  right: 1rem; bottom: 0.25rem;
+}
+
+.RegisterItemFormContainer input[type=submit], 
+.RegisterItemFormContainer input[type=button] {
+  margin: 1rem;
+}
+
 .MetaInfoForm {
   width: 60%;
 }
