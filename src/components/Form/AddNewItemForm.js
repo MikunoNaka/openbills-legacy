@@ -82,7 +82,7 @@ const AddNewItemForm = (props) => {
       }>
         <div className={"textInputs"}>
           <label>
-            Item/Service:
+            Item/Service: 
               <select
                 value={itemNameValue} 
                 onChange={
@@ -102,7 +102,7 @@ const AddNewItemForm = (props) => {
           </label>
   
           <label>
-            Description:<input type="text" step="0.1" value={itemDescValue} onChange={
+            Description: <input type="text" step="0.1" value={itemDescValue} onChange={
               (event) => {
                 setItemDescValue(event.target.value);
               }
@@ -112,7 +112,7 @@ const AddNewItemForm = (props) => {
 
         <div className={"numericInputs"}>
           <label>
-            Quantity:<input type="number" min="1" value={itemQtyValue} onInput={
+            Quantity: <input type="number" min="1" value={itemQtyValue} onInput={
               (event) => {
                 const value = event.target.value;
                 setItemQtyValue(value);
@@ -174,7 +174,7 @@ const AddNewItemForm = (props) => {
               (emptyItemNames.includes(itemNameValue)
               || itemQtyValue <= 0
               || itemPriceValue <= 0
-              || itemGSTValue <= 0 
+              || itemGSTValue <= 0
               ) ? "disabled" : ""
             }
           />
