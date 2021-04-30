@@ -21,16 +21,16 @@ const AddNewItemForm = (props) => {
 
   const enterItemNamePrompt = "start typing here";
   const registerItemPrompt = "add new";
-
   const emptyItemNames = [enterItemNamePrompt, registerItemPrompt, ""];
 
   // Extract the model names from savedItems
-  const savedItems = props.savedItems;
-  let savedItemNames = [];
-  for (let i = 0; i < savedItems.length; i++) {
-    savedItemNames.push(savedItems[i].Model);
+  let savedItemNames= [];
+  if (props.savedItems !== []) {
+    for (let i = 0; i < props.savedItems.length; i++) {
+      savedItemNames.push(props.savedItems[i].Model);
+    }
   }
-
+  
   // set description and price
   // when item is entered
   const setItemInfo = (itemName) => {
@@ -156,9 +156,10 @@ const AddNewItemForm = (props) => {
         </div>
 
         <div className={"menuButtons"}>
-          <input type="button" value="Register New Item" onClick={() => {
-            alert("this shit refuses to work")
-          }} />
+          <input type="button" 
+            value="Register New Item" 
+            onClick={() => props.registerFormVisibility(true)}
+          />
 
           <input type="button" value="Placeholder1" />
           <input type="button" value="Placeholder2" />

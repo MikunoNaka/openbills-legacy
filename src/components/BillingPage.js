@@ -13,10 +13,9 @@ import AddNewItemForm from "./Form/AddNewItemForm";
 import RegisterItemForm from "./Form/RegisterItemForm";
 import MetaInfoForm from "./Form/MetaInfoForm";
 import ItemsDisplay from "./Display/ItemsDisplay";
-import SummaryDisplay from "./Display/SummaryDisplay";
-
-const BillingPage = () => {
+import SummaryDisplay from "./Display/SummaryDisplay"; const BillingPage = () => {
   const [savedItems, getSavedItems] = useState([]);
+  const [registerFormVisibility, setRegisterFormVisibility] = useState(false);
 
   const getRegisteredItems = () => {
     axios.get(`/api/items`)
@@ -46,8 +45,18 @@ const BillingPage = () => {
 
   return (
     <>
-      <AddNewItemForm savedItems={savedItems} addItem={getItems} defGSTValue={defGSTValue}/>
-      <RegisterItemForm updateItemsList={getRegisteredItems}/>
+      <AddNewItemForm savedItems={savedItems} 
+        addItem={getItems} 
+        defGSTValue={defGSTValue}
+        registerFormVisibility={setRegisterFormVisibility}
+      />
+
+      { registerFormVisibility &&
+        <RegisterItemForm 
+          updateItemsList={getRegisteredItems} 
+          setVisibility={setRegisterFormVisibility}/>
+      }
+
       <ItemsDisplay items={items} defGSTValue={defGSTValue}/>
       <div className={"BillingPageFlex"}>
         <MetaInfoForm/>
