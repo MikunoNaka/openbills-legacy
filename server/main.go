@@ -51,6 +51,9 @@ func registerItem(ctx *gin.Context) {
   desc := ctx.Query("desc")
   price, _ := strconv.ParseFloat(ctx.Query("price"), 64)
   hsn, _ := strconv.Atoi(ctx.Query("hsn"))
+  gst, _ := strconv.ParseFloat(ctx.Query("gst"), 64)
+  cat := "cat coming soon"
+  brand := "brand coming soon"
 
   // why does it show warnings
   item := db.Item {
@@ -58,7 +61,10 @@ func registerItem(ctx *gin.Context) {
     desc,
     price,
     hsn,
+    gst,
+    cat,
+    brand,
   }
 
-  db.RegisterItem(item.Model, item.Desc, item.Price, item.HSN)
+  db.RegisterItem(item)
 }
