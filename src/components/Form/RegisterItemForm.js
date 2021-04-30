@@ -17,10 +17,6 @@ import "./Form.css";
 
 
 const RegisterItemForm = (props) => {
-  // show/hide this component
-  // experimental
-  const [visibility, setVisibility] = useState(true);
-
   const [newItemNameValue, setNewItemNameValue] = useState("");
   const [newItemDescValue, setNewItemDescValue] = useState("");
   // const [newItemBrandValue, setNewItemBrandValue] = useState("");
@@ -31,16 +27,13 @@ const RegisterItemForm = (props) => {
 
 
   return (
-    <div className={"formContainer RegisterItemFormContainer"} style={{display: visibility ? "fixed" : "none"}}>
+    <div className={"formContainer RegisterItemFormContainer"}>
       <form onSubmit={
           (event) => {
             event.preventDefault();
 
-            // experimental
-            // make sure it shows confirmation
-            // before hiding itself
-            setVisibility(false);
-
+            // TODO: show confirmation before being invisible
+            props.setVisibility(false);
             axios.post(`/api/items/?model=${newItemNameValue}&desc=${newItemDescValue}&price=${newItemPriceValue}&hsn=${newItemHSNValue}&gst=${newItemGSTValue}`)
               .then((res) => {
                 console.log(res);
@@ -106,7 +99,7 @@ const RegisterItemForm = (props) => {
             value="cancel"
             onClick={
               () => {
-                setVisibility(false);
+                props.setVisibility(false);
               }
             }
           />
