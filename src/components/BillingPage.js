@@ -51,10 +51,12 @@ import SummaryDisplay from "./Display/SummaryDisplay"; const BillingPage = () =>
         registerFormVisibility={setRegisterFormVisibility}
       />
 
-      { registerFormVisibility &&
+      {registerFormVisibility &&
         <RegisterItemForm 
+          defGSTValue={defGSTValue}
           updateItemsList={getRegisteredItems} 
-          setVisibility={setRegisterFormVisibility}/>
+          setVisibility={setRegisterFormVisibility}
+        />
       }
 
       <ItemsDisplay items={items} defGSTValue={defGSTValue}/>
