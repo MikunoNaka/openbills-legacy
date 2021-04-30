@@ -19,11 +19,11 @@ import "./Form.css";
 const RegisterItemForm = (props) => {
   const [newItemNameValue, setNewItemNameValue] = useState("");
   const [newItemDescValue, setNewItemDescValue] = useState("");
-  // const [newItemBrandValue, setNewItemBrandValue] = useState("");
-  // const [newItemTypeValue, setNewItemTypeValue] = useState("");
   const [newItemPriceValue, setNewItemPriceValue] = useState("");
   const [newItemHSNValue, setNewItemHSNValue] = useState("");
   const [newItemGSTValue, setNewItemGSTValue] = useState("");
+  // const [newItemBrandValue, setNewItemBrandValue] = useState("");
+  // const [newItemTypeValue, setNewItemTypeValue] = useState("");
 
 
   return (
@@ -33,10 +33,17 @@ const RegisterItemForm = (props) => {
             event.preventDefault();
 
             // TODO: show confirmation before being invisible
-            props.setVisibility(false);
-            axios.post(`/api/items/?model=${newItemNameValue}&desc=${newItemDescValue}&price=${newItemPriceValue}&hsn=${newItemHSNValue}&gst=${newItemGSTValue}`)
+            axios.post(
+              `/api/items/`
+              + `?model=${newItemNameValue}`
+              + `&desc=${newItemDescValue}`
+              + `&price=${newItemPriceValue}`
+              + `&hsn=${newItemHSNValue}`
+              + `&gst=${newItemGSTValue}`
+            )
               .then((res) => {
                 console.log(res);
+                props.setVisibility(false);
               })
               .catch((err) => {
                 console.log(err);
