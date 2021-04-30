@@ -25,7 +25,7 @@ const AddNewItemForm = (props) => {
 
   // Extract the model names from savedItems
   let savedItemNames= [];
-  if (props.savedItems !== []) {
+  if (props.savedItems !== null) {
     for (let i = 0; i < props.savedItems.length; i++) {
       savedItemNames.push(props.savedItems[i].Model);
     }
@@ -39,11 +39,13 @@ const AddNewItemForm = (props) => {
       const desc = props.savedItems[i].Description;
       const price = props.savedItems[i].Price;
       const hsn = props.savedItems[i].HSN;
+      const gst = props.savedItems[i].GST;
 
       if (mod === itemName) {
         setItemDescValue(desc);
         setItemPriceValue(price);
         setItemHSNValue(hsn);
+        setItemGSTValue(gst);
         break;
       }
     }
