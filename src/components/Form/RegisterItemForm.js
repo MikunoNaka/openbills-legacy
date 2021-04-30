@@ -19,9 +19,9 @@ import "./Form.css";
 const RegisterItemForm = (props) => {
   const [newItemNameValue, setNewItemNameValue] = useState("");
   const [newItemDescValue, setNewItemDescValue] = useState("");
-  const [newItemPriceValue, setNewItemPriceValue] = useState("");
+  const [newItemPriceValue, setNewItemPriceValue] = useState(0.00);
   const [newItemHSNValue, setNewItemHSNValue] = useState("");
-  const [newItemGSTValue, setNewItemGSTValue] = useState("");
+  const [newItemGSTValue, setNewItemGSTValue] = useState(props.defGSTValue);
   // const [newItemBrandValue, setNewItemBrandValue] = useState("");
   // const [newItemTypeValue, setNewItemTypeValue] = useState("");
 
@@ -72,7 +72,7 @@ const RegisterItemForm = (props) => {
 
           <div className={"numericInputs"}>
             <label>
-              Price: <input type="number" min="1.00" step="0.001" value={newItemPriceValue} onChange={
+              Price: <input type="number" min="0.00" step="0.001" value={newItemPriceValue} onChange={
                 (event) => {
                   const value = event.target.value;
                   setNewItemPriceValue(value);
