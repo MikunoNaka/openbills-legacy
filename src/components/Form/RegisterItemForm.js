@@ -13,7 +13,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import "./Form.css";
+import "./Form.scss";
 
 
 const RegisterItemForm = (props) => {

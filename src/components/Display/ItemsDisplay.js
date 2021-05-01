@@ -7,7 +7,7 @@
 */
 
 import React from "react";
-import "./Display.css";
+import "./Display.scss";
 import DisplayItem from "./DisplayItem";
 import {SummaryDisplayTR} from "./SummaryDisplay";
 

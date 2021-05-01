@@ -7,7 +7,7 @@
 */
 
 import React from "react";
-import "./Display.css";
+import "./Display.scss";
 
 const DisplayItem = (props) => {
   const itemNumber = props.itemNumber;

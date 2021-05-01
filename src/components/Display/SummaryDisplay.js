@@ -7,7 +7,7 @@
 */
 
 import React from "react";
-import "./Display.css";
+import "./Display.scss";
 
 const getBasicSummary = (items) => {
   let totalRawPrice = 0;

@@ -7,8 +7,7 @@
 */
 
 import React from "react";
-import "./Header.css";
-// import React, { useState } from "react";
+import "./Header.scss";
 
 const Header = () => {
 	// const [activeLink, updateActiveLink] = useState("home")
