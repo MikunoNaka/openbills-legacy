@@ -1,5 +1,9 @@
 # OpenBills
 
+# I'm looking for testers for this app. Please use this software and see if there are any errors/bugs
+
+NOTE: This is not at all fit for use yet. If you wanna test, [here.](https://github.com/MikunoNaka/openbills/releases)
+
 OpenBills is a very simple browser based invoicing software hosted locally and meant for use with standalone computers. 
 It's ideal for small businesses and is meant to be customizable and easy to use. 
 So everyone from a computer newbie to a power user can benifit from it.
