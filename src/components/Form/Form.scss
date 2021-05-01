@@ -8,8 +8,6 @@
 
 @import "../../styles/theme";
 
-$inputBorders: 1px solid $altBorderColor;
-
 /* hide arrows in numericInputs */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -17,135 +15,70 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
 
+@mixin formPane {
+  padding: 1.5rem;
+  box-sizing: border-box;
+  border: 1px solid pink;
 
-.formContainer {
-  /*border: 1px solid pink;*/
-  /*padding: 2rem;*/
-
-  height: 50vh;
-  border-radius: 1rem;
-  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.addNewItemForm .textInputs,
-.addNewItemForm .numericInputs
-label {
+@mixin formWideLabel {
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px dotted $labelUnderlineColor;
+  padding: 0.8rem 0;
   font-size: 1.5rem;
 }
 
-.addNewItemForm {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  height: 100%;
+input {
+  box-sizing: border-box;
 }
 
-.addNewItemForm .textInputs,
-.addNewItemForm .numericInputs {
-  border: $inputBorders;
-  width: 30%;
-  justify-content: space-around;
-}
-
-.addNewItemForm .numericInputs input {
-  width: 5.5rem;
-}
-
-.addNewItemForm .menuButtons {
-  border: $inputBorders;
-  width: 15%;
-  justify-content: space-around;
-}
-
-.addNewItemForm .menuButtons * {
+.formContainer {
+  padding: 1rem 0;
   width: 100%;
 }
 
-.addNewItemForm div {
+.threePaneForm {
   display: flex;
-  flex-direction: column;
-  /*border-radius: 1rem;*/
-  padding: 1.5rem;
-
-  overflow: scroll;
-}
-
-/* hide scrollbars */
-.addNewItemForm div::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Opera */
-}
-.addNewItemForm div {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-.addNewItemForm label {
-  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
-  padding: 0.8rem 0;
-  border-bottom: 1px dotted $labelUnderlineColor;
+
+  height: 22rem;
+  width: 100%;
 }
 
-.RegisterItemFormContainer {
-  /*display: none;*/
-  position: fixed;
-
-  width: 95%;
-  height: 70vh;
-
-  left: 0;right: 0;
-  margin: auto;
-  top: 15vh;
-
-  background-color: $altBG;
+.threePaneForm div {
+  @include formPane();
 }
 
-.RegisterItemForm .textInputs,
-.RegisterItemForm .numericInputs {
-  width: 40%;
+.threePaneForm .widePane {
+  width: 27rem;
 }
 
-.RegisterItemForm {
-  width: 95%;
-  height: 60vh;
-  margin: 1rem auto;
-  justify-content: space-around;
+.threePaneForm .smallPane {
+  width: 15rem;
 }
 
-.RegisterItemFormContainer .menu {
-  position: absolute;
-  right: 1rem; bottom: 0.25rem;
+.threePaneForm label {
+  @include formWideLabel();
 }
 
-.RegisterItemFormContainer input[type=submit], 
-.RegisterItemFormContainer input[type=button] {
-  margin: 1rem;
+.wideInputBox, .selectInputBox {
+  width: 12rem;
 }
 
-.MetaInfoForm {
-  width: 60%;
+.smallInputBox {
+  width: 6.5rem;
 }
 
-@media only screen and (max-device-width: 480px) {
-  .formContainer {
-    padding: 0.5rem;
-    height: auto;
-  }
-  .addNewItemForm {
-    flex-direction: column;
-  }
-  .addNewItemForm .textInputs,
-  .addNewItemForm .numericInputs,
-  .addNewItemForm .menuButtons {
-    width: 90%;
-    padding: 1rem;
-    margin: 1rem auto;
-  }
-}

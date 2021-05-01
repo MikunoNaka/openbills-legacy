@@ -11,24 +11,41 @@
 
 // TODO: Implement override protection
 
-import React, { useState } from "react";
-import axios from "axios";
+import React/*, { useState }*/ from "react";
+// import axios from "axios";
 import "./Form.scss";
 
 
-const RegisterItemForm = (props) => {
-  const [newItemNameValue, setNewItemNameValue] = useState("");
-  const [newItemDescValue, setNewItemDescValue] = useState("");
-  const [newItemPriceValue, setNewItemPriceValue] = useState(0.00);
-  const [newItemHSNValue, setNewItemHSNValue] = useState("");
-  const [newItemGSTValue, setNewItemGSTValue] = useState(props.defGSTValue);
+const RegisterItemForm = (/*props*/) => {
+//   const [newItemNameValue, setNewItemNameValue] = useState("");
+//   const [newItemDescValue, setNewItemDescValue] = useState("");
+//   const [newItemPriceValue, setNewItemPriceValue] = useState(0.00);
+//   const [newItemHSNValue, setNewItemHSNValue] = useState("");
+//   const [newItemGSTValue, setNewItemGSTValue] = useState(props.defGSTValue);
   // const [newItemBrandValue, setNewItemBrandValue] = useState("");
   // const [newItemTypeValue, setNewItemTypeValue] = useState("");
 
 
   return (
-    <div className={"formContainer RegisterItemFormContainer"}>
-      <form onSubmit={
+    <div className={"FloatingMenuBG"}>
+      <div className={"FloatingMenu"}>
+        <div className={"formContainer"}>
+          <form className={"twoPaneForm"}>
+            <div className={""}>
+            </div>
+
+            <div className={""}>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+
+  /*
+  return (
+    <div className={"formContainer"}>
+      <form className={"threePaneForm"} onSubmit={
           (event) => {
             event.preventDefault();
 
@@ -120,6 +137,7 @@ const RegisterItemForm = (props) => {
       </form>
     </div>
   );
+          */
 }
 
 export default RegisterItemForm;

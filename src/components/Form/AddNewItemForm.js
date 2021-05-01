@@ -63,7 +63,7 @@ const AddNewItemForm = (props) => {
 
   return (
     <div className={"formContainer"}>
-      <form className={"addNewItemForm"} onSubmit={
+      <form className={"threePaneForm"} onSubmit={
         (event) => {
           event.preventDefault();
           const newInvoiceItem = {
@@ -80,10 +80,11 @@ const AddNewItemForm = (props) => {
           resetAllValues();
         }
       }>
-        <div className={"textInputs"}>
+        <div className={"widePane"}>
           <label>
             Item/Service: 
               <select
+                className={"selectInputBox"}
                 value={itemNameValue} 
                 onChange={
                   (event) => {
@@ -102,62 +103,106 @@ const AddNewItemForm = (props) => {
           </label>
   
           <label>
-            Description: <input type="text" step="0.1" value={itemDescValue} onChange={
-              (event) => {
-                setItemDescValue(event.target.value);
-              }
-            } />
+            Description: 
+              <input 
+                className={"wideInputBox"}
+                type="text" 
+                step="0.1" 
+                value={itemDescValue} 
+                onChange={
+                  (event) => {
+                    setItemDescValue(event.target.value);
+                  }
+                } 
+              />
           </label>
         </div>
 
-        <div className={"numericInputs"}>
+        <div className={"widePane"}>
           <label>
-            Quantity: <input type="number" min="1" value={itemQtyValue} onInput={
-              (event) => {
-                const value = event.target.value;
-                setItemQtyValue(value);
-              }
-            } required />
+            Quantity: 
+              <input 
+                className={"smallInputBox"}
+                type="number" 
+                min="1" 
+                value={itemQtyValue} 
+                onInput={
+                  (event) => {
+                    const value = event.target.value;
+                    setItemQtyValue(value);
+                  }
+                } 
+              required />
           </label>
 
           <label>
-            Price: <input type="number" min="1.00" step="0.001" value={itemPriceValue} onChange={
-              (event) => {
-                const value = event.target.value;
-                setItemPriceValue(value);
-              }
-            } required />
+            Price: 
+              <input 
+                className={"smallInputBox"}
+                type="number" 
+                min="1.00" 
+                step="0.001" 
+                value={itemPriceValue} 
+                onChange={
+                  (event) => {
+                    const value = event.target.value;
+                    setItemPriceValue(value);
+                  }
+                } 
+              required />
           </label>
 
           <label>
-            Discount: <input type="number" min="0" step="0.001" value={itemDiscountValue} onChange={
-              (event) => {
-                const value = event.target.value;
-                setItemDiscountValue(value);
-              }
-            } />
+            Discount: 
+              <input 
+                className={"smallInputBox"}
+                type="number"
+                min="0" 
+                step="0.001" 
+                value={itemDiscountValue} 
+                onChange={
+                  (event) => {
+                    const value = event.target.value;
+                    setItemDiscountValue(value);
+                  }
+                }
+              />
           </label>
 
           <label>
-            HSN: <input type="number" min="0" value={itemHSNValue} onChange={
-              (event) => {
-                const value = event.target.value;
-                setItemHSNValue(value);
-              }
-            } required />
+            HSN: 
+              <input 
+                className={"smallInputBox"}
+                type="number" 
+                min="0" 
+                value={itemHSNValue} 
+                onChange={
+                  (event) => {
+                    const value = event.target.value;
+                    setItemHSNValue(value);
+                  }
+                } 
+              required />
           </label>
 
           <label>
-            GST: <input type="number" min="0" value={itemGSTValue} onChange={
-              (event) => {
-                const value = event.target.value;
-                setItemGSTValue(value);
-              }
-            } required />
+            GST: 
+              <input 
+                className={"smallInputBox"}
+                type="number" 
+                min="0" 
+                value={itemGSTValue} 
+                onChange={
+                  (event) => {
+                    const value = event.target.value;
+                    setItemGSTValue(value);
+                  }
+                } 
+              required />
           </label>
         </div>
 
-        <div className={"menuButtons"}>
+        <div className={"smallPane"}>
           <input type="button" 
             value="Register New Item" 
             onClick={() => props.registerFormVisibility(true)}
