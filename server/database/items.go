@@ -6,13 +6,11 @@
  * Copyright (c) 2021 Vidhu Kant Sharma
 */
 
-// Idk how databases work this package is supposed to handle the sqlite database
-// will figure that out
+// handles all Items related database functions
 
 package database
 
 import (
-  "database/sql"
   _ "github.com/mattn/go-sqlite3"
 )
 
@@ -24,31 +22,6 @@ type Item struct {
   GST    float64
   Cat    string `json:"Category"`
   Brand  string
-}
-
-var myDatabase *sql.DB
-var register_item *sql.Stmt
-func init() {
-  myDatabase, _ = sql.Open("sqlite3", "./openbills.db")
-
-  init_registered_items, _ := myDatabase.Prepare(
-    `CREATE TABLE IF NOT EXISTS registered_items
-    (id INTEGER PRIMARY KEY AUTOINCREMENT,
-    model    TEXT NOT NULL,
-    desc     TEXT,
-    price    REAL,
-    hsn      BLOB,
-    gst      REAL,
-    category TEXT,
-    brand    TEXT)`,
-  )
-  init_registered_items.Exec()
-
-  register_item, _ = myDatabase.Prepare(
-    `INSERT INTO registered_items
-    (model, desc, price, hsn, gst, category, brand) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)`,
-  )
 }
 
 func GetAllItems() []Item {
@@ -73,6 +46,12 @@ func GetAllItems() []Item {
 
 func RegisterItem(item Item) bool {
   itemNames, _ := myDatabase.Query("SELECT model FROM registered_items")
+
+  register_item, _ := myDatabase.Prepare(
+    `INSERT INTO registered_items
+    (model, desc, price, hsn, gst, category, brand) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)`,
+  )
 
   // check if item already exists
   // probably this should be handled by front end

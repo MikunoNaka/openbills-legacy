@@ -21,6 +21,7 @@ import (
 )
 
 func main() {
+  db.StartDB()
   myRouter := gin.New()
   myRouter.Use(gin.Logger())
 
