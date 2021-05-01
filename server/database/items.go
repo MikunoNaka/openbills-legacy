@@ -2,7 +2,6 @@
  * OpenBills - Self hosted browser app to generate and keep track of simple invoices
  * Version - 0
  * Licensed under the MIT license - https://opensource.org/licenses/MIT
- *
  * Copyright (c) 2021 Vidhu Kant Sharma
 */
 
@@ -27,7 +26,7 @@ type Item struct {
 func GetAllItems() []Item {
   var allItems []Item
   rows, _ := myDatabase.Query(
-    `SELECT model, desc, price, hsn, gst, category, brand FROM registered_items`,
+    `SELECT Model, Desc, Price, Hsn, Gst, Category, Brand FROM Items`,
   )
 
   var (
@@ -45,11 +44,11 @@ func GetAllItems() []Item {
 }
 
 func RegisterItem(item Item) bool {
-  itemNames, _ := myDatabase.Query("SELECT model FROM registered_items")
+  itemNames, _ := myDatabase.Query("SELECT model FROM Items")
 
   register_item, _ := myDatabase.Prepare(
-    `INSERT INTO registered_items
-    (model, desc, price, hsn, gst, category, brand) 
+    `INSERT INTO Items
+    (Model, Desc, Price, Hsn, Gst, Category, Brand) 
     VALUES (?, ?, ?, ?, ?, ?, ?)`,
   )
 
@@ -70,5 +69,6 @@ func RegisterItem(item Item) bool {
     item.GST,   item.Cat,
     item.Brand,
   )
+
   return true
 }

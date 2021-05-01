@@ -17,17 +17,26 @@ var myDatabase *sql.DB
 func StartDB() {
   myDatabase, _ = sql.Open("sqlite3", "./openbills.db")
 
-  init_registered_items, _ := myDatabase.Prepare(
-    `CREATE TABLE IF NOT EXISTS registered_items
+  init_items, _ := myDatabase.Prepare(
+    `CREATE TABLE IF NOT EXISTS Items
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
-    model    TEXT NOT NULL,
-    desc     TEXT,
-    price    REAL,
-    hsn      BLOB,
-    gst      REAL,
-    category TEXT,
-    brand    TEXT)`,
+    Model    TEXT NOT NULL,
+    Desc     TEXT,
+    Price    REAL,
+    Hsn      BLOB,
+    Gst      REAL,
+    Category TEXT,
+    Brand    TEXT)`,
   )
-  init_registered_items.Exec()
+  init_items.Exec()
+
+  init_people, _ := myDatabase.Prepare(
+    `CREATE TABLE IF NOT EXISTS People
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name  TEXT,
+    Phone TEXT,
+    Email TEXT)`,
+  )
+  init_people.Exec()
 }
 

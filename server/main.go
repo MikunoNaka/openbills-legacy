@@ -31,41 +31,59 @@ func main() {
 
   // define routes
   api := myRouter.Group("/api")
+  people := api.Group("/people")
   items := api.Group("/items")
 
+  // items API routes
   items.GET("/", getAllItems)
   items.POST("/", registerItem)
 
-  // items.POST("/", registerItem)
+
+  // people API routes
+  people.GET("/", getAllPeople)
 
   myRouter.Run(":8080")
 }
 
+// items API functions
 func getAllItems(ctx *gin.Context) {
   ctx.Header("Content-Type", "application/json")
   ctx.JSON(http.StatusOK, db.GetAllItems())
 }
 
 func registerItem(ctx *gin.Context) {
-  // extract data
-  model := ctx.Query("model")
-  desc := ctx.Query("desc")
+  // extract data not string
   price, _ := strconv.ParseFloat(ctx.Query("price"), 64)
   hsn, _ := strconv.Atoi(ctx.Query("hsn"))
   gst, _ := strconv.ParseFloat(ctx.Query("gst"), 64)
   cat := "cat coming soon"
   brand := "brand coming soon"
 
-  // why does it show warnings
   item := db.Item {
-    model,
-    desc,
-    price,
-    hsn,
-    gst,
-    cat,
-    brand,
+    Model: ctx.Query("model"),
+    Desc:  ctx.Query("desc"),
+    Price: price,
+    HSN:   hsn,
+    GST:   gst,
+    Cat:   cat,
+    Brand: brand,
   }
 
   db.RegisterItem(item)
+}
+
+// people API functions
+func getAllPeople(ctx *gin.Context) {
+  ctx.Header("Content-Type", "application/json")
+  ctx.JSON(http.StatusOK, db.GetAllPeople())
+}
+
+func registerPerson(ctx *gin.Context) {
+  person := db.Person {
+    Name:  ctx.Query("name"),
+    Phone: ctx.Query("phone"),
+    Email: ctx.Query("email"),
+  }
+
+  db.RegisterPerson(person)
 }
