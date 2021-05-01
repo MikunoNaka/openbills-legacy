@@ -35,9 +35,38 @@ body {
   border: 1px solid pink;
 }
 
+.FloatingMenuBG {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $floatingContainerBG;
+}
+
+.FloatingMenu {
+  position: fixed;
+
+  width: 95%;
+  height: 70vh;
+  box-sizing: border-box;
+
+
+  left: 0; right: 0;
+  margin: auto;
+  top: 15vh;
+
+  background-color: $floatingBG;
+  box-shadow: $floatingShadow;
+  border: 1px solid $defBorderColor;
+
+
+  padding: 1.5rem;
+}
+
+
 @media only screen and (max-device-width: 480px) {
   .root-content {
     width: 95%;
   }
 }
-

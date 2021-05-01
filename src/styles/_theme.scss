@@ -16,10 +16,16 @@ $defShadow: 0px 0px 4px #232627;
 */
 
 /* Inspired by Dracula */
+
 $defBG: #282A36;
 $altBG: #383A59;
+
+$floatingContainerBG: #282C3466;
+$floatingBG: #2e323b;
+
 $defFG: #F2F2F2;
 $altFG: #FF79C6;
+
 $defLink: $defFG;
 $altLink: $altFG;
 $defBorderColor: lightgreen;
@@ -35,5 +41,7 @@ $warningColor: red;
 $warningBorderColor: $warningColor;
 
 
-$defShadow: 0px 4px 4px $altBG;
-
+$shadowColor: #232627;
+$defBigShadow: 0px 8px 4px $shadowColor;
+// $floatingShadow: 0px 8px 4px 0 $shadowColor, 0px 6px 20px 0 $shadowColor;
+$floatingShadow: 6px 6px 3px $shadowColor;
