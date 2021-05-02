@@ -41,6 +41,7 @@ func main() {
 
   // people API routes
   people.GET("/", getAllPeople)
+  people.POST("/", registerPerson)
 
   myRouter.Run(":8080")
 }

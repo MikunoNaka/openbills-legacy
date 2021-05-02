@@ -12,7 +12,6 @@ package database
 
 import (
   _ "github.com/mattn/go-sqlite3"
-  "fmt"
 )
 
 type Person struct {
@@ -40,18 +39,6 @@ func GetAllPeople() []Person {
 }
 
 func RegisterPerson(person Person) bool {
-  personNames, _ := myDatabase.Query("SELECT Name FROM People")
-
-  // check if already exists
-  // probs shouldnt make it
-  // make front end handle it
-  for personNames.Next() {
-    var rPerson string
-    if rPerson == person.Name {
-      fmt.Println(person.Name, "already exists")
-      return false
-    }
-  }
 
   register_person, _ := myDatabase.Prepare(
     `INSERT INTO People
