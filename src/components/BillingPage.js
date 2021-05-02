@@ -13,7 +13,9 @@ import AddNewItemForm from "./Form/AddNewItemForm";
 import RegisterItemForm from "./Form/RegisterItemForm";
 import MetaInfoForm from "./Form/MetaInfoForm";
 import ItemsDisplay from "./Display/ItemsDisplay";
-import SummaryDisplay from "./Display/SummaryDisplay"; const BillingPage = () => {
+import SummaryDisplay from "./Display/SummaryDisplay"; 
+
+const BillingPage = () => {
   const [savedItems, getSavedItems] = useState([]);
   const [registerFormVisibility, setRegisterFormVisibility] = useState(false);
 

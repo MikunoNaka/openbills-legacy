@@ -2,21 +2,7 @@
 
 $defFont: 'Quicksand', sans-serif;
 
-/* Experimental color scheme */
-/* light theme */
-/* 
-$defBG: #FFFFFF;
-$altBG: lightgray;
-$defFG: #000000;
-$altFG: #232627;
-$defLink: brown;
-$altLink: brown;
-
-$defShadow: 0px 0px 4px #232627;
-*/
-
 /* Inspired by Dracula */
-
 $defBG: #282A36;
 $altBG: #383A59;
 
@@ -28,14 +14,25 @@ $altFG: #FF79C6;
 
 $defLink: $defFG;
 $altLink: $altFG;
+
+$paneBorderColor: pink;
+$formPaneBorderColor: $paneBorderColor;
+
 $defBorderColor: lightgreen;
 $altBorderColor: pink;
 
-$tableDefBorderColor: lightblue;
-$tableAltBorderColor: #FF79C6;
-$tableDisabledBorderColor: gray;
+$underline0: gray;
+$underline1: lightblue;
+$underline2: #FF79C6;
 
-$labelUnderlineColor: lightblue;
+$labelUnderlineColor: $underline1;
+
+$tableDefBorderColor: $underline1;
+$tableAltBorderColor: $underline2;
+$tableDisabledBorderColor: $underline0;
+
+
+
 
 $warningColor: red;
 $warningBorderColor: $warningColor;

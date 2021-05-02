@@ -8,14 +8,32 @@
 
 @import "theme";
 
+/* 
+  TODO: check if full width elements show properly on other browsers
+  also style scrollbars
+*/
+
+/* scrollbar styling */
+::-webkit-scrollbar {
+  width: 1vw;
+}
 * {
-  font-family: $defFont
+  scrollbar-width: 0.1vw;  /* Firefox */
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
 body {
   background-color: $defBG;
   color: $defFG;
   margin: 0;
+}
+
+* {
+  font-family: $defFont
 }
 
 .root-content {
@@ -30,43 +48,44 @@ body {
   justify-content: space-between;
   height: 70vh;
 }
+
 .BillingPageFlex div {
   box-sizing: border-box;
-  border: 1px solid pink;
+  border: 1px solid $altBorderColor;
 }
 
-.FloatingMenuBG {
-  height: 100vh;
-  width: 100vw;
+.floatingMenuBG {
+  height: 100%;
+  width: 100%;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   background-color: $floatingContainerBG;
 }
 
-.FloatingMenu {
-  position: fixed;
+.floatingMenu {
+  position: absolute;
 
   width: 95%;
   height: 70vh;
   box-sizing: border-box;
 
-
   left: 0; right: 0;
-  margin: auto;
+  margin: 0 auto;
   top: 15vh;
 
   background-color: $floatingBG;
   box-shadow: $floatingShadow;
   border: 1px solid $defBorderColor;
 
-
   padding: 1.5rem;
 }
 
 
+/*
+idk if im going that way
 @media only screen and (max-device-width: 480px) {
   .root-content {
     width: 95%;
   }
 }
+*/

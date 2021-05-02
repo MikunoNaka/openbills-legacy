@@ -23,7 +23,7 @@ input[type=number] {
 @mixin formPane {
   padding: 1.5rem;
   box-sizing: border-box;
-  border: 1px solid pink;
+  border: 1px solid $formPaneBorderColor;
 
   display: flex;
   flex-direction: column;
@@ -39,8 +39,23 @@ input[type=number] {
   font-size: 1.5rem;
 }
 
+@mixin formFlex($justify) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: $justify;
+}
+
 input {
   box-sizing: border-box;
+}
+
+.wideInputBox, .selectInputBox {
+  width: 12rem;
+}
+
+.smallInputBox {
+  width: 5.5rem;
 }
 
 .formContainer {
@@ -49,10 +64,7 @@ input {
 }
 
 .threePaneForm {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  @include formFlex(space-around);
 
   height: 22rem;
   width: 100%;
@@ -74,11 +86,27 @@ input {
   @include formWideLabel();
 }
 
-.wideInputBox, .selectInputBox {
-  width: 12rem;
+.twoPaneForm {
+  @include formFlex(space-around);
+
+  height: 22rem;
+  width: 100%;
 }
 
-.smallInputBox {
-  width: 6.5rem;
+.twoPaneForm div {
+  @include formPane();
 }
+
+.twoPaneForm .widePane {
+  width: 27rem;
+}
+
+.threePaneForm .smallPane {
+  width: 15rem;
+}
+
+.twoPaneForm label {
+  @include formWideLabel();
+}
+
 
