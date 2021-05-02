@@ -19,6 +19,8 @@ const AddNewItemForm = (props) => {
   const [itemQtyValue, setItemQtyValue] = useState(1);
   const [itemHSNValue, setItemHSNValue] = useState(0);
 
+  const [itemToAdd, setItemToAdd] = useState({});
+
   const enterItemNamePrompt = "start typing here";
   const registerItemPrompt = "add new";
   const emptyItemNames = [enterItemNamePrompt, registerItemPrompt, ""];
@@ -47,8 +49,6 @@ const AddNewItemForm = (props) => {
         setItemHSNValue(hsn);
         setItemGSTValue(gst);
         break;
-      } else if (itemName === registerItemPrompt) {
-        props.registerItemFormVisibility(true);
       }
     }
   }
@@ -67,7 +67,6 @@ const AddNewItemForm = (props) => {
     <div className={"formContainer"}>
       <form className={"threePaneForm"} onSubmit={
         (event) => {
-          alert("submit")
           event.preventDefault();
           const newInvoiceItem = {
             "Model": itemNameValue,
@@ -106,7 +105,7 @@ const AddNewItemForm = (props) => {
           </label>
   
           <label>
-            Description:
+            Description: 
               <input className={"wideInputBox"} type="text" value={itemDescValue} 
                 onChange={
                   (event) => {
@@ -182,12 +181,7 @@ const AddNewItemForm = (props) => {
         <div className={"smallPane"}>
           <input type="button" 
             value="Register New Item" 
-            onClick={() => props.registerItemFormVisibility(true)}
-          />
-
-          <input type="button" 
-            value="Register New Person" 
-            onClick={() => props.registerPersonFormVisibility(true)}
+            onClick={() => props.registerFormVisibility(true)}
           />
 
           <input type="button" value="Placeholder1" />

@@ -12,6 +12,8 @@ import axios from "axios";
 import AddNewItemForm from "./Form/Items/AddNewItemForm";
 import RegisterItemForm from "./Form/Items/RegisterItemForm";
 
+import RegisterPersonForm from "./Form/People/RegisterPersonForm";
+
 import MetaInfoForm from "./Form/MetaInfoForm";
 
 import ItemsDisplay from "./Display/ItemsDisplay";
@@ -19,7 +21,8 @@ import SummaryDisplay from "./Display/SummaryDisplay";
 
 const BillingPage = () => {
   const [savedItems, getSavedItems] = useState([]);
-  const [registerFormVisibility, setRegisterFormVisibility] = useState(false);
+  const [registerItemFormVisibility, setRegisterItemFormVisibility] = useState(false);
+  const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState(false);
 
   const getRegisteredItems = () => {
     axios.get(`/api/items`)
@@ -49,21 +52,35 @@ const BillingPage = () => {
 
   return (
     <>
-      <AddNewItemForm savedItems={savedItems} 
-        addItem={getItems} 
-        defGSTValue={defGSTValue}
-        registerFormVisibility={setRegisterFormVisibility}
-      />
-
-      {registerFormVisibility &&
+      {registerItemFormVisibility &&
         <RegisterItemForm 
           defGSTValue={defGSTValue}
           updateItemsList={getRegisteredItems} 
-          setVisibility={setRegisterFormVisibility}
+          setVisibility={setRegisterItemFormVisibility}
         />
       }
 
-      <ItemsDisplay items={items} defGSTValue={defGSTValue}/>
+      {registerPersonFormVisibility &&
+        <RegisterPersonForm 
+          defGSTValue={defGSTValue}
+          updateItemsList={getRegisteredItems} 
+          setVisibility={setRegisterPersonFormVisibility}
+        />
+      }
+
+      <AddNewItemForm 
+        savedItems={savedItems} 
+        addItem={getItems} 
+        defGSTValue={defGSTValue}
+        registerItemFormVisibility={setRegisterItemFormVisibility}
+        registerPersonFormVisibility={setRegisterPersonFormVisibility}
+      />
+
+      <ItemsDisplay 
+        items={items} 
+        defGSTValue={defGSTValue}
+      />
+
       <div className={"BillingPageFlex"}>
         <MetaInfoForm/>
         <SummaryDisplay items={items}/>
