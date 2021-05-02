@@ -9,9 +9,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import AddNewItemForm from "./Form/AddNewItemForm";
-import RegisterItemForm from "./Form/RegisterItemForm";
+import AddNewItemForm from "./Form/Items/AddNewItemForm";
+import RegisterItemForm from "./Form/Items/RegisterItemForm";
+
 import MetaInfoForm from "./Form/MetaInfoForm";
+
 import ItemsDisplay from "./Display/ItemsDisplay";
 import SummaryDisplay from "./Display/SummaryDisplay"; 
 

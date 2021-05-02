@@ -64,7 +64,7 @@ input {
 }
 
 .threePaneForm {
-  @include formFlex(space-around);
+  @include formFlex(space-between);
 
   height: 22rem;
   width: 100%;

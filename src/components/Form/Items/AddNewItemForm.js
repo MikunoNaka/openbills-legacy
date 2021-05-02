@@ -7,7 +7,7 @@
 */
 
 import React, { useState } from "react";
-import "./Form.scss";
+import "./../Form.scss";
 
 
 const AddNewItemForm = (props) => {
