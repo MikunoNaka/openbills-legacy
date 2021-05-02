@@ -11,30 +11,82 @@
 
 // TODO: Implement override protection
 
-import React/*, { useState }*/ from "react";
+import React, { useState } from "react";
 // import axios from "axios";
 import "./Form.scss";
 
 
-const RegisterItemForm = (/*props*/) => {
-//   const [newItemNameValue, setNewItemNameValue] = useState("");
-//   const [newItemDescValue, setNewItemDescValue] = useState("");
-//   const [newItemPriceValue, setNewItemPriceValue] = useState(0.00);
-//   const [newItemHSNValue, setNewItemHSNValue] = useState("");
-//   const [newItemGSTValue, setNewItemGSTValue] = useState(props.defGSTValue);
+const RegisterItemForm = (props) => {
+  const [newItemNameValue, setNewItemNameValue] = useState("");
+  const [newItemDescValue, setNewItemDescValue] = useState("");
+  const [newItemPriceValue, setNewItemPriceValue] = useState(0.00);
+  const [newItemHSNValue, setNewItemHSNValue] = useState("");
+  const [newItemGSTValue, setNewItemGSTValue] = useState(props.defGSTValue);
   // const [newItemBrandValue, setNewItemBrandValue] = useState("");
   // const [newItemTypeValue, setNewItemTypeValue] = useState("");
 
+  const hideSelf = () => props.setVisibility(false);
+
+  const closeOnBGClicked = (event) => 
+    event.target.className === "floatingMenuBG" && hideSelf();
 
   return (
-    <div className={"FloatingMenuBG"}>
-      <div className={"FloatingMenu"}>
+    <div className={"floatingMenuBG"} onClick={closeOnBGClicked}>
+      <div className={"floatingMenu"}>
         <div className={"formContainer"}>
-          <form className={"twoPaneForm"}>
-            <div className={""}>
-            </div>
+          <form className={"floatingForm"}>
+            <div className={"twoPaneForm"}>
 
-            <div className={""}>
+              <div className={"widePane"}>
+
+                <label>
+                  Item/Service: <input className={"wideInputBox"} type="text" value={newItemNameValue} onChange={
+                    (event) => {
+                      setNewItemNameValue(event.target.value);
+                    }
+                  } required />
+                </label>
+
+                <label>
+                  Description: <input className={"wideInputBox"} type="text" value={newItemDescValue} onChange={
+                    (event) => {
+                      setNewItemDescValue(event.target.value);
+                    }
+                  } />
+                </label>
+
+              </div>
+
+              <div className={"widePane"}>
+
+                <label>
+                  Price: <input className={"smallInputBox"} type="number" min="0.00" step="0.001" value={newItemPriceValue} onChange={
+                    (event) => {
+                      const value = event.target.value;
+                      setNewItemPriceValue(value);
+                    }
+                  } />
+                </label>
+
+                <label>
+                  HSN: <input className={"smallInputBox"} type="number" min="0" value={newItemHSNValue} onChange={
+                    (event) => {
+                      const value = event.target.value;
+                      setNewItemHSNValue(value);
+                    }
+                  } />
+                </label>
+
+                <label>
+                  GST: <input className={"smallInputBox"} type="number" min="0" value={newItemGSTValue} onChange={
+                    (event) => {
+                      const value = event.target.value;
+                      setNewItemGSTValue(value);
+                    }
+                  } />
+                </label>
+
+              </div>
             </div>
           </form>
         </div>
@@ -88,32 +140,8 @@ const RegisterItemForm = (/*props*/) => {
           </div>
 
           <div className={"numericInputs"}>
-            <label>
-              Price: <input type="number" min="0.00" step="0.001" value={newItemPriceValue} onChange={
-                (event) => {
-                  const value = event.target.value;
-                  setNewItemPriceValue(value);
-                }
-              } />
-            </label>
 
-            <label>
-              HSN: <input type="number" min="0" value={newItemHSNValue} onChange={
-                (event) => {
-                  const value = event.target.value;
-                  setNewItemHSNValue(value);
-                }
-              } />
-            </label>
 
-            <label>
-              GST: <input type="number" min="0" value={newItemGSTValue} onChange={
-                (event) => {
-                  const value = event.target.value;
-                  setNewItemGSTValue(value);
-                }
-              } />
-            </label>
           </div>
         </div>
 

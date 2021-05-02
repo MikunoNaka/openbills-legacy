@@ -104,11 +104,7 @@ const AddNewItemForm = (props) => {
   
           <label>
             Description: 
-              <input 
-                className={"wideInputBox"}
-                type="text" 
-                step="0.1" 
-                value={itemDescValue} 
+              <input className={"wideInputBox"} type="text" step="0.1" value={itemDescValue} 
                 onChange={
                   (event) => {
                     setItemDescValue(event.target.value);
@@ -121,11 +117,7 @@ const AddNewItemForm = (props) => {
         <div className={"widePane"}>
           <label>
             Quantity: 
-              <input 
-                className={"smallInputBox"}
-                type="number" 
-                min="1" 
-                value={itemQtyValue} 
+              <input className={"smallInputBox"} type="number" min="1" value={itemQtyValue} 
                 onInput={
                   (event) => {
                     const value = event.target.value;
@@ -137,12 +129,7 @@ const AddNewItemForm = (props) => {
 
           <label>
             Price: 
-              <input 
-                className={"smallInputBox"}
-                type="number" 
-                min="1.00" 
-                step="0.001" 
-                value={itemPriceValue} 
+              <input className={"smallInputBox"} type="number" min="1.00" step="0.001" value={itemPriceValue} 
                 onChange={
                   (event) => {
                     const value = event.target.value;
@@ -154,12 +141,7 @@ const AddNewItemForm = (props) => {
 
           <label>
             Discount: 
-              <input 
-                className={"smallInputBox"}
-                type="number"
-                min="0" 
-                step="0.001" 
-                value={itemDiscountValue} 
+              <input className={"smallInputBox"} type="number" min="0" step="0.001" value={itemDiscountValue} 
                 onChange={
                   (event) => {
                     const value = event.target.value;
@@ -171,11 +153,7 @@ const AddNewItemForm = (props) => {
 
           <label>
             HSN: 
-              <input 
-                className={"smallInputBox"}
-                type="number" 
-                min="0" 
-                value={itemHSNValue} 
+              <input className={"smallInputBox"} type="number" min="0" value={itemHSNValue} 
                 onChange={
                   (event) => {
                     const value = event.target.value;
@@ -187,11 +165,7 @@ const AddNewItemForm = (props) => {
 
           <label>
             GST: 
-              <input 
-                className={"smallInputBox"}
-                type="number" 
-                min="0" 
-                value={itemGSTValue} 
+              <input className={"smallInputBox"} type="number" min="0" value={itemGSTValue} 
                 onChange={
                   (event) => {
                     const value = event.target.value;
@@ -212,9 +186,7 @@ const AddNewItemForm = (props) => {
           <input type="button" value="Placeholder2" />
           <input type="submit" value="Force Add" />
 
-          <input 
-            type="submit" 
-            value="add" 
+          <input type="submit" value="add" 
             disabled={ 
               (emptyItemNames.includes(itemNameValue)
               || itemQtyValue <= 0
