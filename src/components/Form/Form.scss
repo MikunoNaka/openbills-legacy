@@ -109,4 +109,15 @@ input {
   @include formWideLabel();
 }
 
+.floatingForm .menu {
+  position: absolute;
+
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.floatingForm .menu * {
+  margin: 1rem;
+}
+
 

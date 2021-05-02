@@ -12,7 +12,7 @@
 // TODO: Implement override protection
 
 import React, { useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 import "./Form.scss";
 
 
@@ -30,15 +30,36 @@ const RegisterItemForm = (props) => {
   const closeOnBGClicked = (event) => 
     event.target.className === "floatingMenuBG" && hideSelf();
 
+  const postForm = (event) => {
+    event.preventDefault();
+
+  // TODO: show confirmation before being invisible
+    axios.post(
+      `/api/items/`
+      + `?model=${newItemNameValue}`
+      + `&desc=${newItemDescValue}`
+      + `&price=${newItemPriceValue}`
+      + `&hsn=${newItemHSNValue}`
+      + `&gst=${newItemGSTValue}`
+    )
+      .then((res) => {
+        console.log(res);
+        props.setVisibility(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    props.updateItemsList();
+  }
+
+
   return (
     <div className={"floatingMenuBG"} onClick={closeOnBGClicked}>
       <div className={"floatingMenu"}>
         <div className={"formContainer"}>
-          <form className={"floatingForm"}>
+          <form className={"floatingForm"} onSubmit={postForm}>
             <div className={"twoPaneForm"}>
-
               <div className={"widePane"}>
-
                 <label>
                   Item/Service: <input className={"wideInputBox"} type="text" value={newItemNameValue} onChange={
                     (event) => {
@@ -56,9 +77,7 @@ const RegisterItemForm = (props) => {
                 </label>
 
               </div>
-
               <div className={"widePane"}>
-
                 <label>
                   Price: <input className={"smallInputBox"} type="number" min="0.00" step="0.001" value={newItemPriceValue} onChange={
                     (event) => {
@@ -85,87 +104,31 @@ const RegisterItemForm = (props) => {
                     }
                   } />
                 </label>
+            </div>
+            </div>
 
-              </div>
+            <div className={"menu"}>
+              <input
+                type="button"
+                value="cancel"
+                onClick={
+                  () => {
+                    props.setVisibility(false);
+                  }
+                }
+              />
+
+              <input
+                type="submit"
+                value="Register/Add"
+                disabled={newItemNameValue !== "" ? "" : "disabled"}
+              />
             </div>
           </form>
         </div>
       </div>
     </div>
   );
-
-  /*
-  return (
-    <div className={"formContainer"}>
-      <form className={"threePaneForm"} onSubmit={
-          (event) => {
-            event.preventDefault();
-
-            // TODO: show confirmation before being invisible
-            axios.post(
-              `/api/items/`
-              + `?model=${newItemNameValue}`
-              + `&desc=${newItemDescValue}`
-              + `&price=${newItemPriceValue}`
-              + `&hsn=${newItemHSNValue}`
-              + `&gst=${newItemGSTValue}`
-            )
-              .then((res) => {
-                console.log(res);
-                props.setVisibility(false);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-            props.updateItemsList();
-          }
-        }>
-        <div className={"addNewItemForm RegisterItemForm"}>
-          <div className={"textInputs"}>
-            <label>
-              Item/Service: <input type="text" value={newItemNameValue} onChange={
-                (event) => {
-                  setNewItemNameValue(event.target.value);
-                }
-              } required />
-            </label>
-
-            <label>
-              Description: <input type="text" value={newItemDescValue} onChange={
-                (event) => {
-                  setNewItemDescValue(event.target.value);
-                }
-              } />
-            </label>
-          </div>
-
-          <div className={"numericInputs"}>
-
-
-          </div>
-        </div>
-
-        <div className={"menu"}>
-          <input
-            type="button"
-            value="cancel"
-            onClick={
-              () => {
-                props.setVisibility(false);
-              }
-            }
-          />
-
-          <input
-            type="submit"
-            value="Register/Add"
-            disabled={newItemNameValue !== "" ? "" : "disabled"}
-          />
-        </div>
-      </form>
-    </div>
-  );
-          */
 }
 
 export default RegisterItemForm;

@@ -104,7 +104,7 @@ const AddNewItemForm = (props) => {
   
           <label>
             Description: 
-              <input className={"wideInputBox"} type="text" step="0.1" value={itemDescValue} 
+              <input className={"wideInputBox"} type="text" value={itemDescValue} 
                 onChange={
                   (event) => {
                     setItemDescValue(event.target.value);
