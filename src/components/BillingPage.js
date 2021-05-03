@@ -50,8 +50,11 @@ const BillingPage = () => {
 
   // get data from server on startup
   useEffect(() => {
+    async function fetchdata() {
     getRegisteredItems();
     getRegisteredPeople();
+    }
+    fetchdata()
   }, []);
   // TODO: to be handled by backend
   const defGSTValue = 18;
