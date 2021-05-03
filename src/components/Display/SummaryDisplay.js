@@ -79,36 +79,38 @@ const SummaryDisplay = (props) => {
     <div className={"SummaryDisplay"}>
       <h1>Summary</h1>
       <table>
-        <tr>
-          <td>Base Total</td>
-          <td>{summary.TotalRawPrice}</td>
-        </tr>
-
-        {summary.TotalDiscountPrice !== 0.00 &&
+        <tbody>
           <tr>
-            <td>After Discount</td>
-            <td>{summary.TotalPriceAfterDiscount}</td>
-            <td>(-{summary.TotalDiscountPrice})</td>
+            <td>Base Total</td>
+            <td>{summary.TotalRawPrice}</td>
           </tr>
-        }
 
-        <tr>
-          <td>After Tax</td>
-          <td>{summary.TotalPriceAfterTax}</td>
-          <td>(+{summary.TotalTaxAmount})</td>
-        </tr>
+          {summary.TotalDiscountPrice !== 0.00 &&
+            <tr>
+              <td>After Discount</td>
+              <td>{summary.TotalPriceAfterDiscount}</td>
+              <td>(-{summary.TotalDiscountPrice})</td>
+            </tr>
+          }
 
-        {summary.RoundedOff !== 0.00 &&
           <tr>
-            <td>Rounded Off</td>
-            <td>{summary.RoundedOff}</td>
+            <td>After Tax</td>
+            <td>{summary.TotalPriceAfterTax}</td>
+            <td>(+{summary.TotalTaxAmount})</td>
           </tr>
-        }
 
-        <tr className={"grandTotal"}>
-          <td>Grand Total</td> 
-          <td>{summary.TotalPrice}</td>
-        </tr>
+          {summary.RoundedOff !== 0.00 &&
+            <tr>
+              <td>Rounded Off</td>
+              <td>{summary.RoundedOff}</td>
+            </tr>
+          }
+
+          <tr className={"grandTotal"}>
+            <td>Grand Total</td> 
+            <td>{summary.TotalPrice}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

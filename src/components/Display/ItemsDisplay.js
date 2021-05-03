@@ -19,27 +19,29 @@ const ItemsDisplay = (props) => {
 
   return (
     <table className={"ItemsDisplay"}>
-      <tr className="legend">
-        <th>S. Num</th>
-        <th className={"leftAlign"}>Item</th>
-        <th className={"leftAlign"}>Description</th>
-        <th>Quantity(NOS)</th>
-        <th>Discount(%)</th>
-        <th>GST(%)</th>
-        <th>HSN</th>
-        <th>Price</th>
-      </tr>
+      <tbody>
+        <tr className="legend">
+          <th>S. Num</th>
+          <th className={"leftAlign"}>Item</th>
+          <th className={"leftAlign"}>Description</th>
+          <th>Quantity(NOS)</th>
+          <th>Discount(%)</th>
+          <th>GST(%)</th>
+          <th>HSN</th>
+          <th>Price</th>
+        </tr>
 
-      {items.map( 
-        (item) => {
-          itemNumber++
-          return (
-            <DisplayItem itemNumber={itemNumber} item={item} defGSTValue={props.defGSTValue}/>
-          );
-        }
-      )}
+        {items.map( 
+          (item) => {
+            itemNumber++
+            return (
+              <DisplayItem itemNumber={itemNumber} item={item} defGSTValue={props.defGSTValue}/>
+            );
+          }
+        )}
 
-      <SummaryDisplayTR items={props.items}/>
+        <SummaryDisplayTR items={props.items}/>
+      </tbody>
     </table>
   );
 }
