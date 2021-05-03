@@ -10,11 +10,10 @@ import React from "react";
 import "./Header.scss";
 
 const Header = () => {
-	// const [activeLink, updateActiveLink] = useState("home")
 	return (
 		<div className={"header"}>
-			<div class="placeholder">
-				<p class="inlineBlock">OpenBills</p>
+			<div className="placeholder">
+				<p className="inlineBlock">OpenBills</p>
 
 			</div>
 			<div className={"navBar"}>
