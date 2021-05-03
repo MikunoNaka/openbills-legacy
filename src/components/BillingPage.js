@@ -14,6 +14,7 @@ import RegisterItemForm from "./Form/Items/RegisterItemForm";
 
 import RegisterPersonForm from "./Form/People/RegisterPersonForm";
 
+import DocumentInfoForm from "./Form/Document/DocumentInfoForm";
 import MetaInfoForm from "./Form/MetaInfoForm";
 
 import ItemsDisplay from "./Display/ItemsDisplay";
@@ -21,6 +22,7 @@ import SummaryDisplay from "./Display/SummaryDisplay";
 
 const BillingPage = () => {
   const [savedItems, getSavedItems] = useState([]);
+  const [savedPeople, getSavedPeople] = useState([]);
   const [registerItemFormVisibility, setRegisterItemFormVisibility] = useState(false);
   const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState(false);
 
@@ -35,9 +37,21 @@ const BillingPage = () => {
       })
   }
 
+  const getRegisteredPeople = () => {
+    axios.get(`/api/people`)
+      .then((res) => {
+        getSavedPeople(res.data);
+      })
+      .catch((res) => {
+        alert("The promise returned an error idk what to do");
+        console.log(res);
+      })
+  }
+
   // get data from server on startup
   useEffect(() => {
     getRegisteredItems();
+    getRegisteredPeople();
   }, []);
   // TODO: to be handled by backend
   const defGSTValue = 18;
@@ -62,11 +76,14 @@ const BillingPage = () => {
 
       {registerPersonFormVisibility &&
         <RegisterPersonForm 
-          defGSTValue={defGSTValue}
           updateItemsList={getRegisteredItems} 
           setVisibility={setRegisterPersonFormVisibility}
         />
       }
+
+      <DocumentInfoForm 
+        savedPeople={savedPeople}
+      />
 
       <AddNewItemForm 
         savedItems={savedItems} 

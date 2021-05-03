@@ -181,13 +181,13 @@ const AddNewItemForm = (props) => {
 
         <div className={"smallPane"}>
           <input type="button" 
-            value="Register New Item" 
-            onClick={() => props.registerItemFormVisibility(true)}
+            value="Register New Client" 
+            onClick={() => props.registerPersonFormVisibility(true)}
           />
 
           <input type="button" 
-            value="Register New Person" 
-            onClick={() => props.registerPersonFormVisibility(true)}
+            value="Register New Item" 
+            onClick={() => props.registerItemFormVisibility(true)}
           />
 
           <input type="button" value="Placeholder1" />
