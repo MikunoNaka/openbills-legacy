@@ -18,7 +18,7 @@
 }
 
 .ItemsDisplay .legend {
-  background-color: $altBG;
+  background-color: $background2;
 }
 
 .ItemsDisplay th {
@@ -27,16 +27,16 @@
 
 .ItemsDisplay td {
   text-align: center;
-  border-bottom: 1px solid $tableDefBorderColor;
+  border-bottom: 1px solid $underline1;
   font-size: 1.5rem;
 }
 
 .ItemsDisplay .disabledBorder {
-  border-bottom: 1px solid $tableDisabledBorderColor;
+  border-bottom: 1px solid $underline0;
 }
 
 .ItemsDisplay .warningBorder {
-  border-bottom: 1px solid $warningBorderColor;
+  border-bottom: 1px solid $underline3;
 }
 
 .ItemsDisplay .leftAlign {
@@ -44,7 +44,7 @@
 }
 
 .SummaryDisplayTR td {
-  color: $altFG;
+  color: $foreground2;
   font-size: 1.7rem;
 }
 
@@ -56,7 +56,7 @@
 .SummaryDisplay h1 {
   font-size: 3rem;
   margin: 0.5rem -1.5rem;
-  border-bottom: 1px dotted $labelUnderlineColor;
+  border-bottom: 1px dotted $underline1;
 }
 
 .SummaryDisplay table {
@@ -71,5 +71,5 @@
 
 .SummaryDisplay .grandTotal td {
   font-size: 2rem;
-  color: $altFG;
+  color: $foreground2;
 }

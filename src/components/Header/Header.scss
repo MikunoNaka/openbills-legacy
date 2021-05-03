@@ -19,7 +19,7 @@
 	padding: none;
 	width: 100%;
 	height: 5rem;
-	background-color: $altBG;
+	background-color: $background2;
 	box-shadow: $defBigShadow;
 }
 
@@ -30,7 +30,7 @@
 nav a {
 	text-decoration: none;
 	padding: 0.3rem;
-	color: $defLink;
+	color: $link1;
 }
 
 .placeholder {
@@ -44,5 +44,5 @@ nav a {
 
 
 p, h1, h2, h3, h4, h5, h6 {
-	color: $defFG;
+	color: $foreground1;
 }

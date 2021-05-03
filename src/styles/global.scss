@@ -27,8 +27,8 @@ html, body {
 }
 
 body {
-  background-color: $defBG;
-  color: $defFG;
+  background-color: $background1;
+  color: $foreground1;
   margin: 0;
 }
 
@@ -51,7 +51,7 @@ body {
 
 .BillingPageFlex div {
   box-sizing: border-box;
-  border: 1px solid $altBorderColor;
+  border: 1px solid $border1;
 }
 
 .floatingMenuBG {
@@ -59,7 +59,7 @@ body {
   width: 100%;
   position: fixed;
   top: 0; left: 0;
-  background-color: $floatingContainerBG;
+  background-color: $background0;
 }
 
 .floatingMenu {
@@ -73,9 +73,9 @@ body {
   margin: 0 auto;
   top: 15vh;
 
-  background-color: $floatingBG;
+  background-color: $background3;
   box-shadow: $floatingShadow;
-  border: 1px solid $defBorderColor;
+  border: 1px solid $border2;
 
   padding: 1.5rem;
 }

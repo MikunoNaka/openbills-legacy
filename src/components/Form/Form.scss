@@ -23,18 +23,20 @@ input[type=number] {
 @mixin formPane {
   padding: 1.5rem;
   box-sizing: border-box;
-  border: 1px solid $formPaneBorderColor;
+  border: 1px solid $border1;
 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  background-color: $background4;
 }
 
 @mixin formWideLabel {
   display: flex;
   justify-content: space-between;
 
-  border-bottom: 1px dotted $labelUnderlineColor;
+  border-bottom: 1px dotted $underline1;
   padding: 0.8rem 0;
   font-size: 1.5rem;
 }
@@ -118,6 +120,11 @@ input {
 
 .floatingForm .menu * {
   margin: 1rem;
+}
+
+/* */
+.MetaInfoForm {
+  width: 60%;
 }
 
 
