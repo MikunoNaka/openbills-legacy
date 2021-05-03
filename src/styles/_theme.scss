@@ -3,11 +3,14 @@
 $defFont: 'Quicksand', sans-serif;
 
 /* Inspired by Dracula */
+/*
 $defBG: #282A36;
 $altBG: #383A59;
 
 $floatingContainerBG: #282C3466;
 $floatingBG: #2e323b;
+
+$formPaneBG: $defBG;
 
 $defFG: #F2F2F2;
 $altFG: #FF79C6;
@@ -36,4 +39,49 @@ $warningBorderColor: $warningColor;
 
 $shadowColor: #232627;
 $defBigShadow: 0px 8px 4px $shadowColor;
+$floatingShadow: 6px 6px 6px $shadowColor;
+*/
+
+$background0: #282C3466;
+$background1: #ECF5D9;
+$background2: #A480CF;
+$background3: #F7F2DF;
+
+$underline0: gray;
+$underline1: #F83A59;
+$underline2: #FF79C6;
+
+$defBG: $background1;
+/*$altBG: #F83A59;*/
+$altBG: $background2;
+
+$floatingContainerBG: $background0;
+$floatingBG: $background3;
+
+$formPaneBG: $defBG;
+
+$defFG: #000000;
+$altFG: #F83A59;
+
+$defLink: $defFG;
+$altLink: $altFG;
+
+$paneBorderColor: #232627;
+$formPaneBorderColor: $paneBorderColor;
+
+$defBorderColor: lightgreen;
+$altBorderColor: #232627;
+
+
+$labelUnderlineColor: $underline1;
+
+$tableDefBorderColor: $underline1;
+$tableAltBorderColor: $underline2;
+$tableDisabledBorderColor: $underline0;
+
+$warningColor: red;
+$warningBorderColor: $warningColor;
+
+$shadowColor: #232627;
+$defBigShadow: 0px 2px 4px $shadowColor;
 $floatingShadow: 6px 6px 6px $shadowColor;
