@@ -13,8 +13,8 @@ package database
 import (
   _ "github.com/mattn/go-sqlite3"
 )
-
 type Person struct {
+  ID    int
   Name  string
   Phone string
   Email string
@@ -23,16 +23,17 @@ type Person struct {
 func GetAllPeople() []Person {
   var allPeople []Person
   rows, _ := myDatabase.Query(
-    `SELECT Name, Phone, Email FROM People`,
+    `SELECT id, Name, Phone, Email FROM People`,
   )
 
   var (
     name, phone, email string
+    id int
   )
 
   for rows.Next() {
-    rows.Scan(&name, &phone, &email)
-    allPeople = append(allPeople, Person{name, phone, email})
+    rows.Scan(&id, &name, &phone, &email)
+    allPeople = append(allPeople, Person{id, name, phone, email})
   }
 
   return allPeople
