@@ -22,34 +22,24 @@ const AddNewItemForm = (props) => {
   const registerItemPrompt = "add new";
   const emptyItemNames = [enterItemNamePrompt, registerItemPrompt, ""];
 
-  // Extract the model names from savedItems
-  let savedItemNames= [];
-  if (props.savedItems !== null) {
-    for (let i = 0; i < props.savedItems.length; i++) {
-      savedItemNames.push(props.savedItems[i].Model);
-    }
+  // set description and price if match found in DB
+  const applyItemInfo = (i) => {
+    setItemDescValue(i.Description);
+    setItemPriceValue(i.Price);
+    setItemHSNValue(i.HSN);
+    setItemGSTValue(i.GST);
   }
-  
-  // set description and price
-  // when item is entered
-  const setItemInfo = (itemName) => {
-    for (let i = 0; i < props.savedItems.length; i++) {
-      const mod = props.savedItems[i].Model.toLowerCase();
-      const desc = props.savedItems[i].Description;
-      const price = props.savedItems[i].Price;
-      const hsn = props.savedItems[i].HSN;
-      const gst = props.savedItems[i].GST;
 
-      if (mod === itemName) {
-        setItemDescValue(desc);
-        setItemPriceValue(price);
-        setItemHSNValue(hsn);
-        setItemGSTValue(gst);
-        break;
-      } else if (itemName === registerItemPrompt) {
-        props.registerItemFormVisibility(true);
+  // check the item name value and do stuff accordingly
+  const setItemInfo = (itemName) => {
+    props.savedItems.some(
+      (i) => {
+        itemName === i.Model.toLowerCase()
+          ? applyItemInfo(i)
+          : itemName === registerItemPrompt && props.registerItemFormVisibility(true)
+        return null;
       }
-    }
+    )
   }
 
   const resetAllValues = () => {
@@ -95,9 +85,9 @@ const AddNewItemForm = (props) => {
                   }
               }>
                 <option key={enterItemNamePrompt}>{enterItemNamePrompt}</option>
-                {savedItemNames.map(
+                {props.savedItems.map(
                   (i) => {
-                    return <option key={i}>{i}</option>
+                    return <option key={i.Model}>{i.Model}</option>
                   }
                 )}
                 <option key={registerItemPrompt}>{registerItemPrompt}</option>

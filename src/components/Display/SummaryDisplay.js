@@ -13,10 +13,12 @@ const getBasicSummary = (items) => {
   let totalRawPrice = 0;
   let totalQuantity = 0;
 
-  for (let i = 0; i < items.length; i++) {
-    totalRawPrice += items[i].TotalPrice;
-    totalQuantity += items[i].Quantity
-  }
+  items.some((i) => {
+      totalRawPrice += i.TotalPrice;
+      totalQuantity += i.Quantity;
+      return null;
+    }
+  )
 
   return (
     {
@@ -31,14 +33,17 @@ const getFullSummary = (items) => {
   let totalDiscount = 0; // to be subtracted from totalRawPrice
   let totalTax = 0;
 
-  for (let i = 0; i < items.length; i++) {
-    const itemTotalPrice = items[i].TotalPrice;
-    const itemDiscount = (items[i].Discount / 100) * itemTotalPrice;
+  items.some((i) => {
+    const itemTotalPrice = i.TotalPrice;
+    const itemDiscount = (i.Discount / 100) * itemTotalPrice;
 
     totalRawPrice += itemTotalPrice;
     totalDiscount += itemDiscount;
-    totalTax += (items[i].GST / 100) * (itemTotalPrice - itemDiscount);
-  }
+    totalTax += (i.GST / 100) * (itemTotalPrice - itemDiscount);
+    return null;
+  })
+
+
 
   const totalPriceAfterTax = (totalRawPrice - totalDiscount) + totalTax;
   const totalRoundedOff = Math.abs(totalPriceAfterTax - Math.round(totalPriceAfterTax));

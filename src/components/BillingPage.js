@@ -25,47 +25,28 @@ const BillingPage = () => {
   const [savedPeople, getSavedPeople] = useState([]);
   const [registerItemFormVisibility, setRegisterItemFormVisibility] = useState(false);
   const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState(false);
+  const [items, setItems] = useState([]);
 
-  const getRegisteredItems = () => {
+  const getRegisteredItems = () =>
     axios.get(`/api/items/get-all`)
-      .then((res) => {
-        getSavedItems(res.data);
-      })
-      .catch((res) => {
-        alert("The promise returned an error idk what to do");
-        console.log(res);
-      })
-  }
+      .then((res) => getSavedItems(res.data))
+      .catch((res) => console.log(res));
 
-  const getRegisteredPeople = () => {
+  const getRegisteredPeople = () => 
     axios.get(`/api/people/get-all`)
-      .then((res) => {
-        getSavedPeople(res.data);
-      })
-      .catch((res) => {
-        alert("The promise returned an error idk what to do");
-        console.log(res);
-      })
-  }
+      .then((res) => getSavedPeople(res.data))
+      .catch((res) => console.log(res));
 
   // get data from server on startup
   useEffect(() => {
-    async function fetchdata() {
     getRegisteredItems();
     getRegisteredPeople();
-    }
-    fetchdata()
   }, []);
   // TODO: to be handled by backend
   const defGSTValue = 18;
 
   // update the items from AddNewItemForm
-  const [items, setItems] = useState([]);
-  const getItems = (item) => {
-    setItems(
-      [...items, item]
-    );
-  };
+  const getItems = (item) => setItems([...items, item]);
 
   return (
     <>
