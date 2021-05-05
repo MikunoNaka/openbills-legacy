@@ -72,7 +72,7 @@ input {
   width: 100%;
 }
 
-.threePaneForm div {
+.threePaneForm .formPane {
   @include formPane();
 }
 
@@ -95,7 +95,7 @@ input {
   width: 100%;
 }
 
-.twoPaneForm div {
+.twoPaneForm .formPane {
   @include formPane();
 }
 

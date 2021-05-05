@@ -35,13 +35,13 @@ func main() {
   items := api.Group("/items")
 
   // items API routes
-  items.GET("/", getAllItems)
-  items.POST("/", registerItem)
+  items.GET("/get-all", getAllItems)
+  items.POST("/register", registerItem)
 
 
   // people API routes
-  people.GET("/", getAllPeople)
-  people.POST("/", registerPerson)
+  people.GET("/get-all", getAllPeople)
+  people.POST("/register", registerPerson)
 
   myRouter.Run(":8080")
 }
@@ -75,7 +75,7 @@ func registerItem(ctx *gin.Context) {
 
 // people API functions
 func getAllPeople(ctx *gin.Context) {
-  ctx.Header("Content-Type", "application/json")
+  // ctx.Header("Content-Type", "application/json")
   ctx.JSON(http.StatusOK, db.GetAllPeople())
 }
 

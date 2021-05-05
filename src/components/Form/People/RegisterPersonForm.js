@@ -30,7 +30,7 @@ const RegisterPersonForm = (props) => {
     event.preventDefault();
     // TODO: show confirmation before being invisible
     axios.post(
-      `/api/people/`
+      `/api/people/register/`
       + `?name=${newPersonName}`
       + `&phone=${newPersonPhone}`
       + `&email=${newPersonEmail}`

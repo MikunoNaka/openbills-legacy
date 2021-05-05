@@ -27,7 +27,7 @@ const BillingPage = () => {
   const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState(false);
 
   const getRegisteredItems = () => {
-    axios.get(`/api/items`)
+    axios.get(`/api/items/get-all`)
       .then((res) => {
         getSavedItems(res.data);
       })
@@ -38,7 +38,7 @@ const BillingPage = () => {
   }
 
   const getRegisteredPeople = () => {
-    axios.get(`/api/people`)
+    axios.get(`/api/people/get-all`)
       .then((res) => {
         getSavedPeople(res.data);
       })

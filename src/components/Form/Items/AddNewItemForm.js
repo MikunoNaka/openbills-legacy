@@ -9,7 +9,6 @@
 import React, { useState } from "react";
 import "./../Form.scss";
 
-
 const AddNewItemForm = (props) => {
   const [itemNameValue, setItemNameValue] = useState("");
   const [itemDescValue, setItemDescValue] = useState("");
@@ -83,7 +82,7 @@ const AddNewItemForm = (props) => {
           resetAllValues();
         }
       }>
-        <div className={"widePane"}>
+        <div className={"widePane formPane"}>
           <label>
             Item/Service: 
               <select
@@ -104,7 +103,7 @@ const AddNewItemForm = (props) => {
                 <option key={registerItemPrompt}>{registerItemPrompt}</option>
               </select>
           </label>
-  
+
           <label>
             Description:
               <input className={"wideInputBox"} type="text" value={itemDescValue} 
@@ -117,7 +116,7 @@ const AddNewItemForm = (props) => {
           </label>
         </div>
 
-        <div className={"widePane"}>
+        <div className={"widePane formPane"}>
           <label>
             Quantity: 
               <input className={"smallInputBox"} type="number" min="1" value={itemQtyValue} 
@@ -179,7 +178,7 @@ const AddNewItemForm = (props) => {
           </label>
         </div>
 
-        <div className={"smallPane"}>
+        <div className={"smallPane formPane"}>
           <input type="button" 
             value="Register New Client" 
             onClick={() => props.registerPersonFormVisibility(true)}

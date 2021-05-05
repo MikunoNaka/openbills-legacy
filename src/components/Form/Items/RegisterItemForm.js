@@ -35,7 +35,7 @@ const RegisterItemForm = (props) => {
 
   // TODO: show confirmation before being invisible
     axios.post(
-      `/api/items/`
+      `/api/items/register/`
       + `?model=${newItemNameValue}`
       + `&desc=${newItemDescValue}`
       + `&price=${newItemPriceValue}`
@@ -59,7 +59,7 @@ const RegisterItemForm = (props) => {
         <div className={"formContainer"}>
           <form className={"floatingForm"} onSubmit={postForm}>
             <div className={"twoPaneForm"}>
-              <div className={"widePane"}>
+              <div className={"widePane formPane"}>
                 <label>
                   Item/Service: <input className={"wideInputBox"} type="text" value={newItemNameValue} onChange={
                     (event) => {
@@ -77,7 +77,7 @@ const RegisterItemForm = (props) => {
                 </label>
 
               </div>
-              <div className={"widePane"}>
+              <div className={"widePane formPane"}>
                 <label>
                   Price: <input className={"smallInputBox"} type="number" min="0.00" step="0.001" value={newItemPriceValue} onChange={
                     (event) => {
