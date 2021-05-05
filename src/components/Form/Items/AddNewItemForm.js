@@ -85,7 +85,7 @@ const AddNewItemForm = (props) => {
                   }
               }>
                 <option key={enterItemNamePrompt}>{enterItemNamePrompt}</option>
-                {props.savedItems.map(
+                {props.savedItems === null || props.savedItems.map(
                   (i) => {
                     return <option key={i.Model}>{i.Model}</option>
                   }
