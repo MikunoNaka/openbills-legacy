@@ -16,17 +16,21 @@ const DocumentInfoForm = (/*props*/) => {
   const savedPeople = [
     {
       ID: 1,
-      Name: "one"
+      Name: "one",
+      Address: "Address Line 1"
     },
     {
       ID: 2,
-      Name: "two"
+      Name: "two",
+      Address: "Address Line 1 Line2 Lelfjdlfj"
     },
     {
       ID: 3,
-      Name: "three"
+      Name: "three",
+      Address: "ALinldfjlasjfe 1asdjflajdslfjsalkdjfdslkfjslkdfjlksjdflkjsdlkfjdlfjslkjfdlkadsflj"
     },
   ]
+
   return (
     <div className={"DocumentInfoForm"}>
       <SelectClientForm 

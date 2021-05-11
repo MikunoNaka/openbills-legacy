@@ -12,7 +12,7 @@ import "./Display.scss";
 const ClientInfoDisplay = (props) => {
   return (
     <div>
-      clientID: {props.clientID}
+      Client Name: {props.client.Name}
     </div>
   );
 }
