@@ -45,11 +45,12 @@ const RegisterItemForm = (props) => {
       .then((res) => {
         console.log(res);
         props.setVisibility(false);
+        props.updateItemsList();
       })
       .catch((err) => {
         console.log(err);
+        alert("Something went wrong, please check the log by opening the console.")
       });
-    props.updateItemsList();
   }
 
 

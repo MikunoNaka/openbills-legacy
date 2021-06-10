@@ -28,6 +28,7 @@ const getBasicSummary = (items) => {
   );
 }
 
+// TODO: remove mutability from this function
 const getFullSummary = (items) => {
   let totalRawPrice = 0;
   let totalDiscount = 0; // to be subtracted from totalRawPrice
@@ -39,7 +40,9 @@ const getFullSummary = (items) => {
 
     totalRawPrice += itemTotalPrice;
     totalDiscount += itemDiscount;
-    totalTax += (i.GST / 100) * (itemTotalPrice - itemDiscount);
+    totalTax += i.igst === "" 
+      ? ((i.sgst + i.cgst) / 100) * (itemTotalPrice - itemDiscount)
+      : (i.igst / 100) * (itemTotalPrice - itemDiscount);
     return null;
   })
 
@@ -69,6 +72,8 @@ export const SummaryDisplayTR = (props) => {
       <td className={"disabledBorder"}></td>
       <td className={"disabledBorder"}></td>
       <td>{summary.TotalQuantity}</td>
+      <td className={"disabledBorder"}></td>
+      <td className={"disabledBorder"}></td>
       <td className={"disabledBorder"}></td>
       <td className={"disabledBorder"}></td>
       <td className={"disabledBorder"}></td>

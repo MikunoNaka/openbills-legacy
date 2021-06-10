@@ -13,6 +13,7 @@ import {SummaryDisplayTR} from "./SummaryDisplay";
 
 const ItemsDisplay = (props) => {
   const items = props.items;
+  // TODO: remove mutability
   let itemNumber = 0;
 
   // TODO: Add HSN Support
@@ -26,7 +27,9 @@ const ItemsDisplay = (props) => {
           <th className={"leftAlign"}>Description</th>
           <th>Quantity(NOS)</th>
           <th>Discount(%)</th>
-          <th>GST(%)</th>
+          <th>sgst(%)</th>
+          <th>cgst(%)</th>
+          <th>igst(%)</th>
           <th>HSN</th>
           <th>Price</th>
         </tr>
@@ -35,7 +38,7 @@ const ItemsDisplay = (props) => {
           (item) => {
             itemNumber++
             return (
-              <DisplayItem itemNumber={itemNumber} item={item} defGSTValue={props.defGSTValue}/>
+              <DisplayItem key={itemNumber} itemNumber={itemNumber} item={item} defGSTValue={props.defGSTValue}/>
             );
           }
         )}

@@ -18,6 +18,11 @@ const AddNewItemForm = (props) => {
   const [itemQtyValue, setItemQtyValue] = useState(1);
   const [itemHSNValue, setItemHSNValue] = useState(0);
 
+  // to be handled by DocumentInfo
+  // check if client is in same state
+  // and apply cgst+sgst or igst accordingly
+  const inState = true;
+
   const enterItemNamePrompt = "start typing here";
   const registerItemPrompt = "add new";
   const emptyItemNames = [enterItemNamePrompt, registerItemPrompt, ""];
@@ -31,16 +36,10 @@ const AddNewItemForm = (props) => {
   }
 
   // check the item name value and do stuff accordingly
-  const setItemInfo = (itemName) => {
-    props.savedItems.some(
-      (i) => {
-        itemName === i.Model.toLowerCase()
-          ? applyItemInfo(i)
-          : itemName === registerItemPrompt && props.registerItemFormVisibility(true)
-        return null;
-      }
-    )
-  }
+  const setItemInfo = (itemName) =>
+    (props.savedItems === null || itemName === registerItemPrompt)
+      ? props.registerItemFormVisibility(true)
+      : props.savedItems.some((i) => itemName === i.Model.toLowerCase() && applyItemInfo(i))
 
   const resetAllValues = () => {
     setItemNameValue("");
@@ -56,7 +55,6 @@ const AddNewItemForm = (props) => {
     <div className={"formContainer"}>
       <form className={"threePaneForm"} onSubmit={
         (event) => {
-          alert("submit")
           event.preventDefault();
           const newInvoiceItem = {
             "Model": itemNameValue,
@@ -66,8 +64,13 @@ const AddNewItemForm = (props) => {
             "TotalPrice": parseFloat(itemPriceValue * itemQtyValue),
             "Discount": parseInt(itemDiscountValue),
             "HSN": parseInt(itemHSNValue),
-            "GST": parseInt(itemGSTValue)
+
+            // this also checks if igst applies or not
+            "sgst": inState ? parseInt(itemGSTValue) / 2 : "",
+            "cgst": inState ? parseInt(itemGSTValue) / 2 : "",
+            "igst": inState ? "" :  parseInt(itemGSTValue)
           };
+          console.log(newInvoiceItem);
           props.addItem(newInvoiceItem);
           resetAllValues();
         }
@@ -83,12 +86,10 @@ const AddNewItemForm = (props) => {
                     setItemNameValue(event.target.value);
                     setItemInfo(event.target.value.toLowerCase());
                   }
-              }>
+                }>
                 <option key={enterItemNamePrompt}>{enterItemNamePrompt}</option>
-                {props.savedItems === null || props.savedItems.map(
-                  (i) => {
-                    return <option key={i.Model}>{i.Model}</option>
-                  }
+                {props.savedItems !== null && props.savedItems.map(
+                  (i) => <option key={i.Model}>{i.Model}</option>
                 )}
                 <option key={registerItemPrompt}>{registerItemPrompt}</option>
               </select>

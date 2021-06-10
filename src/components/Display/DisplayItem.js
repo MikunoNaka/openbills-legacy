@@ -20,7 +20,11 @@ const DisplayItem = (props) => {
       <td className={item.Description === "" ? "leftAlign disabledBorder" : "leftAlign"}>{item.Description}</td>
       <td>{item.Quantity}</td>
       <td className={item.Discount === 0 ? "disabledBorder" : ""}>{item.Discount}</td>
-      <td className={item.GST === props.defGSTValue ? "" : "warningBorder"}>{item.GST}</td>
+
+      <td className={item.cgst === "" ? "disabledBorder" : (props.defGSTValue / 2 ? "" : "warningBorder")}>{item.sgst}</td>
+      <td className={item.sgst === "" ? "disabledBorder" : (props.defGSTValue / 2 ? "" : "warningBorder")}>{item.cgst}</td>
+      <td className={item.igst === "" ? "disabledBorder" : (item.igst === props.defGSTValue ? "" : "warningBorder")}>{item.igst}</td>
+
       <td>{item.HSN}</td>
       <td>{item.TotalPrice}</td>
     </tr>
