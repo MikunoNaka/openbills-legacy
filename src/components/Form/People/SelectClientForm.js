@@ -18,18 +18,16 @@ const SelectClientForm = (props) => {
   const enterValuePrompt = "start typing here";
   const registerPrompt = "add new";
 
-  const formatter = (i) => `${i.Name} - ${i.Address.slice(0, 20).concat(i.Address.len < 20 ? "" : "...")}`;
+  const formatter = (i) => {
+    return `${i.Name} - ${i.Address.slice(0, 20).concat(i.Address.length < 20 ? "" : "")}`;
+  }
 
   // check the client name value and do stuff accordingly
-  const setItemInfo = (clientName) =>
-    props.savedPeople.some(
-      (i) => clientName === formatter(i)
-        ? setSelectedClient(i)
-        : clientName === registerPrompt 
-          && alert("coming soon")
-    )
-
-  console.log(selectedClient)
+  const setClientInfo = (clientName) =>
+    (props.savedPeople === null || clientName === registerPrompt)
+      ? alert("coming soon") // toggle registerPersonPrompt visibility
+      : props.savedPeople.some((i) => 
+        clientName === formatter(i) && setSelectedClient(i))
 
   return (
     <div className={"DocumentInfoChild"}>
@@ -41,7 +39,7 @@ const SelectClientForm = (props) => {
             onChange={
               (event) => {
                 setClientName(event.target.value);
-                setItemInfo(event.target.value);
+                setClientInfo(event.target.value);
               }
           }>
             <option key={enterValuePrompt}>{enterValuePrompt}</option>

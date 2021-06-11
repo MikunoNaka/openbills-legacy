@@ -39,7 +39,8 @@ const AddNewItemForm = (props) => {
   const setItemInfo = (itemName) =>
     (props.savedItems === null || itemName === registerItemPrompt)
       ? props.registerItemFormVisibility(true)
-      : props.savedItems.some((i) => itemName === i.Model.toLowerCase() && applyItemInfo(i))
+      : props.savedItems.some((i) => 
+        itemName === i.Model.toLowerCase() && applyItemInfo(i))
 
   const resetAllValues = () => {
     setItemNameValue("");

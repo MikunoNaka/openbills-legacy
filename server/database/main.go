@@ -33,9 +33,10 @@ func StartDB() {
   init_people, _ := myDatabase.Prepare(
     `CREATE TABLE IF NOT EXISTS People
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name  TEXT,
-    Phone TEXT,
-    Email TEXT)`,
+    Name     TEXT,
+    Address  TEXT,
+    Phone    TEXT,
+    Email    TEXT)`,
   )
   init_people.Exec()
 }

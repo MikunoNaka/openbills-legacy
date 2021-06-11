@@ -81,9 +81,10 @@ func getAllPeople(ctx *gin.Context) {
 
 func registerPerson(ctx *gin.Context) {
   person := db.Person {
-    Name:  ctx.Query("name"),
-    Phone: ctx.Query("phone"),
-    Email: ctx.Query("email"),
+    Name:     ctx.Query("name"),
+    Address:  ctx.Query("address"),
+    Phone:    ctx.Query("phone"),
+    Email:    ctx.Query("email"),
   }
 
   db.RegisterPerson(person)

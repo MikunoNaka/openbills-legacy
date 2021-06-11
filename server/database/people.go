@@ -14,10 +14,10 @@ import (
   _ "github.com/mattn/go-sqlite3"
 )
 type Person struct {
-  ID    int
-  Name  string
-  Phone string
-  Email string
+  Name    string
+  Address string
+  Phone   string
+  Email   string
 }
 
 func GetAllPeople() []Person {
@@ -27,13 +27,12 @@ func GetAllPeople() []Person {
   )
 
   var (
-    name, phone, email string
-    id int
+    name, address, phone, email string
   )
 
   for rows.Next() {
-    rows.Scan(&id, &name, &phone, &email)
-    allPeople = append(allPeople, Person{id, name, phone, email})
+    rows.Scan(&name, &address, &phone, &email)
+    allPeople = append(allPeople, Person{name, address, phone, email})
   }
 
   return allPeople
@@ -43,12 +42,12 @@ func RegisterPerson(person Person) bool {
 
   register_person, _ := myDatabase.Prepare(
     `INSERT INTO People
-    (Name, Phone, Email)
+    (Name, Address, Phone, Email)
     VALUES (?, ?, ?)`,
   )
 
   register_person.Exec(
-    person.Name, person.Phone, person.Email,
+    person.Name, person.Address, person.Phone, person.Email,
   )
 
   return true
