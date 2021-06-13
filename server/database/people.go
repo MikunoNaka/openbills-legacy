@@ -23,7 +23,7 @@ type Person struct {
 func GetAllPeople() []Person {
   var allPeople []Person
   rows, _ := myDatabase.Query(
-    `SELECT id, Name, Phone, Email FROM People`,
+    `SELECT Name, Address, Phone, Email FROM People`,
   )
 
   var (
@@ -39,11 +39,10 @@ func GetAllPeople() []Person {
 }
 
 func RegisterPerson(person Person) bool {
-
   register_person, _ := myDatabase.Prepare(
     `INSERT INTO People
     (Name, Address, Phone, Email)
-    VALUES (?, ?, ?)`,
+    VALUES (?, ?, ?, ?)`,
   )
 
   register_person.Exec(
