@@ -33,6 +33,7 @@ func main() {
   api := myRouter.Group("/api")
   people := api.Group("/people")
   items := api.Group("/items")
+  users := api.Group("/users")
 
   // items API routes
   items.GET("/get-all", getAllItems)
@@ -43,6 +44,10 @@ func main() {
   people.GET("/get-all", getAllPeople)
   people.POST("/register", registerPerson)
 
+  // users API routes
+  users.GET("/get-all", getAllUsers)
+  // users.POST("/register", registerUser)
+  
   myRouter.Run(":8080")
 }
 
@@ -75,7 +80,7 @@ func registerItem(ctx *gin.Context) {
 
 // people API functions
 func getAllPeople(ctx *gin.Context) {
-  // ctx.Header("Content-Type", "application/json")
+  ctx.Header("Content-Type", "application/json")
   ctx.JSON(http.StatusOK, db.GetAllPeople())
 }
 
@@ -89,3 +94,20 @@ func registerPerson(ctx *gin.Context) {
 
   db.RegisterPerson(person)
 }
+
+// users API functions
+func getAllUsers(ctx *gin.Context) {
+  ctx.Header("Content-Type", "application/json")
+  ctx.JSON(http.StatusOK, db.GetAllUsers())
+}
+
+// func registerUser(ctx *gin.Context) {
+//   person := db.Person {
+//     Name:     ctx.Query("name"),
+//     Address:  ctx.Query("address"),
+//     Phone:    ctx.Query("phone"),
+//     Email:    ctx.Query("email"),
+//   }
+// 
+//   db.RegisterPerson(person)
+// }
