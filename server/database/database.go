@@ -14,7 +14,7 @@ import (
 )
 
 var myDatabase *sql.DB
-func StartDB() {
+func InitDB() {
   myDatabase, _ = sql.Open("sqlite3", "./openbills.db")
 
   init_items, _ := myDatabase.Prepare(
