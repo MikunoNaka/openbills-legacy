@@ -7,17 +7,25 @@
 */
 
 import React from "react";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+
 import Header from "./Header/Header";
 import HomePage from "./Pages/HomePage";
+import BillingPage from "./Pages/BillingPage";
 
 const App = () => {
-  const showHeader = false;
   return (
     <>
-      {showHeader && <Header/>}
+      <BrowserRouter>
+        <Header/>
         <div className={"root-content"}>
-          <HomePage />
+          <Switch>
+            <Route exact path="/" component={HomePage}/>
+            <Route exact path="/BillingPage" component={BillingPage}/>
+            <Route path="/" render={() => <div>404</div>}/>
+          </Switch>
         </div>
+      </BrowserRouter>
     </>
   );
 }

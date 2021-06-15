@@ -11,7 +11,9 @@
 
 .HomePageMenu .menuItem {
   text-align: center;
+  text-decoration: none;
   font-size: $fontSize2;
+  color: $defFG;
 }
 
 .HomePageMenu .menuItem:hover {

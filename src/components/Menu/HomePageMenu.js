@@ -7,17 +7,18 @@
 */
 
 import React from "react";
+import {Link} from "react-router-dom";
 import "./HomePageMenu.scss";
 
 const HomePageMenu = () => {
 	return (
     <div className="HomePageMenu">
-      <span className="menuItem">
+      <Link className="menuItem" to="BillingPage">
         Create Invoice
-      </span>
-      <span className="menuItem">
+      </Link>
+      <Link className="menuItem" to="pepe">
         Don't Create Invoice
-      </span>
+      </Link>
     </div>
 	)
 }

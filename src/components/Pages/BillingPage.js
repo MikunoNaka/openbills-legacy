@@ -9,16 +9,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import AddNewItemForm from "./Form/Items/AddNewItemForm";
-import RegisterItemForm from "./Form/Items/RegisterItemForm";
+import AddNewItemForm from "./../Form/Items/AddNewItemForm";
+import RegisterItemForm from "./../Form/Items/RegisterItemForm";
 
-import RegisterPersonForm from "./Form/People/RegisterPersonForm";
+import RegisterPersonForm from "./../Form/People/RegisterPersonForm";
 
-import DocumentInfoForm from "./Form/Document/DocumentInfoForm";
-import MetaInfoForm from "./Form/MetaInfoForm";
+import DocumentInfoForm from "./../Form/Document/DocumentInfoForm";
+import MetaInfoForm from "./../Form/MetaInfoForm";
 
-import ItemsDisplay from "./Display/ItemsDisplay";
-import SummaryDisplay from "./Display/SummaryDisplay"; 
+import ItemsDisplay from "./../Display/ItemsDisplay";
+import SummaryDisplay from "./../Display/SummaryDisplay"; 
 
 const BillingPage = () => {
   const [savedItems, getSavedItems] = useState([]);

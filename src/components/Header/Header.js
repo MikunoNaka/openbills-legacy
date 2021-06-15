@@ -7,6 +7,7 @@
 */
 
 import React from "react";
+import {Link} from "react-router-dom";
 import "./Header.scss";
 
 const Header = () => {
@@ -18,10 +19,8 @@ const Header = () => {
 			</div>
 			<div className={"navBar"}>
 				<nav>
-					<a href="https://nhentai.net">Link1</a>
-					<a href="https://youtube.com">Link2</a>
-					<a href="https://google.com">Link3</a>
-					<a href="https://github.com">Link4</a>
+          <Link to="/">Home</Link>
+          <Link to="/BillingPage">BillingPage</Link>
 				</nav>
 			</div>
 		</div>
