@@ -8,14 +8,15 @@
 
 import React from "react";
 import Header from "./Header/Header";
-import BillingPage from "./BillingPage";
+import HomePage from "./Pages/HomePage";
 
 const App = () => {
+  const showHeader = false;
   return (
     <>
-      <Header/>
+      {showHeader && <Header/>}
         <div className={"root-content"}>
-          <BillingPage />
+          <HomePage />
         </div>
     </>
   );

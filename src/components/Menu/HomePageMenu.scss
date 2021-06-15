@@ -1,0 +1,19 @@
+@import "../../styles/theme";
+
+.HomePageMenu {
+  /*border: 1px solid green;*/
+  min-width: 20rem;
+  width: 50%;
+
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.HomePageMenu .menuItem {
+  text-align: center;
+  font-size: $fontSize2;
+}
+
+.HomePageMenu .menuItem:hover {
+  color: $altFG;
+}
