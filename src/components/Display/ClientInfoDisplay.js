@@ -10,10 +10,20 @@ import React from "react";
 import "./Display.scss";
 
 const ClientInfoDisplay = (props) => {
+  //console.log(props.client)
   return (
-    <div>
-      Client Name: {props.client.Name}
-    </div>
+    <table>
+      <tbody>
+        <tr>
+          <td>Client Name:</td> 
+          <td>{props.client.Name}</td>
+        </tr>
+        <tr>
+          <td>Client Address:</td>
+          <td>{props.client.Address}</td>
+        </tr>
+      </tbody>
+    </table>
   );
 }
 

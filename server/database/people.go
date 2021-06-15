@@ -14,6 +14,7 @@ import (
   _ "github.com/mattn/go-sqlite3"
 )
 type Person struct {
+  ID      string
   Name    string
   Address string
   Phone   string
@@ -23,16 +24,16 @@ type Person struct {
 func GetAllPeople() []Person {
   var allPeople []Person
   rows, _ := myDatabase.Query(
-    `SELECT Name, Address, Phone, Email FROM People`,
+    `SELECT ID, Name, Address, Phone, Email FROM People`,
   )
 
   var (
-    name, address, phone, email string
+    id, name, address, phone, email string
   )
 
   for rows.Next() {
-    rows.Scan(&name, &address, &phone, &email)
-    allPeople = append(allPeople, Person{name, address, phone, email})
+    rows.Scan(&id, &name, &address, &phone, &email)
+    allPeople = append(allPeople, Person{id, name, address, phone, email})
   }
 
   return allPeople
