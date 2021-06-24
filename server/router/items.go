@@ -31,13 +31,13 @@ func registerItem(ctx *gin.Context) {
   brand := "brand coming soon"
 
   item := db.Item {
-    Model: ctx.Query("model"),
-    Desc:  ctx.Query("desc"),
-    Price: price,
-    HSN:   hsn,
-    GST:   gst,
-    Cat:   cat,
-    Brand: brand,
+    Model:       ctx.Query("model"),
+    Description: ctx.Query("desc"),
+    UnitPrice:   price,
+    HSN:         hsn,
+    TotalGST:    gst,
+    Category:    cat,
+    Brand:       brand,
   }
 
   db.RegisterItem(item)

@@ -15,25 +15,29 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./../Form.scss";
 
+interface props {
+  defGSTValue: number
+  setVisibility: any // this component's visibility
+  updateItemsList: () => Promise<void>
+}
 
-const RegisterItemForm = (props) => {
-  const [newItemNameValue, setNewItemNameValue] = useState("");
-  const [newItemDescValue, setNewItemDescValue] = useState("");
-  const [newItemPriceValue, setNewItemPriceValue] = useState(0.00);
-  const [newItemHSNValue, setNewItemHSNValue] = useState("");
-  const [newItemGSTValue, setNewItemGSTValue] = useState(props.defGSTValue);
+const RegisterItemForm: React.FC<props> = (props) => {
+  const [newItemNameValue, setNewItemNameValue] = useState<string>("");
+  const [newItemDescValue, setNewItemDescValue] = useState<string>("");
+  const [newItemPriceValue, setNewItemPriceValue] = useState<number>(0.00);
+  const [newItemHSNValue, setNewItemHSNValue] = useState<number>();
+  const [newItemGSTValue, setNewItemGSTValue] = useState<number>(props.defGSTValue);
   // const [newItemBrandValue, setNewItemBrandValue] = useState("");
   // const [newItemTypeValue, setNewItemTypeValue] = useState("");
 
   const hideSelf = () => props.setVisibility(false);
 
-  const closeOnBGClicked = (event) => 
+  const closeOnBGClicked = (event: any) => 
     event.target.className === "floatingMenuBG" && hideSelf();
 
-  const postForm = (event) => {
+  const postForm = (event: any) => {
     event.preventDefault();
-
-  // TODO: show confirmation before being invisible
+    // TODO: show confirmation before being invisible
     axios.post(
       `/api/items/register/`
       + `?model=${newItemNameValue}`
@@ -44,7 +48,7 @@ const RegisterItemForm = (props) => {
     )
       .then((res) => {
         console.log(res);
-        props.setVisibility(false);
+        hideSelf();
         props.updateItemsList();
       })
       .catch((err) => {
@@ -63,17 +67,13 @@ const RegisterItemForm = (props) => {
               <div className={"widePane formPane"}>
                 <label>
                   Item/Service: <input className={"wideInputBox"} type="text" value={newItemNameValue} onChange={
-                    (event) => {
-                      setNewItemNameValue(event.target.value);
-                    }
+                    (event) => setNewItemNameValue(event.target.value)
                   } required />
                 </label>
 
                 <label>
                   Description: <input className={"wideInputBox"} type="text" value={newItemDescValue} onChange={
-                    (event) => {
-                      setNewItemDescValue(event.target.value);
-                    }
+                    (event) => setNewItemDescValue(event.target.value)
                   } />
                 </label>
 
@@ -81,48 +81,38 @@ const RegisterItemForm = (props) => {
               <div className={"widePane formPane"}>
                 <label>
                   Price: <input className={"smallInputBox"} type="number" min="0.00" step="0.001" value={newItemPriceValue} onChange={
-                    (event) => {
-                      const value = event.target.value;
-                      setNewItemPriceValue(value);
-                    }
+                    (event: React.FormEvent<HTMLInputElement>) => 
+                      setNewItemPriceValue(parseInt(event.currentTarget.value))
                   } />
                 </label>
 
                 <label>
                   HSN: <input className={"smallInputBox"} type="number" min="0" value={newItemHSNValue} onChange={
-                    (event) => {
-                      const value = event.target.value;
-                      setNewItemHSNValue(value);
-                    }
+                    (event: React.FormEvent<HTMLInputElement>) => 
+                      setNewItemHSNValue(parseInt(event.currentTarget.value))
                   } />
                 </label>
 
                 <label>
                   GST: <input className={"smallInputBox"} type="number" min="0" value={newItemGSTValue} onChange={
-                    (event) => {
-                      const value = event.target.value;
-                      setNewItemGSTValue(value);
-                    }
+                    (event: React.FormEvent<HTMLInputElement>) => 
+                      setNewItemGSTValue(parseInt(event.currentTarget.value))
                   } />
                 </label>
-            </div>
+              </div>
             </div>
 
             <div className={"menu"}>
               <input
                 type="button"
                 value="cancel"
-                onClick={
-                  () => {
-                    props.setVisibility(false);
-                  }
-                }
+                onClick={() => hideSelf()}
               />
 
               <input
                 type="submit"
                 value="Register/Add"
-                disabled={newItemNameValue !== "" ? "" : "disabled"}
+                disabled={newItemNameValue === "" ? true : false}
               />
             </div>
           </form>

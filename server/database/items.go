@@ -14,30 +14,30 @@ import (
 )
 
 type Item struct {
-  Model  string
-  Desc   string `json:"Description"`
-  Price  float64
-  HSN    int
-  GST    float64
-  Cat    string `json:"Category"`
-  Brand  string
+  Model       string
+  Description string
+  UnitPrice   float64
+  HSN         int
+  TotalGST    float64
+  Category    string 
+  Brand       string
 }
 
 func GetAllItems() []Item {
   var allItems []Item
   rows, _ := myDatabase.Query(
-    `SELECT Model, Desc, Price, Hsn, Gst, Category, Brand FROM Items`,
+    `SELECT Model, Desc, UnitPrice, HSN, TotalGST, Category, Brand FROM Items`,
   )
 
   var (
     model, desc, cat, brand string
-    price, GST float64
+    unitPrice, GST float64
     HSN int
   )
 
   for rows.Next() {
-    rows.Scan(&model, &desc, &price, &HSN, &GST, &cat, &brand)
-    allItems = append(allItems, Item{model, desc, price, HSN, GST, cat, brand})
+    rows.Scan(&model, &desc, &unitPrice, &HSN, &GST, &cat, &brand)
+    allItems = append(allItems, Item{model, desc, unitPrice, HSN, GST, cat, brand})
   }
 
   return allItems
@@ -48,7 +48,7 @@ func RegisterItem(item Item) bool {
 
   register_item, _ := myDatabase.Prepare(
     `INSERT INTO Items
-    (Model, Desc, Price, Hsn, Gst, Category, Brand) 
+    (Model, Desc, UnitPrice, HSN, TotalGST, Category, Brand) 
     VALUES (?, ?, ?, ?, ?, ?, ?)`,
   )
 
@@ -64,10 +64,8 @@ func RegisterItem(item Item) bool {
   }
 
   register_item.Exec(
-    item.Model, item.Desc,
-    item.Price, item.HSN,
-    item.GST,   item.Cat,
-    item.Brand,
+    item.Model, item.Description, item.UnitPrice, item.HSN,
+    item.TotalGST, item.Category, item.Brand,
   )
 
   return true

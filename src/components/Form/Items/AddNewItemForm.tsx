@@ -13,13 +13,12 @@ import { Item } from "../../../interfaces";
 interface props {
   savedItems: Item[]
   addItem: (item: Item) => void
-  defGSTValue: number,
-  registerItemFormVisibility: any,
+  defGSTValue: number
+  registerItemFormVisibility: any
   registerPersonFormVisibility: any
 }
 
 const AddNewItemForm: React.FC<props> = (props) => {
-  console.log(props)
   const [itemNameValue, setItemNameValue] = useState<string>("");
   const [itemDescValue, setItemDescValue] = useState<string>("");
   const [itemPriceValue, setItemPriceValue] = useState<number>(0.00);
@@ -35,18 +34,19 @@ const AddNewItemForm: React.FC<props> = (props) => {
 
   const enterItemNamePrompt: string = "start typing here";
   const registerItemPrompt: string = "add new";
-  const emptyItemNames: any[] = [enterItemNamePrompt, registerItemPrompt, ""];
+  const emptyItemNames: string[] = [enterItemNamePrompt, registerItemPrompt, ""];
 
   // set description and price if match found in DB
   const applyItemInfo = (i: any) => {
+    console.log(i)
     setItemDescValue(i.Description);
-    setItemPriceValue(i.Price);
+    setItemPriceValue(i.UnitPrice);
     setItemHSNValue(i.HSN);
-    setItemGSTValue(i.GST);
+    setItemGSTValue(i.TotalGST);
   }
 
   // check the item name value and do stuff accordingly
-  const setItemInfo = (itemName: any) =>
+  const setItemInfo = (itemName: string) =>
     (props.savedItems === null || itemName === registerItemPrompt)
       ? props.registerItemFormVisibility(true)
       : props.savedItems.some((i) => 
@@ -77,12 +77,13 @@ const AddNewItemForm: React.FC<props> = (props) => {
             TotalValue: (itemPriceValue * itemQTYValue),
             Discount: itemDiscountValue,
             HSN: itemHSNValue,
+            TotalGST: itemGSTValue,
 
             // this also checks if igst applies or not
             // TODO: fix this
-            sgst: 0,
-            cgst: 0,
-            igst: 0
+            SGST: 0,
+            CGST: 0,
+            IGST: 0
             // sgst: inState ? parseInt(itemGSTValue) / 2 : "",
             // cgst: inState ? parseInt(itemGSTValue) / 2 : "",
             // igst: inState ? "" :  parseInt(itemGSTValue)
@@ -115,11 +116,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
           <label>
             Description:
               <input className={"wideInputBox"} type="text" value={itemDescValue} 
-                onChange={
-                  (event) => {
-                    setItemDescValue(event.target.value);
-                  }
-                } 
+                onChange={(event) => setItemDescValue(event.target.value)} 
               />
           </label>
         </div>
@@ -129,10 +126,8 @@ const AddNewItemForm: React.FC<props> = (props) => {
             Quantity: 
               <input className={"smallInputBox"} type="number" min="1" value={itemQTYValue} 
                 onInput={
-                  (event: React.FormEvent<HTMLInputElement>) => {
-                    const value: number = parseInt(event.currentTarget.value);
-                    setItemQTYValue(value);
-                  }
+                  (event: React.FormEvent<HTMLInputElement>) => 
+                    setItemQTYValue(parseInt(event.currentTarget.value))
                 } 
               required />
           </label>
@@ -141,10 +136,8 @@ const AddNewItemForm: React.FC<props> = (props) => {
             Price: 
               <input className={"smallInputBox"} type="number" min="1.00" step="0.001" value={itemPriceValue} 
                 onInput={
-                  (event: React.FormEvent<HTMLInputElement>) => {
-                    const value: number = parseFloat(event.currentTarget.value);
-                    setItemPriceValue(value);
-                  }
+                  (event: React.FormEvent<HTMLInputElement>) => 
+                    setItemPriceValue(parseFloat(event.currentTarget.value))
                 } 
               required />
           </label>
@@ -153,10 +146,8 @@ const AddNewItemForm: React.FC<props> = (props) => {
             Discount: 
               <input className={"smallInputBox"} type="number" min="0" step="0.001" value={itemDiscountValue} 
                 onInput={
-                  (event: React.FormEvent<HTMLInputElement>) => {
-                    const value: number = parseInt(event.currentTarget.value);
-                    setItemDiscountValue(value);
-                  }
+                  (event: React.FormEvent<HTMLInputElement>) => 
+                    setItemDiscountValue(parseInt(event.currentTarget.value))
                 } 
               />
           </label>
@@ -165,10 +156,8 @@ const AddNewItemForm: React.FC<props> = (props) => {
             HSN: 
               <input className={"smallInputBox"} type="number" min="0" value={itemHSNValue} 
                 onInput={
-                  (event: React.FormEvent<HTMLInputElement>) => {
-                    const value: number = parseInt(event.currentTarget.value);
-                    setItemHSNValue(value);
-                  }
+                  (event: React.FormEvent<HTMLInputElement>) => 
+                    setItemHSNValue(parseInt(event.currentTarget.value))
                 } 
               required />
           </label>
@@ -177,10 +166,8 @@ const AddNewItemForm: React.FC<props> = (props) => {
             GST: 
               <input className={"smallInputBox"} type="number" min="0" value={itemGSTValue} 
                 onInput={
-                  (event: React.FormEvent<HTMLInputElement>) => {
-                    const value: number = parseInt(event.currentTarget.value);
-                    setItemGSTValue(value);
-                  }
+                  (event: React.FormEvent<HTMLInputElement>) => 
+                    setItemGSTValue(parseInt(event.currentTarget.value))
                 } 
               required />
           </label>
@@ -197,10 +184,6 @@ const AddNewItemForm: React.FC<props> = (props) => {
             onClick={() => props.registerItemFormVisibility(true)}
           />
 
-          <input type="button" value="Placeholder1" />
-          <input type="button" value="Placeholder2" />
-          <input type="submit" value="Force Add" />
-
           <input type="submit" value="add" 
             disabled={ 
               (emptyItemNames.includes(itemNameValue)
@@ -213,7 +196,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
 export default AddNewItemForm;

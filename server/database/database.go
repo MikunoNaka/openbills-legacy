@@ -20,13 +20,13 @@ func InitDB() {
   init_items, _ := myDatabase.Prepare(
     `CREATE TABLE IF NOT EXISTS Items
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Model    TEXT NOT NULL,
-    Desc     TEXT,
-    Price    REAL,
-    Hsn      BLOB,
-    Gst      REAL,
-    Category TEXT,
-    Brand    TEXT)`,
+    Model     TEXT NOT NULL,
+    Desc      TEXT,
+    UnitPrice REAL,
+    HSN       BLOB,
+    TotalGST  REAL,
+    Category  TEXT,
+    Brand     TEXT)`,
   )
   init_items.Exec()
 
