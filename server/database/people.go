@@ -14,7 +14,7 @@ import (
   _ "github.com/mattn/go-sqlite3"
 )
 type Person struct {
-  ID      string
+  ID      int
   Name    string
   Address string
   Phone   string
@@ -28,7 +28,8 @@ func GetAllPeople() []Person {
   )
 
   var (
-    id, name, address, phone, email string
+    id int
+    name, address, phone, email string
   )
 
   for rows.Next() {

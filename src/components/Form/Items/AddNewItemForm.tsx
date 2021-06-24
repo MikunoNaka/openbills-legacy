@@ -8,27 +8,37 @@
 
 import React, { useState } from "react";
 import "./../Form.scss";
+import { Item } from "../../../interfaces";
 
-const AddNewItemForm = (props) => {
-  const [itemNameValue, setItemNameValue] = useState("");
-  const [itemDescValue, setItemDescValue] = useState("");
-  const [itemPriceValue, setItemPriceValue] = useState(0.00);
-  const [itemDiscountValue, setItemDiscountValue] = useState(0.00);
-  const [itemGSTValue, setItemGSTValue] = useState(props.defGSTValue);
-  const [itemQtyValue, setItemQtyValue] = useState(1);
-  const [itemHSNValue, setItemHSNValue] = useState(0);
+interface props {
+  savedItems: Item[]
+  addItem: (item: Item) => void
+  defGSTValue: number,
+  registerItemFormVisibility: any,
+  registerPersonFormVisibility: any
+}
+
+const AddNewItemForm: React.FC<props> = (props) => {
+  console.log(props)
+  const [itemNameValue, setItemNameValue] = useState<string>("");
+  const [itemDescValue, setItemDescValue] = useState<string>("");
+  const [itemPriceValue, setItemPriceValue] = useState<number>(0.00);
+  const [itemDiscountValue, setItemDiscountValue] = useState<number>(0.00);
+  const [itemGSTValue, setItemGSTValue] = useState<number>(props.defGSTValue);
+  const [itemQTYValue, setItemQTYValue] = useState<number>(1);
+  const [itemHSNValue, setItemHSNValue] = useState<number>(0);
 
   // to be handled by DocumentInfo
   // check if client is in same state
   // and apply cgst+sgst or igst accordingly
-  const inState = true;
+  // const inState: boolean = true;
 
-  const enterItemNamePrompt = "start typing here";
-  const registerItemPrompt = "add new";
-  const emptyItemNames = [enterItemNamePrompt, registerItemPrompt, ""];
+  const enterItemNamePrompt: string = "start typing here";
+  const registerItemPrompt: string = "add new";
+  const emptyItemNames: any[] = [enterItemNamePrompt, registerItemPrompt, ""];
 
   // set description and price if match found in DB
-  const applyItemInfo = (i) => {
+  const applyItemInfo = (i: any) => {
     setItemDescValue(i.Description);
     setItemPriceValue(i.Price);
     setItemHSNValue(i.HSN);
@@ -36,7 +46,7 @@ const AddNewItemForm = (props) => {
   }
 
   // check the item name value and do stuff accordingly
-  const setItemInfo = (itemName) =>
+  const setItemInfo = (itemName: any) =>
     (props.savedItems === null || itemName === registerItemPrompt)
       ? props.registerItemFormVisibility(true)
       : props.savedItems.some((i) => 
@@ -45,7 +55,7 @@ const AddNewItemForm = (props) => {
   const resetAllValues = () => {
     setItemNameValue("");
     setItemDescValue("");
-    setItemQtyValue(1);
+    setItemQTYValue(1);
     setItemPriceValue(1);
     setItemDiscountValue(0);
     setItemHSNValue(0);
@@ -57,22 +67,28 @@ const AddNewItemForm = (props) => {
       <form className={"threePaneForm"} onSubmit={
         (event) => {
           event.preventDefault();
-          const newInvoiceItem = {
-            "Model": itemNameValue,
-            "Description": itemDescValue,
-            "Quantity": parseInt(itemQtyValue),
-            "UnitPrice": parseFloat(itemPriceValue),
-            "TotalPrice": parseFloat(itemPriceValue * itemQtyValue),
-            "Discount": parseInt(itemDiscountValue),
-            "HSN": parseInt(itemHSNValue),
+
+          // TODO: maybe move calculation of GST and Discount here
+          const newInvoiceItem: Item = {
+            Model: itemNameValue,
+            Description: itemDescValue,
+            Quantity: itemQTYValue,
+            UnitPrice: itemPriceValue,
+            TotalValue: (itemPriceValue * itemQTYValue),
+            Discount: itemDiscountValue,
+            HSN: itemHSNValue,
 
             // this also checks if igst applies or not
-            "sgst": inState ? parseInt(itemGSTValue) / 2 : "",
-            "cgst": inState ? parseInt(itemGSTValue) / 2 : "",
-            "igst": inState ? "" :  parseInt(itemGSTValue)
-          };
-          console.log(newInvoiceItem);
+            // TODO: fix this
+            sgst: 0,
+            cgst: 0,
+            igst: 0
+            // sgst: inState ? parseInt(itemGSTValue) / 2 : "",
+            // cgst: inState ? parseInt(itemGSTValue) / 2 : "",
+            // igst: inState ? "" :  parseInt(itemGSTValue)
+          }
           props.addItem(newInvoiceItem);
+
           resetAllValues();
         }
       }>
@@ -111,11 +127,11 @@ const AddNewItemForm = (props) => {
         <div className={"widePane formPane"}>
           <label>
             Quantity: 
-              <input className={"smallInputBox"} type="number" min="1" value={itemQtyValue} 
+              <input className={"smallInputBox"} type="number" min="1" value={itemQTYValue} 
                 onInput={
-                  (event) => {
-                    const value = event.target.value;
-                    setItemQtyValue(value);
+                  (event: React.FormEvent<HTMLInputElement>) => {
+                    const value: number = parseInt(event.currentTarget.value);
+                    setItemQTYValue(value);
                   }
                 } 
               required />
@@ -124,9 +140,9 @@ const AddNewItemForm = (props) => {
           <label>
             Price: 
               <input className={"smallInputBox"} type="number" min="1.00" step="0.001" value={itemPriceValue} 
-                onChange={
-                  (event) => {
-                    const value = event.target.value;
+                onInput={
+                  (event: React.FormEvent<HTMLInputElement>) => {
+                    const value: number = parseFloat(event.currentTarget.value);
                     setItemPriceValue(value);
                   }
                 } 
@@ -136,21 +152,21 @@ const AddNewItemForm = (props) => {
           <label>
             Discount: 
               <input className={"smallInputBox"} type="number" min="0" step="0.001" value={itemDiscountValue} 
-                onChange={
-                  (event) => {
-                    const value = event.target.value;
+                onInput={
+                  (event: React.FormEvent<HTMLInputElement>) => {
+                    const value: number = parseInt(event.currentTarget.value);
                     setItemDiscountValue(value);
                   }
-                }
+                } 
               />
           </label>
 
           <label>
             HSN: 
               <input className={"smallInputBox"} type="number" min="0" value={itemHSNValue} 
-                onChange={
-                  (event) => {
-                    const value = event.target.value;
+                onInput={
+                  (event: React.FormEvent<HTMLInputElement>) => {
+                    const value: number = parseInt(event.currentTarget.value);
                     setItemHSNValue(value);
                   }
                 } 
@@ -160,9 +176,9 @@ const AddNewItemForm = (props) => {
           <label>
             GST: 
               <input className={"smallInputBox"} type="number" min="0" value={itemGSTValue} 
-                onChange={
-                  (event) => {
-                    const value = event.target.value;
+                onInput={
+                  (event: React.FormEvent<HTMLInputElement>) => {
+                    const value: number = parseInt(event.currentTarget.value);
                     setItemGSTValue(value);
                   }
                 } 
@@ -188,10 +204,10 @@ const AddNewItemForm = (props) => {
           <input type="submit" value="add" 
             disabled={ 
               (emptyItemNames.includes(itemNameValue)
-              || itemQtyValue <= 0
+              || itemQTYValue <= 0
               || itemPriceValue <= 0
               || itemGSTValue <= 0
-              ) ? "disabled" : ""
+              ) ? true : false
             }
           />
         </div>

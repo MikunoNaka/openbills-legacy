@@ -13,8 +13,10 @@ package main
 
 import (
   router "github.com/MikunoNaka/openbills/router"
+  db "github.com/MikunoNaka/openbills/database"
 )
 
 func main() {
+  db.InitDB()
   router.InitRouter()
 }

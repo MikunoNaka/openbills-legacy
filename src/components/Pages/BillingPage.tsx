@@ -9,23 +9,25 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { Item } from "../../interfaces";
+
 import AddNewItemForm from "./../Form/Items/AddNewItemForm";
 import RegisterItemForm from "./../Form/Items/RegisterItemForm";
 
 import RegisterPersonForm from "./../Form/People/RegisterPersonForm";
 
 import DocumentInfoForm from "./../Form/Document/DocumentInfoForm";
-import MetaInfoForm from "./../Form/MetaInfoForm";
+import MetaInfoForm from "./../Form/Document/MetaInfoForm";
 
 import ItemsDisplay from "./../Display/ItemsDisplay";
 import SummaryDisplay from "./../Display/SummaryDisplay"; 
 
-const BillingPage = () => {
-  const [savedItems, getSavedItems] = useState([]);
+const BillingPage: React.FC = () => {
+  const [savedItems, getSavedItems] = useState<Item[]>([]);
   const [savedPeople, getSavedPeople] = useState([]);
-  const [registerItemFormVisibility, setRegisterItemFormVisibility] = useState(false);
-  const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState(false);
-  const [items, setItems] = useState([]);
+  const [registerItemFormVisibility, setRegisterItemFormVisibility] = useState<boolean>(false);
+  const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState<boolean>(false);
+  const [items, setItems] = useState<Item[]>([]);
 
   const getRegisteredItems = () =>
     axios.get(`/api/items/get-all`)
@@ -42,11 +44,12 @@ const BillingPage = () => {
     getRegisteredItems();
     getRegisteredPeople();
   }, []);
+
   // TODO: to be handled by backend
   const defGSTValue = 18;
 
   // update the items from AddNewItemForm
-  const getItems = (item) => setItems([...items, item]);
+  const getItems = (item: Item) => setItems([...items, item]);
 
   return (
     <>

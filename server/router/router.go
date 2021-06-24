@@ -11,12 +11,9 @@ package router
 import (
   "github.com/gin-gonic/gin"
   "github.com/gin-gonic/contrib/static"
-
-  db "github.com/MikunoNaka/openbills/database"
 )
 
 func InitRouter() {
-  db.InitDB()
   myRouter := gin.New()
   myRouter.Use(gin.Logger())
 
