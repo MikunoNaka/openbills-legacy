@@ -9,6 +9,9 @@
 import React from "react";
 import "./Display.scss";
 
+interface props {
+}
+
 const getBasicSummary = (items) => {
   let totalRawPrice = 0;
   let totalQuantity = 0;
@@ -63,7 +66,7 @@ const getFullSummary = (items) => {
   );
 }
 
-export const SummaryDisplayTR = (props) => {
+export const SummaryDisplayTR: React.FC<props> = (props) => {
   const summary = getBasicSummary(props.items);
 
   return (

@@ -20,7 +20,7 @@ import DocumentInfoForm from "./../Form/Document/DocumentInfoForm";
 import MetaInfoForm from "./../Form/Document/MetaInfoForm";
 
 import ItemsDisplay from "./../Display/ItemsDisplay";
-import SummaryDisplay from "./../Display/SummaryDisplay"; 
+// import SummaryDisplay from "./../Display/SummaryDisplay"; 
 
 const BillingPage: React.FC = () => {
   const [savedItems, getSavedItems] = useState<Item[]>([]);
@@ -87,10 +87,11 @@ const BillingPage: React.FC = () => {
 
       <div className={"BillingPageFlex"}>
         <MetaInfoForm/>
-        <SummaryDisplay items={items}/>
       </div>
     </>
   );
+  // this goes after metainfoform
+        // <SummaryDisplay items={items}/>
 }
 
 export default BillingPage;

@@ -22,15 +22,15 @@ const AddNewItemForm: React.FC<props> = (props) => {
   const [itemNameValue, setItemNameValue] = useState<string>("");
   const [itemDescValue, setItemDescValue] = useState<string>("");
   const [itemPriceValue, setItemPriceValue] = useState<number>(0.00);
-  const [itemDiscountValue, setItemDiscountValue] = useState<number>(0.00);
-  const [itemGSTValue, setItemGSTValue] = useState<number>(props.defGSTValue);
+  const [itemDiscountPercentage, setItemDiscountPercentage] = useState<number>(0.00);
+  const [itemGSTPercentage, setItemGSTValue] = useState<number>(props.defGSTValue);
   const [itemQTYValue, setItemQTYValue] = useState<number>(1);
   const [itemHSNValue, setItemHSNValue] = useState<number>(0);
 
   // to be handled by DocumentInfo
   // check if client is in same state
   // and apply cgst+sgst or igst accordingly
-  // const inState: boolean = true;
+  const inState: boolean = true;
 
   const enterItemNamePrompt: string = "start typing here";
   const registerItemPrompt: string = "add new";
@@ -57,7 +57,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
     setItemDescValue("");
     setItemQTYValue(1);
     setItemPriceValue(1);
-    setItemDiscountValue(0);
+    setItemDiscountPercentage(0);
     setItemHSNValue(0);
     setItemGSTValue(props.defGSTValue);
   }
@@ -68,28 +68,27 @@ const AddNewItemForm: React.FC<props> = (props) => {
         (event) => {
           event.preventDefault();
 
-          // TODO: maybe move calculation of GST and Discount here
+          const discountValue: number = (itemDiscountPercentage / 100) * itemPriceValue;
+          const totalGSTValue: number = (itemGSTPercentage / 100) * (itemQTYValue);
           const newInvoiceItem: Item = {
-            Model: itemNameValue,
-            Description: itemDescValue,
-            Quantity: itemQTYValue,
-            UnitPrice: itemPriceValue,
-            TotalValue: (itemPriceValue * itemQTYValue),
-            Discount: itemDiscountValue,
-            HSN: itemHSNValue,
-            TotalGST: itemGSTValue,
+            Model:         itemNameValue,
+            Description:   itemDescValue,
+            Quantity:      itemQTYValue,
+            UnitPrice:     itemPriceValue,
+            TotalValue:    itemPriceValue * itemQTYValue,
+            Discount:      itemDiscountPercentage,
+            DiscountValue: discountValue,
+            HSN:           itemHSNValue,
+            TotalGST:      itemGSTPercentage,
+            TotalGSTValue: totalGSTValue,
 
             // this also checks if igst applies or not
-            // TODO: fix this
-            SGST: 0,
-            CGST: 0,
-            IGST: 0
-            // sgst: inState ? parseInt(itemGSTValue) / 2 : "",
-            // cgst: inState ? parseInt(itemGSTValue) / 2 : "",
-            // igst: inState ? "" :  parseInt(itemGSTValue)
+            SGST: inState && totalGSTValue / 2,
+            CGST: inState && totalGSTValue / 2,
+            IGST: inState || totalGSTValue
           }
-          props.addItem(newInvoiceItem);
 
+          props.addItem(newInvoiceItem);
           resetAllValues();
         }
       }>
@@ -144,10 +143,10 @@ const AddNewItemForm: React.FC<props> = (props) => {
 
           <label>
             Discount: 
-              <input className={"smallInputBox"} type="number" min="0" step="0.001" value={itemDiscountValue} 
+              <input className={"smallInputBox"} type="number" min="0" step="0.001" value={itemDiscountPercentage} 
                 onInput={
                   (event: React.FormEvent<HTMLInputElement>) => 
-                    setItemDiscountValue(parseInt(event.currentTarget.value))
+                    setItemDiscountPercentage(parseInt(event.currentTarget.value))
                 } 
               />
           </label>
@@ -164,7 +163,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
 
           <label>
             GST: 
-              <input className={"smallInputBox"} type="number" min="0" value={itemGSTValue} 
+              <input className={"smallInputBox"} type="number" min="0" value={itemGSTPercentage} 
                 onInput={
                   (event: React.FormEvent<HTMLInputElement>) => 
                     setItemGSTValue(parseInt(event.currentTarget.value))
@@ -189,7 +188,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
               (emptyItemNames.includes(itemNameValue)
               || itemQTYValue <= 0
               || itemPriceValue <= 0
-              || itemGSTValue <= 0
+              || itemGSTPercentage <= 0
               ) ? true : false
             }
           />

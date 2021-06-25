@@ -9,7 +9,7 @@
 import React from "react";
 import "./Display.scss";
 import DisplayItem from "./DisplayItem";
-import {SummaryDisplayTR} from "./SummaryDisplay";
+// import {SummaryDisplayTR} from "./SummaryDisplay";
 
 const ItemsDisplay = (props) => {
   const items = props.items;
@@ -43,10 +43,11 @@ const ItemsDisplay = (props) => {
           }
         )}
 
-        <SummaryDisplayTR items={props.items}/>
       </tbody>
     </table>
   );
+  // this goes right before </tbody>
+        //<SummaryDisplayTR items={props.items}/>
 }
 
 export default ItemsDisplay;
