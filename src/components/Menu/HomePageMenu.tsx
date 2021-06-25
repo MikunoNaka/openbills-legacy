@@ -7,10 +7,10 @@
 */
 
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./HomePageMenu.scss";
 
-const HomePageMenu = () => {
+const HomePageMenu: React.FC = () => {
 	return (
     <div className="HomePageMenu">
       <Link className="menuItem" to="BillingPage">

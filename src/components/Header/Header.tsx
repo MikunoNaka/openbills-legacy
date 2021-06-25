@@ -7,23 +7,23 @@
 */
 
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 
-const Header = () => {
-	return (
-		<div className={"header"}>
-			<div className="placeholder">
-				<p className="inlineBlock">OpenBills</p>
+const Header: React.FC = () => {
+	return ( 
+    <div className={"header"}> 
+      <div className="placeholder"> 
+        <p className="inlineBlock">OpenBills</p> 
+      </div>
 
-			</div>
-			<div className={"navBar"}>
-				<nav>
+      <div className={"navBar"}>
+        <nav> 
           <Link to="/">Home</Link>
           <Link to="/BillingPage">BillingPage</Link>
-				</nav>
-			</div>
-		</div>
+        </nav>
+      </div>
+    </div>
 	)
 }
 

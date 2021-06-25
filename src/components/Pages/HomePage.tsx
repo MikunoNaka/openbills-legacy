@@ -6,14 +6,12 @@
  * Copyright (c) 2021 Vidhu Kant Sharma
 */
 
-import React/*, { useState, useEffect } */from "react";
+import React from "react";
 import "./HomePage.scss"
-//import axios from "axios";
 
-//import BillingPage from "./BillingPage"
 import HomePageMenu from "./../Menu/HomePageMenu"
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <div className="HomePage">
       <h1 className={"welcomeMessage"}>Welcome To OpenBills</h1>
