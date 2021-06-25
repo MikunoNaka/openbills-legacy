@@ -21,11 +21,6 @@
   scrollbar-width: 1vw;  /* Firefox */
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-}
-
 body {
   background-color: $background1;
   color: $foreground1;
@@ -33,20 +28,21 @@ body {
 }
 
 * {
-  font-family: $defFont
+  font-family: $defFont;
 }
 
 .root-content {
   width: 95%;
   margin: auto;
   margin-bottom: 3rem;
+  max-width: 1920px;
 }
 
 .BillingPageFlex {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 70vh;
+  height: 27rem;
 }
 
 .BillingPageFlex div {
@@ -66,12 +62,13 @@ body {
   position: absolute;
 
   width: 95%;
-  height: 70vh;
+  max-width: 1920px;
+  height: 32rem;
   box-sizing: border-box;
 
+  top: 0; bottom: 0;
   left: 0; right: 0;
-  margin: 0 auto;
-  top: 15vh;
+  margin: auto;
 
   background-color: $background3;
   box-shadow: $floatingShadow;
@@ -81,11 +78,15 @@ body {
 }
 
 
-/*
-idk if im going that way
 @media only screen and (max-device-width: 480px) {
-  .root-content {
+  .floatingMenu {
     width: 95%;
+    height: 80vh;
+  
+    padding: 0.5rem;
+  }
+  .BillingPageFlex {
+    flex-direction: column;
+    height: 35rem;
   }
 }
-*/

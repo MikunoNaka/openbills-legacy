@@ -8,9 +8,9 @@
 
 @import "../../styles/theme";
 
-.ItemsDisplay,
-.ItemsDisplay table {
+.ItemsDisplay {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .ItemsDisplay {
@@ -72,4 +72,11 @@
 .SummaryDisplay .grandTotal td {
   font-size: 2rem;
   color: $foreground2;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .SummaryDisplay {
+    width: auto;
+    min-height: 16rem;
+  }
 }
