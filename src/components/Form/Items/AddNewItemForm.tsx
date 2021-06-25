@@ -38,7 +38,6 @@ const AddNewItemForm: React.FC<props> = (props) => {
 
   // set description and price if match found in DB
   const applyItemInfo = (i: any) => {
-    console.log(i)
     setItemDescValue(i.Description);
     setItemPriceValue(i.UnitPrice);
     setItemHSNValue(i.HSN);
@@ -68,14 +67,18 @@ const AddNewItemForm: React.FC<props> = (props) => {
         (event) => {
           event.preventDefault();
 
-          const discountValue: number = (itemDiscountPercentage / 100) * itemPriceValue;
-          const totalGSTValue: number = (itemGSTPercentage / 100) * (itemQTYValue);
+          const totalValue: number = itemPriceValue * itemQTYValue;
+
+          // the values below are being rounded to two decimal places
+          const discountValue: number = parseFloat(((itemDiscountPercentage / 100) * itemPriceValue).toFixed(2))
+          const totalGSTValue: number = parseFloat(((itemGSTPercentage / 100) * totalValue).toFixed(2))
+
           const newInvoiceItem: Item = {
             Model:         itemNameValue,
             Description:   itemDescValue,
             Quantity:      itemQTYValue,
             UnitPrice:     itemPriceValue,
-            TotalValue:    itemPriceValue * itemQTYValue,
+            TotalValue:    totalValue,
             Discount:      itemDiscountPercentage,
             DiscountValue: discountValue,
             HSN:           itemHSNValue,
