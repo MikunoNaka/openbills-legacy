@@ -9,11 +9,10 @@
 // TODO: Code isn't tested properly
 // I'd be surprised if it < 10 bugs
 
-// TODO: Implement override protection
-
 import React, { useState } from "react";
-import axios from "axios";
 import "./../Form.scss";
+import { NewItem } from "./../../../interfaces"
+import axios from "axios";
 
 interface props {
   defGSTValue: number
@@ -22,13 +21,13 @@ interface props {
 }
 
 const RegisterItemForm: React.FC<props> = (props) => {
-  const [newItemNameValue, setNewItemNameValue] = useState<string>("");
-  const [newItemDescValue, setNewItemDescValue] = useState<string>("");
-  const [newItemPriceValue, setNewItemPriceValue] = useState<number>(0.00);
-  const [newItemHSNValue, setNewItemHSNValue] = useState<number>();
-  const [newItemGSTValue, setNewItemGSTValue] = useState<number>(props.defGSTValue);
-  // const [newItemBrandValue, setNewItemBrandValue] = useState("");
-  // const [newItemTypeValue, setNewItemTypeValue] = useState("");
+  const [newItemName, setNewItemName] = useState<string>("");
+  const [newItemDesc, setNewItemDesc] = useState<string>("");
+  const [newItemPrice, setNewItemPrice] = useState<number>(0.00);
+  const [newItemHSN, setNewItemHSN] = useState<string>("");
+  const [newItemGST, setNewItemGST] = useState<number>(props.defGSTValue);
+  // const [newItemBrand, setNewItemBrand] = useState("");
+  // const [newItemType, setNewItemType] = useState("");
 
   const hideSelf = () => props.setVisibility(false);
 
@@ -37,14 +36,24 @@ const RegisterItemForm: React.FC<props> = (props) => {
 
   const postForm = (event: any) => {
     event.preventDefault();
-    // TODO: show confirmation before being invisible
+
+    const newItem: NewItem = {
+      Model: newItemName,
+      Description: newItemDesc,
+      UnitPrice: newItemPrice,
+      HSN: newItemHSN,
+      TotalGST: newItemGST
+    }
+
+    // TODO: show confirmation before being invisible 
+    // TODO: Implement override protection
     axios.post(
       `/api/items/register/`
-      + `?model=${newItemNameValue}`
-      + `&desc=${newItemDescValue}`
-      + `&price=${newItemPriceValue}`
-      + `&hsn=${newItemHSNValue}`
-      + `&gst=${newItemGSTValue}`
+      + `?model=${newItem.Model}`
+      + `&desc=${newItem.Description}`
+      + `&price=${newItem.UnitPrice}`
+      + `&hsn=${newItem.HSN}`
+      + `&gst=${newItem.TotalGST}`
     )
       .then((res) => {
         console.log(res);
@@ -66,37 +75,36 @@ const RegisterItemForm: React.FC<props> = (props) => {
             <div className={"twoPaneForm"}>
               <div className={"widePane formPane"}>
                 <label>
-                  Item/Service: <input className={"wideInputBox"} type="text" value={newItemNameValue} onChange={
-                    (event) => setNewItemNameValue(event.target.value)
+                  Item/Service: <input className={"wideInputBox"} type="text" value={newItemName} onChange={
+                    (event) => setNewItemName(event.target.value)
                   } required />
                 </label>
 
                 <label>
-                  Description: <input className={"wideInputBox"} type="text" value={newItemDescValue} onChange={
-                    (event) => setNewItemDescValue(event.target.value)
+                  Description: <input className={"wideInputBox"} type="text" value={newItemDesc} onChange={
+                    (event) => setNewItemDesc(event.target.value)
                   } />
                 </label>
 
               </div>
               <div className={"widePane formPane"}>
                 <label>
-                  Price: <input className={"smallInputBox"} type="number" min="0.00" step="0.001" value={newItemPriceValue} onChange={
+                  Price: <input className={"smallInputBox"} type="number" min="0.00" step="0.001" value={newItemPrice} onChange={
                     (event: React.FormEvent<HTMLInputElement>) => 
-                      setNewItemPriceValue(parseInt(event.currentTarget.value))
+                      setNewItemPrice(parseInt(event.currentTarget.value))
                   } />
                 </label>
 
                 <label>
-                  HSN: <input className={"smallInputBox"} type="number" min="0" value={newItemHSNValue} onChange={
-                    (event: React.FormEvent<HTMLInputElement>) => 
-                      setNewItemHSNValue(parseInt(event.currentTarget.value))
+                  HSN: <input className={"smallInputBox"} type="number" min="0" value={newItemHSN} onChange={
+                    (event) => setNewItemHSN(event.target.value)
                   } />
                 </label>
 
                 <label>
-                  GST: <input className={"smallInputBox"} type="number" min="0" value={newItemGSTValue} onChange={
+                  GST: <input className={"smallInputBox"} type="number" min="0" value={newItemGST} onChange={
                     (event: React.FormEvent<HTMLInputElement>) => 
-                      setNewItemGSTValue(parseInt(event.currentTarget.value))
+                      setNewItemGST(parseInt(event.currentTarget.value))
                   } />
                 </label>
               </div>
@@ -112,7 +120,7 @@ const RegisterItemForm: React.FC<props> = (props) => {
               <input
                 type="submit"
                 value="Register/Add"
-                disabled={newItemNameValue === "" ? true : false}
+                disabled={newItemName=== "" ? true : false}
               />
             </div>
           </form>
