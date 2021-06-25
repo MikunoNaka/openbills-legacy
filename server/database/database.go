@@ -23,7 +23,7 @@ func InitDB() {
     Model     TEXT NOT NULL,
     Desc      TEXT,
     UnitPrice REAL,
-    HSN       BLOB,
+    HSN       TEXT,
     TotalGST  REAL,
     Category  TEXT,
     Brand     TEXT)`,

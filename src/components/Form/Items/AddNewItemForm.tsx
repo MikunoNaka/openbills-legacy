@@ -25,7 +25,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
   const [itemDiscountPercentage, setItemDiscountPercentage] = useState<number>(0.00);
   const [itemGSTPercentage, setItemGSTValue] = useState<number>(props.defGSTValue);
   const [itemQTYValue, setItemQTYValue] = useState<number>(1);
-  const [itemHSNValue, setItemHSNValue] = useState<number>(0);
+  const [itemHSNValue, setItemHSNValue] = useState<string>("");
 
   // to be handled by DocumentInfo
   // check if client is in same state
@@ -57,7 +57,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
     setItemQTYValue(1);
     setItemPriceValue(1);
     setItemDiscountPercentage(0);
-    setItemHSNValue(0);
+    setItemHSNValue("");
     setItemGSTValue(props.defGSTValue);
   }
 
@@ -157,10 +157,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
           <label>
             HSN: 
               <input className={"smallInputBox"} type="number" min="0" value={itemHSNValue} 
-                onInput={
-                  (event: React.FormEvent<HTMLInputElement>) => 
-                    setItemHSNValue(parseInt(event.currentTarget.value))
-                } 
+                onChange={(event) => setItemHSNValue(event.target.value)} 
               required />
           </label>
 

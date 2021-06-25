@@ -17,7 +17,7 @@ type Item struct {
   Model       string
   Description string
   UnitPrice   float64
-  HSN         int
+  HSN         string
   TotalGST    float64
   Category    string 
   Brand       string
@@ -32,7 +32,7 @@ func GetAllItems() []Item {
   var (
     model, desc, cat, brand string
     unitPrice, GST float64
-    HSN int
+    HSN string
   )
 
   for rows.Next() {

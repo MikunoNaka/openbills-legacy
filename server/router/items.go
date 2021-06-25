@@ -25,7 +25,6 @@ func getAllItems(ctx *gin.Context) {
 func registerItem(ctx *gin.Context) {
   // extract data not string
   price, _ := strconv.ParseFloat(ctx.Query("price"), 64)
-  hsn, _ := strconv.Atoi(ctx.Query("hsn"))
   gst, _ := strconv.ParseFloat(ctx.Query("gst"), 64)
   cat := "cat coming soon"
   brand := "brand coming soon"
@@ -34,7 +33,7 @@ func registerItem(ctx *gin.Context) {
     Model:       ctx.Query("model"),
     Description: ctx.Query("desc"),
     UnitPrice:   price,
-    HSN:         hsn,
+    HSN:         ctx.Query("hsn"),
     TotalGST:    gst,
     Category:    cat,
     Brand:       brand,
