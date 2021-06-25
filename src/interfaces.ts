@@ -23,3 +23,10 @@ export interface Item {
   TotalGSTValue: number // total tax
   // category and brand
 }
+
+export interface Person {
+  Name: string
+  Address: string
+  Phone: string
+  Email: string
+}

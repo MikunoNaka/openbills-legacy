@@ -63,7 +63,7 @@ const BillingPage: React.FC = () => {
 
       {registerPersonFormVisibility &&
         <RegisterPersonForm 
-          updateItemsList={getRegisteredItems} 
+          updatePeopleList={getRegisteredPeople} 
           setVisibility={setRegisterPersonFormVisibility}
         />
       }
