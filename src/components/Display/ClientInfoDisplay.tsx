@@ -7,12 +7,16 @@
 */
 
 import React from "react";
+import { Person } from "./../../interfaces";
 import "./Display.scss";
 
-const ClientInfoDisplay = (props) => {
-  //console.log(props.client)
+interface Props {
+  client: Person
+}
+
+const ClientInfoDisplay: React.FC<Props> = (props) => {
   return (
-    <table>
+    <table className={"ClientInfoDisplay"}>
       <tbody>
         <tr>
           <td>Client Name:</td> 

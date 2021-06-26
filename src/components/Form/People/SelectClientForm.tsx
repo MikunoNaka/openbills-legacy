@@ -18,7 +18,7 @@ interface Props {
 
 const SelectClientForm: React.FC<Props> = (props) => {
   // TODO: fix the default selectedClient
-  const [selectedClient, setSelectedClient] = useState<Person>({Name: "pp", Address: "pp"});
+  const [selectedClient, setSelectedClient] = useState<Person>({Name: "", Address: ""});
 
   const enterValuePrompt = "start typing here";
   const registerPrompt = "add new";
@@ -38,7 +38,7 @@ const SelectClientForm: React.FC<Props> = (props) => {
         e === formatter(i) && setSelectedClient(i))
   
   return (
-    <div className={"DocumentInfoChild"}>
+    <div className={"documentInfoChild"}>
       <label>
         Client Name:
           <select

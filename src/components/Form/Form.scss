@@ -122,14 +122,31 @@ input {
   @include formPane();
   width: 100%;
   min-height: 10rem;
+  margin-bottom: 1.5rem;
 }
 
-.DocumentInfoForm .DocumentInfoChild {
-  border: 1px solid white;
-  width: 40%;
+.DocumentInfoForm .documentInfoChild {
+  width: 24rem;
   height: 10rem;
-  font-size: $fontSize2;
+  font-size: $fontSize1;
 }
+
+.DocumentInfoForm .documentInfoChild label {
+  @include formWideLabel();
+  margin-bottom: 0.5rem;
+}
+
+.documentInfoChild table {
+  width: 100%;
+}
+
+.documentInfoChild td {
+  text-align: left;
+}
+
+/*.ClientInfoDisplay {
+  font-size: $fontSize1;
+}*/
 
 .MetaInfoForm {
   width: 60%;
