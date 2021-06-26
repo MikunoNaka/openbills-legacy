@@ -7,16 +7,20 @@
 */
 
 import React from "react";
+import { Item } from "./../../interfaces";
 import "./Display.scss";
 import DisplayItem from "./DisplayItem";
 // import {SummaryDisplayTR} from "./SummaryDisplay";
 
-const ItemsDisplay = (props) => {
+interface Props {
+  items: Item[]
+  defGSTValue: number
+}
+
+const ItemsDisplay: React.FC<Props> = (props) => {
   const items = props.items;
   // TODO: remove mutability
   let itemNumber = 0;
-
-  // TODO: Add HSN Support
 
   return (
     <table className={"ItemsDisplay"}>
@@ -25,12 +29,13 @@ const ItemsDisplay = (props) => {
           <th>S. Num</th>
           <th className={"leftAlign"}>Item</th>
           <th className={"leftAlign"}>Description</th>
-          <th>Quantity(NOS)</th>
-          <th>Discount(%)</th>
-          <th>sgst(%)</th>
-          <th>cgst(%)</th>
-          <th>igst(%)</th>
           <th>HSN</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Discount</th>
+          <th>sgst</th>
+          <th>cgst</th>
+          <th>igst</th>
           <th>Price</th>
         </tr>
 
