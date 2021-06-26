@@ -7,26 +7,31 @@
 */
 
 import React, { useState } from "react";
+import { Person } from "./../../../interfaces";
 import "./../Form.scss";
 
 import ClientInfoDisplay from "../../Display/ClientInfoDisplay";
 
-const SelectClientForm = (props) => {
-  const [selectedClient, setSelectedClient] = useState({});
+interface Props {
+  savedPeople: Person[]
+}
+
+const SelectClientForm: React.FC<Props> = (props) => {
+  // TODO: fix the default selectedClient
+  const [selectedClient, setSelectedClient] = useState<Person>({Name: "pp", Address: "pp"});
 
   const enterValuePrompt = "start typing here";
   const registerPrompt = "add new";
 
   // TODO: make it use email if no address found, shorten the name too
   // in short, make formatter flexible
-  const formatter = (i) => {
-    return `${i.Name} - ${i.Address.slice(0, 20).concat(i.Address.length < 20 ? "" : "")}`;
-  }
+  const formatter = (i: Person): string =>
+    `${i.Name} - ${i.Address.slice(0, 20).concat(i.Address.length < 20 ? "" : "")}`;
 
   // TODO: if no client found at least clear the display
   // do this in other components too
   // check the client name value and do stuff accordingly
-  const setClientInfo = (e) =>
+  const setClientInfo = (e: string) =>
     (props.savedPeople === null || e === registerPrompt)
       ? alert("coming soon") // toggle registerPersonPrompt visibility
       : props.savedPeople.some((i) =>

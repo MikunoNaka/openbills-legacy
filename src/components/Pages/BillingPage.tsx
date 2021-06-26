@@ -9,7 +9,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Item } from "../../interfaces";
+import { Item, Person } from "../../interfaces";
 
 import AddNewItemForm from "./../Form/Items/AddNewItemForm";
 import RegisterItemForm from "./../Form/Items/RegisterItemForm";
@@ -24,7 +24,7 @@ import SummaryDisplay from "./../Display/SummaryDisplay";
 
 const BillingPage: React.FC = () => {
   const [savedItems, getSavedItems] = useState<Item[]>([]);
-  const [savedPeople, getSavedPeople] = useState([]);
+  const [savedPeople, getSavedPeople] = useState<Person[]>([]);
   const [registerItemFormVisibility, setRegisterItemFormVisibility] = useState<boolean>(false);
   const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState<boolean>(false);
   const [items, setItems] = useState<Item[]>([]);

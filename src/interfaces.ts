@@ -35,8 +35,9 @@ export interface NewItem {
 }
 
 export interface Person {
+  ID?: number
   Name: string
   Address: string
-  Phone: string
-  Email: string
+  Phone?: string
+  Email?: string
 }
