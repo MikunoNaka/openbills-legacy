@@ -70,7 +70,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
           const totalValue: number = itemPriceValue * itemQTYValue;
 
           // the values below are being rounded to two decimal places
-          const discountValue: number = parseFloat(((itemDiscountPercentage / 100) * itemPriceValue).toFixed(2))
+          const discountValue: number = parseFloat(((itemDiscountPercentage / 100) * totalValue).toFixed(2))
           const totalGSTValue: number = parseFloat(((itemGSTPercentage / 100) * totalValue).toFixed(2))
 
           const newInvoiceItem: Item = {
