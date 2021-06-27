@@ -43,6 +43,15 @@
   text-align: left;
 }
 
+.ItemsDisplay .multiValue {
+  display: flex;
+  justify-content: space-around;
+}
+
+.ItemsDisplay .hideContents * {
+  display: none;
+}
+
 .SummaryDisplayTR td {
   color: $foreground2;
   font-size: 1.7rem;

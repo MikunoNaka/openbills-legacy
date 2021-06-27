@@ -85,14 +85,14 @@ const SummaryDisplay: React.FC<props> = (props) => {
           {summary.TotalDiscount !== 0.00 &&
             <tr>
               <td>After Discount</td>
-              <td>{summary.TotalPriceAfterDiscount}</td>
+              <td>{(summary.TotalPriceAfterDiscount).toFixed(2)}</td>
               <td>(-{summary.TotalDiscount})</td>
             </tr>
           } 
 
           <tr>
             <td>After Tax</td>
-            <td>{summary.TotalRawPrice + summary.TotalGST}</td>
+            <td>{(summary.TotalRawPrice + summary.TotalGST).toFixed(2)}</td>
             <td>(+{summary.TotalGST})</td>
           </tr>
 
@@ -105,7 +105,7 @@ const SummaryDisplay: React.FC<props> = (props) => {
 
           <tr className={"grandTotal"}>
             <td>Grand Total</td> 
-            <td>{summary.TotalRawPrice + (summary.TotalGST - summary.TotalDiscount)}</td>
+            <td>{Math.round(summary.TotalRawPrice + (summary.TotalGST - summary.TotalDiscount))}</td>
           </tr>
         </tbody>
       </table>

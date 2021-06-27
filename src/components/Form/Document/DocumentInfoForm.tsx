@@ -7,12 +7,16 @@
 */
 
 import React/*, { useState }*/ from "react";
+import { Person } from "./../../../interfaces";
 import "./../Form.scss";
 
 import SelectClientForm from "./../People/SelectClientForm";
 
+interface Props {
+  savedPeople: Person[]
+}
 
-const DocumentInfoForm = (props) => {
+const DocumentInfoForm: React.FC<Props> = (props) => {
   return (
     <div className={"DocumentInfoForm"}>
       <SelectClientForm 

@@ -33,9 +33,7 @@ const ItemsDisplay: React.FC<Props> = (props) => {
           <th>Quantity</th>
           <th>Unit Price</th>
           <th>Discount</th>
-          <th>sgst</th>
-          <th>cgst</th>
-          <th>igst</th>
+          <th>Tax</th>
           <th>Price</th>
         </tr>
 
