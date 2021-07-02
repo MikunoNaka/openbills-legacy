@@ -57,7 +57,6 @@ const AddNewItemForm: React.FC<Props> = (props) => {
     setItemGSTPercentage(i.TotalGST);
     setCurrentItem(i)
   }
-  console.log(currentItem)
 
   // check the item name value and do stuff accordingly
   const setItemInfo = (itemName: string) =>
