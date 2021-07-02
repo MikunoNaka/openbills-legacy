@@ -7,15 +7,23 @@
 */
 
 import React from "react";
-import "./../Form.scss";
+//import "./../Form.scss";
 
-const MetaInfoForm: React.FC = () => {
+const InvoiceInfoMenu: React.FC = () => {
   return (
-    <div className={"MetaInfoForm"}>
-      <form>
-      </form>
+    <div className={"InvoiceInfoMenu"}>
+      c
+      o
+      m
+      i
+      n
+      g
+      s
+      o
+      o
+      n
     </div>
   );
 }
 
-export default MetaInfoForm;
+export default InvoiceInfoMenu;

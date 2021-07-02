@@ -8,7 +8,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import "./HomePageMenu.scss";
+import "./Menu.scss";
 
 const HomePageMenu: React.FC = () => {
 	return (

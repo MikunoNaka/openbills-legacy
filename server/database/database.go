@@ -47,5 +47,13 @@ func InitDB() {
     Email    TEXT)`,
   )
   init_users.Exec()
+
+  init_invoices, _ := myDatabase.Prepare(
+    `CREATE TABLE IF NOT EXISTS Invoices
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Data       BLOB NOT NULL,
+    Created_on DATETIME)`,
+  )
+  init_invoices.Exec()
 }
 

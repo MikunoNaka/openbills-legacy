@@ -120,6 +120,10 @@ input {
 
 .DocumentInfoForm {
   @include formPane();
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
   width: 100%;
   min-height: 10rem;
   margin-bottom: 1.5rem;
@@ -148,9 +152,6 @@ input {
   font-size: $fontSize1;
 }*/
 
-.MetaInfoForm {
-  width: 60%;
-}
 
 @media only screen and (max-device-width: 480px) {
   .threePaneForm {
