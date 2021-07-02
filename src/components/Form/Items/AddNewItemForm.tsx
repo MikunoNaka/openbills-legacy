@@ -29,13 +29,16 @@ const AddNewItemForm: React.FC<Props> = (props) => {
   const [itemQTYValue, setItemQTYValue] = useState<number>(1);
   const [itemHSNValue, setItemHSNValue] = useState<string>("");
 
-  // store the current item to easily reset a value to the default one
-  const [currentItem, setCurrentItem] = useState<Item|any>({
+  // default item object
+  const defaultItem: any = {
     Description: "",
     UnitPrice: 0.00,
-    GSTPercentage: props.defGSTValue,
+    TotalGST: props.defGSTValue,
     HSN: ""
-  });
+  }
+
+  // store the current item to easily reset a value to the default one
+  const [currentItem, setCurrentItem] = useState<Item|any>(defaultItem);
 
   // to be handled by DocumentInfo
   // check if client is in same state
@@ -67,10 +70,11 @@ const AddNewItemForm: React.FC<Props> = (props) => {
     setItemNameValue("");
     setItemDescValue("");
     setItemQTYValue(1);
-    setItemPriceValue(1);
+    setItemPriceValue(0);
     setItemDiscountPercentage(0);
     setItemHSNValue("");
     setItemGSTPercentage(props.defGSTValue);
+    setCurrentItem(defaultItem);
   }
 
   return (
