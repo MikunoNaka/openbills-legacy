@@ -7,9 +7,12 @@
 */
 
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "./../../../styles/datepicker.scss"; // custom datepicker css
+// import "react-datepicker/dist/react-datepicker.css";
 import { Person } from "./../../../interfaces";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSync } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSync } from '@fortawesome/free-solid-svg-icons';
 import "./../Form.scss";
 
 import SelectClientForm from "./../People/SelectClientForm";
@@ -23,6 +26,7 @@ interface Props {
 
 const DocumentInfoForm: React.FC<Props> = (props) => {
   const [invoiceNumber, setInvoiceNumber] = useState<number>(props.invoiceNumber);
+  const [invoiceDate, setInvoiceDate] = useState(new Date());
   return (
     <div className={"DocumentInfoForm"}>
       <SelectClientForm 
@@ -48,7 +52,8 @@ const DocumentInfoForm: React.FC<Props> = (props) => {
         </label>
 
         <label>
-          Invoice Date: <span>wtf do i do</span>
+          Invoice Date:
+          <DatePicker className={"smallInputBox"} selected={invoiceDate} onChange={(date: Date) => setInvoiceDate(date)} />
         </label>
       </div>
 
