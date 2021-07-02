@@ -8,9 +8,12 @@
 
 import React, { useState } from "react";
 import { Person } from "./../../../interfaces";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSync } from '@fortawesome/free-solid-svg-icons'
 import "./../Form.scss";
 
 import SelectClientForm from "./../People/SelectClientForm";
+
 
 interface Props {
   savedPeople: Person[]
@@ -29,9 +32,19 @@ const DocumentInfoForm: React.FC<Props> = (props) => {
       <div className={"documentInfoChild"}>
         <label>
           Invoice Number:
-            <input className={"smallInputBox"} type="number" step="0.0" value={invoiceNumber} onInput={
-              (event: React.FormEvent<HTMLInputElement>) => setInvoiceNumber(parseInt(event.currentTarget.value))
-            } required />
+            <span className={"buttonInput"}>
+              {invoiceNumber === props.invoiceNumber ||
+                <FontAwesomeIcon icon={faSync} className={"icon"} onClick={
+                    (event) => {
+                      event.preventDefault(); // don't select the input box
+                      setInvoiceNumber(props.invoiceNumber);
+                    }
+                }/>
+              }
+              <input className={"smallInputBox"} type="number" step="0.0" value={invoiceNumber} 
+                onInput={(event: React.FormEvent<HTMLInputElement>) => setInvoiceNumber(parseInt(event.currentTarget.value))} 
+              required />
+            </span>
         </label>
 
         <label>

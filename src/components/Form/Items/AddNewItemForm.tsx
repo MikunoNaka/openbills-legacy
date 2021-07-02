@@ -7,10 +7,12 @@
 */
 
 import React, { useState } from "react";
-import "./../Form.scss";
 import { Item } from "../../../interfaces";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSync } from '@fortawesome/free-solid-svg-icons'
+import "./../Form.scss";
 
-interface props {
+interface Props {
   savedItems: Item[]
   addItem: (item: Item) => void
   defGSTValue: number
@@ -18,14 +20,22 @@ interface props {
   registerPersonFormVisibility: any
 }
 
-const AddNewItemForm: React.FC<props> = (props) => {
+const AddNewItemForm: React.FC<Props> = (props) => {
   const [itemNameValue, setItemNameValue] = useState<string>("");
   const [itemDescValue, setItemDescValue] = useState<string>("");
   const [itemPriceValue, setItemPriceValue] = useState<number>(0.00);
   const [itemDiscountPercentage, setItemDiscountPercentage] = useState<number>(0.00);
-  const [itemGSTPercentage, setItemGSTValue] = useState<number>(props.defGSTValue);
+  const [itemGSTPercentage, setItemGSTPercentage] = useState<number>(props.defGSTValue);
   const [itemQTYValue, setItemQTYValue] = useState<number>(1);
   const [itemHSNValue, setItemHSNValue] = useState<string>("");
+
+  // store the current item to easily reset a value to the default one
+  const [currentItem, setCurrentItem] = useState<Item|any>({
+    Description: "",
+    UnitPrice: 0.00,
+    GSTPercentage: props.defGSTValue,
+    HSN: ""
+  });
 
   // to be handled by DocumentInfo
   // check if client is in same state
@@ -41,8 +51,10 @@ const AddNewItemForm: React.FC<props> = (props) => {
     setItemDescValue(i.Description);
     setItemPriceValue(i.UnitPrice);
     setItemHSNValue(i.HSN);
-    setItemGSTValue(i.TotalGST);
+    setItemGSTPercentage(i.TotalGST);
+    setCurrentItem(i)
   }
+  console.log(currentItem)
 
   // check the item name value and do stuff accordingly
   const setItemInfo = (itemName: string) =>
@@ -58,7 +70,7 @@ const AddNewItemForm: React.FC<props> = (props) => {
     setItemPriceValue(1);
     setItemDiscountPercentage(0);
     setItemHSNValue("");
-    setItemGSTValue(props.defGSTValue);
+    setItemGSTPercentage(props.defGSTValue);
   }
 
   return (
@@ -70,8 +82,12 @@ const AddNewItemForm: React.FC<props> = (props) => {
           const totalValue: number = itemPriceValue * itemQTYValue;
 
           // the values below are being rounded to two decimal places
-          const discountValue: number = parseFloat(((itemDiscountPercentage / 100) * totalValue).toFixed(2))
-          const totalGSTValue: number = parseFloat(((itemGSTPercentage / 100) * totalValue).toFixed(2))
+          // i see no reason doing this anymore
+          // const discountvalue: number = parsefloat(((itemdiscountpercentage / 100) * totalvalue).tofixed(2))
+          // const totalgstvalue: number = parsefloat(((itemgstpercentage / 100) * totalvalue).tofixed(2))
+
+          const discountValue: number = (itemDiscountPercentage / 100) * totalValue;
+          const totalGSTValue: number = (itemGSTPercentage / 100) * totalValue;
 
           const newInvoiceItem: Item = {
             Model:         itemNameValue,
@@ -117,9 +133,19 @@ const AddNewItemForm: React.FC<props> = (props) => {
 
           <label>
             Description:
-              <input className={"wideInputBox"} type="text" value={itemDescValue} 
-                onChange={(event) => setItemDescValue(event.target.value)} 
-              />
+              <span className={"buttonInput"}>
+                {itemDescValue === currentItem.Description ||
+                  <FontAwesomeIcon icon={faSync} className={"icon"} onClick={
+                      (event) => {
+                        event.preventDefault(); // don't select the input box
+                        setItemDescValue(currentItem.Description);
+                      }
+                  }/>
+                }
+                <input className={"wideInputBox"} type="text" value={itemDescValue} 
+                  onChange={(event) => setItemDescValue(event.target.value)} 
+                />
+              </span>
           </label>
         </div>
 
@@ -136,12 +162,22 @@ const AddNewItemForm: React.FC<props> = (props) => {
 
           <label>
             Price: 
-              <input className={"smallInputBox"} type="number" min="1.00" step="0.001" value={itemPriceValue} 
-                onInput={
-                  (event: React.FormEvent<HTMLInputElement>) => 
-                    setItemPriceValue(parseFloat(event.currentTarget.value))
-                } 
-              required />
+              <span className={"buttonInput"}>
+                {itemPriceValue === currentItem.UnitPrice ||
+                  <FontAwesomeIcon icon={faSync} className={"icon"} onClick={
+                      (event) => {
+                        event.preventDefault(); // don't select the input box
+                        setItemPriceValue(currentItem.UnitPrice);
+                      }
+                  }/>
+                }
+                <input className={"smallInputBox"} type="number" min="1.00" step="0.001" value={itemPriceValue} 
+                  onInput={
+                    (event: React.FormEvent<HTMLInputElement>) => 
+                      setItemPriceValue(parseFloat(event.currentTarget.value))
+                  } 
+                required />
+              </span>
           </label>
 
           <label>
@@ -156,19 +192,39 @@ const AddNewItemForm: React.FC<props> = (props) => {
 
           <label>
             HSN: 
-              <input className={"smallInputBox"} type="number" min="0" value={itemHSNValue} 
-                onChange={(event) => setItemHSNValue(event.target.value)} 
-              required />
+              <span className={"buttonInput"}>
+                {itemHSNValue === currentItem.HSN ||
+                  <FontAwesomeIcon icon={faSync} className={"icon"} onClick={
+                      (event) => {
+                        event.preventDefault(); // don't select the input box
+                        setItemHSNValue(currentItem.HSN);
+                      }
+                  }/>
+                }
+                <input className={"smallInputBox"} type="number" min="0" value={itemHSNValue} 
+                  onChange={(event) => setItemHSNValue(event.target.value)} 
+                required />
+              </span>
           </label>
 
           <label>
             GST: 
-              <input className={"smallInputBox"} type="number" min="0" value={itemGSTPercentage} 
-                onInput={
-                  (event: React.FormEvent<HTMLInputElement>) => 
-                    setItemGSTValue(parseInt(event.currentTarget.value))
-                } 
-              required />
+              <span className={"buttonInput"}>
+                {itemGSTPercentage === currentItem.TotalGST ||
+                  <FontAwesomeIcon icon={faSync} className={"icon"} onClick={
+                      (event) => {
+                        event.preventDefault(); // don't select the input box
+                        setItemGSTPercentage(currentItem.TotalGST);
+                      }
+                  }/>
+                }
+                <input className={"smallInputBox"} type="number" min="0" value={itemGSTPercentage} 
+                  onInput={
+                    (event: React.FormEvent<HTMLInputElement>) => 
+                      setItemGSTPercentage(parseInt(event.currentTarget.value))
+                  } 
+                required />
+              </span>
           </label>
         </div>
 

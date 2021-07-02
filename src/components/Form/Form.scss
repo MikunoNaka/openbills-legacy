@@ -50,6 +50,17 @@ input[type=number] {
 
 input {
   box-sizing: border-box;
+  height: $fontSize2 + 0.25;
+}
+
+.buttonInput .icon {
+  margin-right: 0.5rem;
+  font-size: $fontSize1 + 0.5;
+  margin-bottom: -0.25rem;
+}
+
+.icon:hover {
+  color: $altFG;
 }
 
 .wideInputBox, .selectInputBox {
