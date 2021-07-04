@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import "./../Form.scss";
 import { NewItem } from "./../../../interfaces"
 import axios from "axios";
+import Marquee from "react-fast-marquee";
 
 interface props {
   defGSTValue: number
@@ -73,41 +74,53 @@ const RegisterItemForm: React.FC<props> = (props) => {
         <div className={"formContainer"}>
           <form className={"floatingForm"} onSubmit={postForm}>
             <div className={"twoPaneForm"}>
+              <Marquee gradient={false} speed={100}>
               <div className={"widePane formPane"}>
-                <label>
-                  Item/Service: <input className={"wideInputBox"} type="text" value={newItemName} onChange={
-                    (event) => setNewItemName(event.target.value)
-                  } required />
-                </label>
+                <Marquee speed={100} gradient={false} direction={"right"}>
+                  <label>
+                    Item/Service: <input className={"wideInputBox"} type="text" value={newItemName} onChange={
+                      (event) => setNewItemName(event.target.value)
+                    } required />
+                  </label>
+                </Marquee>
 
-                <label>
-                  Description: <input className={"wideInputBox"} type="text" value={newItemDesc} onChange={
-                    (event) => setNewItemDesc(event.target.value)
-                  } />
-                </label>
+                <Marquee speed={100} gradient={false} direction={"right"}>
+                  <label>
+                    Description: <input className={"wideInputBox"} type="text" value={newItemDesc} onChange={
+                      (event) => setNewItemDesc(event.target.value)
+                    } />
+                  </label>
+                </Marquee>
 
               </div>
               <div className={"widePane formPane"}>
+                <Marquee speed={100} gradient={false} direction={"right"}>
                 <label>
                   Price: <input className={"smallInputBox"} type="number" min="0.00" step="0.001" value={newItemPrice} onChange={
                     (event: React.FormEvent<HTMLInputElement>) => 
                       setNewItemPrice(parseInt(event.currentTarget.value))
                   } />
                 </label>
+                </Marquee>
 
+                <Marquee speed={100} gradient={false} direction={"right"}>
                 <label>
                   HSN: <input className={"smallInputBox"} type="number" min="0" value={newItemHSN} onChange={
                     (event) => setNewItemHSN(event.target.value)
                   } />
                 </label>
+                </Marquee>
 
+                <Marquee speed={100} gradient={false} direction={"right"}>
                 <label>
                   GST: <input className={"smallInputBox"} type="number" min="0" value={newItemGST} onChange={
                     (event: React.FormEvent<HTMLInputElement>) => 
                       setNewItemGST(parseInt(event.currentTarget.value))
                   } />
                 </label>
+                </Marquee>
               </div>
+              </Marquee>
             </div>
 
             <div className={"menu"}>

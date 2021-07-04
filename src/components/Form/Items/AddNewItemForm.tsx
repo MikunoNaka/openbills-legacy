@@ -11,6 +11,7 @@ import { Item } from "../../../interfaces";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync } from '@fortawesome/free-solid-svg-icons'
 import "./../Form.scss";
+import Marquee from "react-fast-marquee";
 
 interface Props {
   savedItems: Item[]
@@ -21,6 +22,9 @@ interface Props {
 }
 
 const AddNewItemForm: React.FC<Props> = (props) => {
+  const [direction, setDirection] = useState<any>("right");
+  const [speed, setSpeed] = useState<number>(100);
+
   const [itemNameValue, setItemNameValue] = useState<string>("");
   const [itemDescValue, setItemDescValue] = useState<string>("");
   const [itemPriceValue, setItemPriceValue] = useState<number>(0.00);
@@ -76,8 +80,24 @@ const AddNewItemForm: React.FC<Props> = (props) => {
     setCurrentItem(defaultItem);
   }
 
+  const changeDirection = () => {
+    return
+    if (direction === "left") {
+      setDirection("right")
+    } else {
+      setDirection("left")
+    }
+  }
+
+  function increaseSpeed() {
+    setSpeed(speed + 10);
+  }
+
   return (
-    <div className={"formContainer"}>
+    <div className={"formContainer"} onClick={() => {
+        changeDirection();
+        increaseSpeed();
+      }}>
       <form className={"threePaneForm"} onSubmit={
         (event) => {
           event.preventDefault();
@@ -114,7 +134,8 @@ const AddNewItemForm: React.FC<Props> = (props) => {
           resetAllValues();
         }
       }>
-        <div className={"widePane formPane"}>
+        <Marquee gradient={false} delay={3} direction={direction} speed={speed}>
+          <div className={"widePane formPane"}>
           <label>
             Item/Service: 
               <select
@@ -252,6 +273,7 @@ const AddNewItemForm: React.FC<Props> = (props) => {
             }
           />
         </div>
+        </Marquee>
       </form>
     </div>
   );

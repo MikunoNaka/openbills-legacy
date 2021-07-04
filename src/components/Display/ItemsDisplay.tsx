@@ -10,6 +10,7 @@ import React from "react";
 import { Item } from "./../../interfaces";
 import "./Display.scss";
 import DisplayItem from "./DisplayItem";
+import Marquee from "react-fast-marquee";
 // import {SummaryDisplayTR} from "./SummaryDisplay";
 
 interface Props {
@@ -23,6 +24,7 @@ const ItemsDisplay: React.FC<Props> = (props) => {
   let itemNumber = 0;
 
   return (
+    <Marquee gradient={false} speed={1000} direction={"right"} pauseOnHover={true}>
     <table className={"ItemsDisplay"}>
       <tbody>
         <tr className="legend">
@@ -48,6 +50,7 @@ const ItemsDisplay: React.FC<Props> = (props) => {
 
       </tbody>
     </table>
+    </Marquee>
   );
   // this goes right before </tbody>
         //<SummaryDisplayTR items={props.items}/>
