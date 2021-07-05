@@ -25,20 +25,14 @@ func InitRouter() {
   api := myRouter.Group("/api")
   people := api.Group("/people")
   items := api.Group("/items")
-  users := api.Group("/users")
 
   // items API routes
   items.GET("/get-all", getAllItems)
   items.POST("/register", registerItem)
 
-
   // people API routes
   people.GET("/get-all", getAllPeople)
   people.POST("/register", registerPerson)
 
-  // users API routes
-  users.GET("/get-all", getAllUsers)
-  // users.POST("/register", registerUser)
-  
   myRouter.Run(":8080")
 }

@@ -40,14 +40,6 @@ func InitDB() {
   )
   init_people.Exec()
 
-  init_users, _ := myDatabase.Prepare(
-    `CREATE TABLE IF NOT EXISTS Users
-    (id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name     TEXT,
-    Email    TEXT)`,
-  )
-  init_users.Exec()
-
   init_invoices, _ := myDatabase.Prepare(
     `CREATE TABLE IF NOT EXISTS Invoices
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
