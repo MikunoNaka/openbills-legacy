@@ -159,6 +159,15 @@ input {
   text-align: left;
 }
 
+.TransportForm {
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center /*space-between*/;
+  align-items: center;
+}
+
 /*.ClientInfoDisplay {
   font-size: $fontSize1;
 }*/

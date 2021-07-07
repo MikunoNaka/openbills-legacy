@@ -9,20 +9,17 @@
 import React from "react";
 //import "./../Form.scss";
 
-const InvoiceInfoMenu: React.FC = () => {
+interface Props {
+  setShowTransportForm: any
+}
+
+const InvoiceInfoMenu: React.FC<Props> = (props) => {
   return (
-    <div className={"InvoiceInfoMenu"}>
-      c
-      o
-      m
-      i
-      n
-      g
-      s
-      o
-      o
-      n
-    </div>
+    <>
+      <div className={"InvoiceInfoMenu"}>
+        <input type="button" value="Add Transport Labels" onClick={() => props.setShowTransportForm(true)}/>
+      </div>
+    </>
   );
 }
 

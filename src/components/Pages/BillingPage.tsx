@@ -22,6 +22,8 @@ import InvoiceInfoMenu from "./../Menu/InvoiceInfoMenu";
 import ItemsDisplay from "./../Display/ItemsDisplay";
 import SummaryDisplay from "./../Display/SummaryDisplay"; 
 
+import TransportForm from "./../Form/Transport/TransportForm";
+
 const BillingPage: React.FC = () => {
   const [savedItems, getSavedItems] = useState<Item[]>([]);
   const [savedPeople, getSavedPeople] = useState<Person[]>([]);
@@ -29,6 +31,7 @@ const BillingPage: React.FC = () => {
   const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState<boolean>(false);
   const [items, setItems] = useState<Item[]>([]);
   const [invoiceNumber, setInvoiceNumber] = useState<number>(1234); // get data from backend
+  const [showTransportForm, setShowTransportForm] = useState<boolean>(false);
 
   const getRegisteredItems = () =>
     axios.get(`/api/items/get-all`)
@@ -69,6 +72,12 @@ const BillingPage: React.FC = () => {
         />
       }
 
+      {showTransportForm && 
+        <TransportForm
+          setVisibility={setShowTransportForm}
+        />
+      }
+
       <DocumentInfoForm 
         savedPeople={savedPeople}
         invoiceNumber={invoiceNumber}
@@ -89,7 +98,9 @@ const BillingPage: React.FC = () => {
       />
 
       <div className={"BillingPageFlex"}>
-        <InvoiceInfoMenu/>
+        <InvoiceInfoMenu
+          setShowTransportForm={setShowTransportForm}
+        />
         <SummaryDisplay items={items}/>
       </div>
     </>

@@ -31,6 +31,24 @@ body {
   font-family: $defFont;
 }
 
+@mixin defFloatingMenu {
+  position: absolute;
+
+  height: 32rem;
+  box-sizing: border-box;
+
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  margin: auto;
+  z-index: 2;
+
+  background-color: $background3;
+  box-shadow: $floatingShadow;
+  border: 1px solid $border2;
+
+  padding: 1.5rem;
+}
+
 .root-content {
   width: 95%;
   margin: auto;
@@ -60,23 +78,15 @@ body {
 }
 
 .floatingMenu {
-  position: absolute;
-
+  @include defFloatingMenu();
   width: 95%;
   max-width: 1920px;
-  height: 32rem;
-  box-sizing: border-box;
+}
 
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-  margin: auto;
-  z-index: 2;
-
-  background-color: $background3;
-  box-shadow: $floatingShadow;
-  border: 1px solid $border2;
-
-  padding: 1.5rem;
+.smallFloatingMenu {
+  @include defFloatingMenu();
+  width: 50%;
+  max-width: 960px;
 }
 
 

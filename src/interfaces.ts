@@ -1,9 +1,9 @@
 export interface Transport {
-  name: string
-  vehicleNum: string
-  method: string
-  gstin: string
-  builty: string
+  Name: string
+  VehicleNum: string
+  Method: string
+  GSTIN: string
+  Builty: string
 }
 
 export interface Item {
