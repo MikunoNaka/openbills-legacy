@@ -9,7 +9,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Item, Person } from "../../interfaces";
+import { Item, Person, Transport } from "../../interfaces";
 
 import AddNewItemForm from "./../Form/Items/AddNewItemForm";
 import RegisterItemForm from "./../Form/Items/RegisterItemForm";
@@ -32,6 +32,8 @@ const BillingPage: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [invoiceNumber, setInvoiceNumber] = useState<number>(1234); // get data from backend
   const [showTransportForm, setShowTransportForm] = useState<boolean>(false);
+  const [transporter, setTransporter] = useState<Transport>({Name: "", VehicleNum: "", Method: "", GSTIN: "", Builty: ""})
+  console.log(transporter);
 
   const getRegisteredItems = () =>
     axios.get(`/api/items/get-all`)
@@ -72,9 +74,10 @@ const BillingPage: React.FC = () => {
         />
       }
 
-      {showTransportForm && 
+      {showTransportForm &&
         <TransportForm
           setVisibility={setShowTransportForm}
+          setTransporter={setTransporter}
         />
       }
 

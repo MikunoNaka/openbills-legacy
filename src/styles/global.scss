@@ -85,7 +85,10 @@ body {
 
 .smallFloatingMenu {
   @include defFloatingMenu();
-  width: 50%;
+  width: 40%;
+  height: 40%;
+  max-height: 22rem;
+  min-width: 28rem;
   max-width: 960px;
 }
 

@@ -17,7 +17,11 @@ const InvoiceInfoMenu: React.FC<Props> = (props) => {
   return (
     <>
       <div className={"InvoiceInfoMenu"}>
-        <input type="button" value="Add Transport Labels" onClick={() => props.setShowTransportForm(true)}/>
+        <input 
+          type="button" 
+          value="Add Transport Labels" 
+          onClick={() => props.setShowTransportForm(true)}
+        />
       </div>
     </>
   );
