@@ -12,7 +12,7 @@ import (
   "github.com/gin-gonic/gin"
   "net/http"
 
-  "strconv"
+  //"strconv"
   db "github.com/MikunoNaka/openbills/database"
 )
 
@@ -23,21 +23,7 @@ func getAllItems(ctx *gin.Context) {
 }
 
 func registerItem(ctx *gin.Context) {
-  // extract data not string
-  price, _ := strconv.ParseFloat(ctx.Query("price"), 64)
-  gst, _ := strconv.ParseFloat(ctx.Query("gst"), 64)
-  cat := "cat coming soon"
-  brand := "brand coming soon"
-
-  item := db.Item {
-    Model:       ctx.Query("model"),
-    Description: ctx.Query("desc"),
-    UnitPrice:   price,
-    HSN:         ctx.Query("hsn"),
-    TotalGST:    gst,
-    Category:    cat,
-    Brand:       brand,
-  }
-
-  db.RegisterItem(item)
+  var newItem db.Item
+  ctx.Bind(&newItem)
+  db.RegisterItem(newItem)
 }

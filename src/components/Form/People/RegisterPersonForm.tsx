@@ -39,13 +39,7 @@ const RegisterPersonForm: React.FC<props> = (props) => {
 
     // TODO: show confirmation before being invisible
     // TODO: Implement override protection
-    axios.post(
-      `/api/people/register/` 
-      + `?name=${newClient.Name}`
-      + `&phone=${newClient.Phone}`
-      + `&email=${newClient.Email}`
-      + `&address=${newClient.Address}`
-    )
+    axios.post("/api/people/register", newClient)
       .then((res) => {
         console.log(res);
         props.updatePeopleList();

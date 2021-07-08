@@ -47,14 +47,7 @@ const RegisterItemForm: React.FC<props> = (props) => {
 
     // TODO: show confirmation before being invisible 
     // TODO: Implement override protection
-    axios.post(
-      `/api/items/register/`
-      + `?model=${newItem.Model}`
-      + `&desc=${newItem.Description}`
-      + `&price=${newItem.UnitPrice}`
-      + `&hsn=${newItem.HSN}`
-      + `&gst=${newItem.TotalGST}`
-    )
+    axios.post("/api/items/register", newItem)
       .then((res) => {
         console.log(res);
         hideSelf();
