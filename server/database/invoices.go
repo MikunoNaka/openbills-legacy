@@ -15,8 +15,8 @@ import (
 
 type Invoice struct {
   ID        int
-  Data      string
-  CreatedON string
+  Items     []Item
+  Transport string
 }
 
 /*

@@ -41,3 +41,9 @@ export interface Person {
   Phone?: string
   Email?: string
 }
+
+export interface Invoice {
+  //Client: Person
+  Items: Item[]
+  Transport: Transport
+}

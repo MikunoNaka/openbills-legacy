@@ -16,7 +16,6 @@ import (
   db "github.com/MikunoNaka/openbills/database"
 )
 
-// items API functions
 func getAllItems(ctx *gin.Context) {
   ctx.Header("Content-Type", "application/json")
   ctx.JSON(http.StatusOK, db.GetAllItems())

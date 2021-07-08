@@ -9,7 +9,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Item, Person, Transport } from "../../interfaces";
+import { Item, Person, Transport, Invoice } from "../../interfaces";
 
 import AddNewItemForm from "./../Form/Items/AddNewItemForm";
 import RegisterItemForm from "./../Form/Items/RegisterItemForm";
@@ -56,6 +56,24 @@ const BillingPage: React.FC = () => {
 
   // update the items from AddNewItemForm
   const getItems = (item: Item) => setItems([...items, item]);
+
+  const postInvoice = () => {
+    const newInvoice: Invoice = {
+      Items: items,
+      Transport: transporter
+    }
+    window.print();
+
+    // just for testing it will not save to DB
+    axios.post("/api/invoice/preview", newInvoice)
+      .then((res) => {
+        alert("OH MY FUCKEN GOD")
+        console.log(res)
+      })
+      .catch((res) => {
+        console.log(res)
+      })
+  }
 
   return (
     <>
@@ -106,6 +124,7 @@ const BillingPage: React.FC = () => {
         />
         <SummaryDisplay items={items}/>
       </div>
+      <button onClick={postInvoice}>post (experimental)</button>
     </>
   );
 }

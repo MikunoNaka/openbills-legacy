@@ -15,7 +15,6 @@ import (
   db "github.com/MikunoNaka/openbills/database"
 )
 
-// people API functions
 func getAllPeople(ctx *gin.Context) {
   ctx.Header("Content-Type", "application/json")
   ctx.JSON(http.StatusOK, db.GetAllPeople())

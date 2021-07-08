@@ -21,10 +21,11 @@ func InitRouter() {
   myRouter.Use(static.Serve("/", 
     static.LocalFile("./app", true)))
 
-  // define routes
+  // define groups
   api := myRouter.Group("/api")
-  people := api.Group("/people")
   items := api.Group("/items")
+  people := api.Group("/people")
+  invoice := api.Group("/invoice")
 
   // items API routes
   items.GET("/get-all", getAllItems)
@@ -33,6 +34,9 @@ func InitRouter() {
   // people API routes
   people.GET("/get-all", getAllPeople)
   people.POST("/register", registerPerson)
+
+  // invoice API routes
+  invoice.POST("/preview", previewInvoice)
 
   myRouter.Run(":8080")
 }
