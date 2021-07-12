@@ -7,22 +7,21 @@
 */
 
 import React, { useState, useEffect } from "react";
+import { Item, Person, Transport, Invoice } from "../../interfaces";
 import axios from "axios";
 
-import { Item, Person, Transport, Invoice } from "../../interfaces";
-
-import AddNewItemForm from "./../Form/Items/AddNewItemForm";
-import RegisterItemForm from "./../Form/Items/RegisterItemForm";
-
-import RegisterPersonForm from "./../Form/People/RegisterPersonForm";
-
 import DocumentInfoForm from "./../Form/Document/DocumentInfoForm";
-import InvoiceInfoMenu from "./../Menu/InvoiceInfoMenu";
+import AddNewItemForm from "./../Form/Items/AddNewItemForm";
+import TransportForm from "./../Form/Transport/TransportForm";
+import RegisterItemForm from "./../Form/Items/RegisterItemForm";
+import RegisterPersonForm from "./../Form/People/RegisterPersonForm";
 
 import ItemsDisplay from "./../Display/ItemsDisplay";
 import SummaryDisplay from "./../Display/SummaryDisplay"; 
 
-import TransportForm from "./../Form/Transport/TransportForm";
+import InvoiceInfoMenu from "./../Menu/InvoiceInfoMenu";
+import SubmitMenu from "./../Menu/SubmitMenu";
+
 
 const BillingPage: React.FC = () => {
   const [savedItems, getSavedItems] = useState<Item[]>([]);
@@ -34,6 +33,7 @@ const BillingPage: React.FC = () => {
   const [showTransportForm, setShowTransportForm] = useState<boolean>(false);
   const [transporter, setTransporter] = useState<Transport>({Name: "", VehicleNum: "", Method: "", GSTIN: "", Builty: ""})
   console.log(transporter);
+  const [showSubmitMenu, setShowSubmitMenu] = useState<boolean>(false);
 
   const getRegisteredItems = () =>
     axios.get(`/api/items/get-all`)
@@ -57,6 +57,7 @@ const BillingPage: React.FC = () => {
   // update the items from AddNewItemForm
   const getItems = (item: Item) => setItems([...items, item]);
 
+  /*
   const postInvoice = () => {
     const newInvoice: Invoice = {
       Items: items,
@@ -73,6 +74,11 @@ const BillingPage: React.FC = () => {
       .catch((res) => {
         console.log(res)
       })
+  }
+  */
+
+  const handleSubmit = () => {
+    setShowSubmitMenu(true);
   }
 
   return (
@@ -96,6 +102,12 @@ const BillingPage: React.FC = () => {
         <TransportForm
           setVisibility={setShowTransportForm}
           setTransporter={setTransporter}
+        />
+      }
+
+      {showSubmitMenu &&
+        <SubmitMenu
+          setVisibility={setShowSubmitMenu}
         />
       }
 
@@ -124,7 +136,7 @@ const BillingPage: React.FC = () => {
         />
         <SummaryDisplay items={items}/>
       </div>
-      <button onClick={postInvoice}>post (experimental)</button>
+      <button onClick={handleSubmit}>post (experimental)</button>
     </>
   );
 }
