@@ -36,7 +36,7 @@ func InitRouter() {
   people.POST("/register", registerPerson)
 
   // invoice API routes
-  invoice.POST("/preview", previewInvoice)
+  invoice.POST("/preview", registerInvoice)
 
   myRouter.Run(":8080")
 }

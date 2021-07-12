@@ -13,7 +13,6 @@ import (
   //"net/http"
   "fmt"
 
-  //"strconv"
   db "github.com/MikunoNaka/openbills/database"
 )
 
@@ -28,7 +27,7 @@ import (
 //   db.RegisterItem(newItem)
 // }
 
-func previewInvoice(ctx *gin.Context) {
+func registerInvoice(ctx *gin.Context) {
   var newInvoice db.Invoice
   ctx.Bind(&newInvoice)
   fmt.Println(newInvoice)

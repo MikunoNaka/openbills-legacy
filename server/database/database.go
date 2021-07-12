@@ -13,6 +13,14 @@ import (
   _ "github.com/mattn/go-sqlite3"
 )
 
+type Address struct {
+  AddressLine string
+  City        string
+  State       string
+  PINCode     string
+  Country     string
+}
+
 var myDatabase *sql.DB
 func InitDB() {
   myDatabase, _ = sql.Open("sqlite3", "./openbills.db")
@@ -33,10 +41,12 @@ func InitDB() {
   init_people, _ := myDatabase.Prepare(
     `CREATE TABLE IF NOT EXISTS People
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name     TEXT,
-    Address  TEXT,
-    Phone    TEXT,
-    Email    TEXT)`,
+    Name        TEXT,
+    Phone       TEXT,
+    Email       TEXT,
+    BillAddress BLOB,
+    ShipAddress BLOB,
+    GSTIN       TEXT)`,
   )
   init_people.Exec()
 

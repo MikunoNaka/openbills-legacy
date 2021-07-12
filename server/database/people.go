@@ -7,34 +7,39 @@
 */
 
 // handles all People related database functions
-
-package database
+package database 
 
 import (
   _ "github.com/mattn/go-sqlite3"
 )
+
+
+
 type Person struct {
-  ID      int
-  Name    string
-  Address string
-  Phone   string
-  Email   string
+  ID          int
+  Name        string
+  Phone       string
+  Email       string
+  BillAddress Address
+  ShipAddress Address
+  GSTIN       string
 }
 
 func GetAllPeople() []Person {
   var allPeople []Person
-  rows, _ := myDatabase.Query(
-    `SELECT ID, Name, Address, Phone, Email FROM People`,
+  rows, _ := myDatabase.Query (
+    `SELECT ID, Name, Phone, Email, BillAddress, ShipAddress, GSTIN FROM People`,
   )
 
   var (
     id int
-    name, address, phone, email string
+    name, phone, email, gstin string
+    billAddress, shipAddress Address
   )
 
   for rows.Next() {
-    rows.Scan(&id, &name, &address, &phone, &email)
-    allPeople = append(allPeople, Person{id, name, address, phone, email})
+    rows.Scan(&id, &name, &phone, &email, &billAddress, &shipAddress, &gstin)
+    allPeople = append(allPeople, Person{id, name, phone, email, billAddress, shipAddress, gstin})
   }
 
   return allPeople
@@ -43,12 +48,12 @@ func GetAllPeople() []Person {
 func RegisterPerson(person Person) bool {
   register_person, _ := myDatabase.Prepare(
     `INSERT INTO People
-    (Name, Address, Phone, Email)
-    VALUES (?, ?, ?, ?)`,
+    (Name, Phone, Email, BillAddress, ShipAddress, GSTIN)
+    VALUES (?, ?, ?, ?, ?, ?)`,
   )
 
   register_person.Exec(
-    person.Name, person.Address, person.Phone, person.Email,
+    person.Name, person.Phone, person.Email, person.BillAddress, person.ShipAddress, person.GSTIN,
   )
 
   return true
