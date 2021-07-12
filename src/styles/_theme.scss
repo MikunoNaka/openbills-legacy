@@ -62,6 +62,7 @@ $link2: $foreground2;
 $defFG: $foreground1;
 $altFG: $foreground2;
 
+$border0: gray;
 $border1: pink;
 $border2: lightgreen;
 
@@ -72,3 +73,5 @@ $underline3: $warningColor;
 
 $defBigShadow: 0px 2px 4px $shadowColor;
 $floatingShadow: 6px 6px 6px $shadowColor;
+
+$defTransition: 0.3s;

@@ -7,6 +7,7 @@
 */
 
 import React, { /*useState,*/ } from "react";
+import "./Print.scss";
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({

@@ -14,6 +14,7 @@
   text-decoration: none;
   font-size: $fontSize2;
   color: $defFG;
+  transition: color $defTransition;
 }
 
 .HomePageMenu .menuItem:hover {
@@ -22,15 +23,4 @@
 
 .InvoiceInfoMenu {
   width: 60%;
-}
-
-.PDFViewer {
-  height: 95%;
-  width: 95%;
-
-  position: fixed;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-  margin: auto;
-  z-index: 3;
 }

@@ -57,6 +57,7 @@ input {
   margin-right: 0.5rem;
   font-size: $fontSize1 + 0.5;
   margin-bottom: -0.25rem;
+  transition: color $defTransition;
 }
 
 .icon:hover {
