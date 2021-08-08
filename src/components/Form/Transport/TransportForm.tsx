@@ -11,15 +11,17 @@ import { Transport } from "./../../../interfaces"
 
 interface Props {
   setVisibility: Dispatch<SetStateAction<boolean>> // this component's visibility
+  currentTransporter: Transport
   setTransporter: Dispatch<SetStateAction<Transport>>
 }
 
 const TransportForm: React.FC<Props> = (props) => {
-  const [transporterName, setTransporterName] = useState<string>("");
-  const [vehicleNum, setVehicleNum] = useState<string>("");
-  const [transportMethod, setTransportMethod] = useState<string>("");
-  const [transporterGSTIN, setTransporterGSTIN] = useState<string>("");
-  const [builtyNumber, setBuiltyNumber] = useState<string>("");
+  // read values from already existing transporter
+  const [transporterName, setTransporterName] = useState<string>(props.currentTransporter.Name);
+  const [vehicleNum, setVehicleNum] = useState<string>(props.currentTransporter.VehicleNum);
+  const [transportMethod, setTransportMethod] = useState<string>(props.currentTransporter.Method);
+  const [transporterGSTIN, setTransporterGSTIN] = useState<string>(props.currentTransporter.GSTIN);
+  const [builtyNumber, setBuiltyNumber] = useState<string>(props.currentTransporter.Builty);
 
   const hideSelf = () =>
     props.setVisibility(false);

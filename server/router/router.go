@@ -25,7 +25,7 @@ func InitRouter() {
   api := myRouter.Group("/api")
   items := api.Group("/items")
   people := api.Group("/people")
-  invoice := api.Group("/invoice")
+  invoice := api.Group("/invoices")
 
   // items API routes
   items.GET("/get-all", getAllItems)

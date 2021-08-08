@@ -7,7 +7,7 @@
 */
 
 import React, { useState, useEffect } from "react";
-import { Item, Person, Transport, Invoice } from "../../interfaces";
+import { Item, Person, Transport/*, Invoice*/ } from "../../interfaces";
 import axios from "axios";
 
 import DocumentInfoForm from "./../Form/Document/DocumentInfoForm";
@@ -29,10 +29,9 @@ const BillingPage: React.FC = () => {
   const [registerItemFormVisibility, setRegisterItemFormVisibility] = useState<boolean>(false);
   const [registerPersonFormVisibility, setRegisterPersonFormVisibility] = useState<boolean>(false);
   const [items, setItems] = useState<Item[]>([]);
-  const [invoiceNumber, setInvoiceNumber] = useState<number>(1234); // get data from backend
+  const [invoiceNumber, setInvoiceNumber] = useState<number>(1234); // TODO: get data from backend
   const [showTransportForm, setShowTransportForm] = useState<boolean>(false);
   const [transporter, setTransporter] = useState<Transport>({Name: "", VehicleNum: "", Method: "", GSTIN: "", Builty: ""})
-  console.log(transporter);
   const [showSubmitMenu, setShowSubmitMenu] = useState<boolean>(false);
 
   const getRegisteredItems = () =>
@@ -57,28 +56,11 @@ const BillingPage: React.FC = () => {
   // update the items from AddNewItemForm
   const getItems = (item: Item) => setItems([...items, item]);
 
-  /*
-  const postInvoice = () => {
-    const newInvoice: Invoice = {
-      Items: items,
-      Transport: transporter
-    }
-    window.print();
-
-    // just for testing it will not save to DB
-    axios.post("/api/invoice/preview", newInvoice)
-      .then((res) => {
-        alert("OH MY FUCKEN GOD")
-        console.log(res)
-      })
-      .catch((res) => {
-        console.log(res)
-      })
-  }
-  */
-
   const handleSubmit = () => {
     setShowSubmitMenu(true);
+    axios.post(`/api/invoices/preview`, {ID: 1010, Items: items, Transporter: transporter})
+      .then(() => alert("yay"))
+      .catch(() => alert("nay"));
   }
 
   return (
@@ -101,6 +83,7 @@ const BillingPage: React.FC = () => {
       {showTransportForm &&
         <TransportForm
           setVisibility={setShowTransportForm}
+          currentTransporter={transporter}
           setTransporter={setTransporter}
         />
       }
@@ -108,6 +91,8 @@ const BillingPage: React.FC = () => {
       {showSubmitMenu &&
         <SubmitMenu
           setVisibility={setShowSubmitMenu}
+          transporter={transporter}
+          items={items}
         />
       }
 
@@ -135,8 +120,8 @@ const BillingPage: React.FC = () => {
           setShowTransportForm={setShowTransportForm}
         />
         <SummaryDisplay items={items}/>
+        <button onClick={handleSubmit}>post (experimental)</button>
       </div>
-      <button onClick={handleSubmit}>post (experimental)</button>
     </>
   );
 }

@@ -6,16 +6,16 @@
  * Copyright (c) 2021 Vidhu Kant Sharma
 */
 
-import React, { useState, Dispatch, SetStateAction } from "react";
-import { PDFViewer } from '@react-pdf/renderer';
-import PrintableDoc from "./../Print/PrintableDoc";
+import React, { Dispatch, SetStateAction } from "react";
+import { Transport, Item } from "./../../interfaces";
 
 interface Props {
   setVisibility: Dispatch<SetStateAction<boolean>> // this component's visibility
+  transporter: Transport
+  items: Item[]
 }
 
 const TransportForm: React.FC<Props> = (props) => {
-  const [showPDF, setShowPDF] = useState<boolean>(false);
   const hideSelf = () =>
     props.setVisibility(false);
 
@@ -24,13 +24,7 @@ const TransportForm: React.FC<Props> = (props) => {
 
   return (
     <div className={"floatingMenuBG"} onClick={closeOnBGClicked}>
-      {showPDF &&
-        <PDFViewer className={"PDFViewer"}>
-          <PrintableDoc/>
-        </PDFViewer>
-      }
-      <div className={"smallFloatingMenu TransportForm"} /*onSubmit={handleSubmit}*/>
-        <button onClick={() => setShowPDF(true)}>Generate PDF</button>
+      <div className={"smallFloatingMenu TransportForm"}>
       </div>
     </div>
   );

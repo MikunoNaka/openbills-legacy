@@ -5,18 +5,18 @@
  * Copyright (c) 2021 Vidhu Kant Sharma
 */
 
-// handles all Items related database functions
-
 package database
 
 import (
   _ "github.com/mattn/go-sqlite3"
 )
 
-type Invoice struct {
-  ID          int
-  Items       []Item
-  Transporter Transport
+type Transport struct {
+  Name       string
+  VehicleNum string
+  Method     string
+  GSTIN      string
+  Builty     string
 }
 
 /*
