@@ -7,7 +7,7 @@
 */
 
 import React, { useState, useEffect } from "react";
-import { Item, Person, Transport, Invoice } from "../../interfaces";
+import { Item, Person, Transport/*, Invoice*/ } from "../../interfaces";
 import axios from "axios";
 
 import DocumentInfoForm from "./../Form/Document/DocumentInfoForm";
