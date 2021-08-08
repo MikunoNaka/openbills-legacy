@@ -8,7 +8,7 @@
 
 import React, { useState } from "react";
 import "./../Form.scss";
-import { Person, Address } from "./../../../interfaces"
+import { Person } from "./../../../interfaces"
 import axios from "axios";
 
 interface props {

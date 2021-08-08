@@ -6,9 +6,6 @@
  * Copyright (c) 2021 Vidhu Kant Sharma
 */
 
-// TODO: Code isn't tested properly
-// I'd be surprised if it < 10 bugs
-
 import React, { useState, Dispatch, SetStateAction } from "react";
 import "./../Form.scss";
 import { NewItem } from "./../../../interfaces"

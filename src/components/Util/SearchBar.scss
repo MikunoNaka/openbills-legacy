@@ -1,0 +1,28 @@
+@import "../../styles/theme";
+
+.searchBar input {
+  width: 12rem;
+}
+
+.searchResults {
+  margin-top: $fontSize1;
+  width: 12rem;
+  height: 10rem;
+  background-color: $background3;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid $border2;
+}
+
+.searchResult {
+  color: $defFG;
+}
+
+.searchResults .dataItem {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
