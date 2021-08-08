@@ -28,13 +28,17 @@ const AddNewItemForm: React.FC<Props> = (props) => {
   const [itemGSTPercentage, setItemGSTPercentage] = useState<number>(props.defGSTValue);
   const [itemQTYValue, setItemQTYValue] = useState<number>(1);
   const [itemHSNValue, setItemHSNValue] = useState<string>("");
+  const [itemBrand, setItemBrand] = useState<string>("");
+  const [itemCategory, setItemCategory] = useState<string>("");
 
   // default item object
   const defaultItem: any = {
     Description: "",
     UnitPrice: 0.00,
     TotalGST: props.defGSTValue,
-    HSN: ""
+    HSN: "",
+    Brand: "",
+    Category: ""
   }
 
   // store the current item to easily reset a value to the default one
@@ -50,12 +54,15 @@ const AddNewItemForm: React.FC<Props> = (props) => {
   const emptyItemNames: string[] = [enterItemNamePrompt, registerItemPrompt, ""];
 
   // set description and price if match found in DB
-  const applyItemInfo = (i: any) => {
+  const applyItemInfo = (i: Item) => {
     setItemDescValue(i.Description);
     setItemPriceValue(i.UnitPrice);
     setItemHSNValue(i.HSN);
     setItemGSTPercentage(i.TotalGST);
-    setCurrentItem(i)
+    setItemBrand(i.Brand);
+    setItemCategory(i.Category);
+    console.log(i);
+    setCurrentItem(i);
   }
 
   // check the item name value and do stuff accordingly
@@ -63,7 +70,7 @@ const AddNewItemForm: React.FC<Props> = (props) => {
     (props.savedItems === null || itemName === registerItemPrompt)
       ? props.registerItemFormVisibility(true)
       : props.savedItems.some((i) => 
-        itemName === i.Model.toLowerCase() && applyItemInfo(i))
+        itemName === i.Model.toLowerCase() && applyItemInfo(i));
 
   const resetAllValues = () => {
     setItemNameValue("");
@@ -107,7 +114,10 @@ const AddNewItemForm: React.FC<Props> = (props) => {
             // this also checks if igst applies or not
             SGST: inState && totalGSTValue / 2,
             CGST: inState && totalGSTValue / 2,
-            IGST: inState || totalGSTValue
+            IGST: inState || totalGSTValue,
+
+            Brand:         itemBrand,
+            Category:      itemCategory
           }
 
           props.addItem(newInvoiceItem);
@@ -149,6 +159,26 @@ const AddNewItemForm: React.FC<Props> = (props) => {
                   onChange={(event) => setItemDescValue(event.target.value)} 
                 />
               </span>
+          </label>
+
+          <label>
+            Brand: 
+              <input className={"wideInputBox"} type="text" value={itemBrand} 
+                onInput={
+                  (event: React.FormEvent<HTMLInputElement>) => 
+                    setItemBrand(event.currentTarget.value)
+                } 
+              />
+          </label>
+
+          <label>
+            Category: 
+              <input className={"wideInputBox"} type="text" value={itemCategory} 
+                onInput={
+                  (event: React.FormEvent<HTMLInputElement>) => 
+                    setItemCategory(event.currentTarget.value)
+                } 
+              />
           </label>
         </div>
 

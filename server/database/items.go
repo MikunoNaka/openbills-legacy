@@ -3,14 +3,14 @@
  * Version - 0
  * Licensed under the MIT license - https://opensource.org/licenses/MIT
  * Copyright (c) 2021 Vidhu Kant Sharma
-*/
+ */
 
 // handles all Items related database functions
 
 package database
 
 import (
-  _ "github.com/mattn/go-sqlite3"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Item struct {

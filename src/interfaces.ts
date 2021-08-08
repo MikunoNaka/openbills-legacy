@@ -21,7 +21,8 @@ export interface Item {
   CGST: number | boolean
   IGST: number | boolean
   TotalGSTValue: number // total tax
-  // category and brand
+  Brand: string
+  Category: string
 }
 
 // for registering new item to DB
@@ -31,7 +32,8 @@ export interface NewItem {
   UnitPrice: number // price without tax/discount
   HSN: string
   TotalGST: number // gst percentage
-  // category and brand
+  Brand: string
+  Category: string
 }
 
 export interface Address {

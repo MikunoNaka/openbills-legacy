@@ -9,14 +9,14 @@
 // TODO: Code isn't tested properly
 // I'd be surprised if it < 10 bugs
 
-import React, { useState } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 import "./../Form.scss";
 import { NewItem } from "./../../../interfaces"
 import axios from "axios";
 
 interface props {
   defGSTValue: number
-  setVisibility: any // this component's visibility
+  setVisibility: Dispatch<SetStateAction<boolean>> // this component's visibility
   updateItemsList: () => Promise<void>
 }
 
@@ -26,8 +26,8 @@ const RegisterItemForm: React.FC<props> = (props) => {
   const [newItemPrice, setNewItemPrice] = useState<number>(0.00);
   const [newItemHSN, setNewItemHSN] = useState<string>("");
   const [newItemGST, setNewItemGST] = useState<number>(props.defGSTValue);
-  // const [newItemBrand, setNewItemBrand] = useState("");
-  // const [newItemType, setNewItemType] = useState("");
+  const [newItemBrand, setNewItemBrand] = useState<string>("");
+  const [newItemCategory, setNewItemCategory] = useState<string>("");
 
   const hideSelf = () => props.setVisibility(false);
 
@@ -42,7 +42,9 @@ const RegisterItemForm: React.FC<props> = (props) => {
       Description: newItemDesc,
       UnitPrice: newItemPrice,
       HSN: newItemHSN,
-      TotalGST: newItemGST
+      TotalGST: newItemGST,
+      Brand: newItemBrand,
+      Category: newItemCategory
     }
 
     // TODO: show confirmation before being invisible 
@@ -79,7 +81,19 @@ const RegisterItemForm: React.FC<props> = (props) => {
                   } />
                 </label>
 
+                <label>
+                  Brand: <input className={"wideInputBox"} type="text" value={newItemBrand} onChange={
+                    (event) => setNewItemBrand(event.target.value)
+                  } required />
+                </label>
+
+                <label>
+                  Category: <input className={"wideInputBox"} type="text" value={newItemCategory} onChange={
+                    (event) => setNewItemCategory(event.target.value)
+                  } />
+                </label>
               </div>
+
               <div className={"widePane formPane"}>
                 <label>
                   Price: <input className={"smallInputBox"} type="number" min="0.00" step="0.001" value={newItemPrice} onChange={
