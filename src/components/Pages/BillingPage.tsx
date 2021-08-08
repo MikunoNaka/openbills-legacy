@@ -56,13 +56,6 @@ const BillingPage: React.FC = () => {
   // update the items from AddNewItemForm
   const getItems = (item: Item) => setItems([...items, item]);
 
-  const handleSubmit = () => {
-    setShowSubmitMenu(true);
-    axios.post(`/api/invoices/preview`, {ID: 1010, Items: items, Transporter: transporter})
-      .then(() => alert("yay"))
-      .catch(() => alert("nay"));
-  }
-
   return (
     <>
       {registerItemFormVisibility &&
@@ -83,8 +76,8 @@ const BillingPage: React.FC = () => {
       {showTransportForm &&
         <TransportForm
           setVisibility={setShowTransportForm}
-          currentTransporter={transporter}
           setTransporter={setTransporter}
+          currentTransporter={transporter}
         />
       }
 
@@ -119,8 +112,12 @@ const BillingPage: React.FC = () => {
         <InvoiceInfoMenu
           setShowTransportForm={setShowTransportForm}
         />
+
+        <button onClick={() => setShowSubmitMenu(true)}>
+          post (experimental)
+        </button>
+
         <SummaryDisplay items={items}/>
-        <button onClick={handleSubmit}>post (experimental)</button>
       </div>
     </>
   );

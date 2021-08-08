@@ -6,7 +6,7 @@
  * Copyright (c) 2021 Vidhu Kant Sharma
 */
 
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Person } from "./../../../interfaces";
 import "./../Form.scss";
 
@@ -14,19 +14,19 @@ import ClientInfoDisplay from "../../Display/ClientInfoDisplay";
 
 interface Props {
   savedPeople: Person[]
+  selectedClient: Person
+  setSelectedClient: Dispatch<SetStateAction<Person>>
 }
 
 const SelectClientForm: React.FC<Props> = (props) => {
-  // TODO: fix the default selectedClient
-  const [selectedClient, setSelectedClient] = useState<Person>({Name: "", Address: ""});
-
   const enterValuePrompt = "start typing here";
   const registerPrompt = "add new";
 
   // TODO: make it use email if no address found, shorten the name too
   // in short, make formatter flexible
   const formatter = (i: Person): string =>
-    `${i.Name} - ${i.Address.slice(0, 20).concat(i.Address.length < 20 ? "" : "")}`;
+    // TODO: this shit is ugly
+    `${i.Name} - ${i.BillAddress.AddressLine.slice(0, 20).concat(i.BillAddress.AddressLine.length < 20 ? "" : "")}`;
 
   // TODO: if no client found at least clear the display
   // do this in other components too
@@ -35,7 +35,7 @@ const SelectClientForm: React.FC<Props> = (props) => {
     (props.savedPeople === null || e === registerPrompt)
       ? alert("coming soon") // toggle registerPersonPrompt visibility
       : props.savedPeople.some((i) =>
-        e === formatter(i) && setSelectedClient(i))
+        e === formatter(i) && props.setSelectedClient(i))
   
   return (
     <div className={"documentInfoChild"}>
@@ -43,7 +43,7 @@ const SelectClientForm: React.FC<Props> = (props) => {
         Client Name:
           <select
             className={"selectInputBox"}
-            value={selectedClient.Name} 
+            value={props.selectedClient.Name} 
             onChange={
               (event) => {
                 setClientInfo(event.target.value);
@@ -59,7 +59,7 @@ const SelectClientForm: React.FC<Props> = (props) => {
           </select>
       </label>
 
-      <ClientInfoDisplay client={selectedClient}/>
+      <ClientInfoDisplay client={props.selectedClient}/>
     </div>
   )
 }

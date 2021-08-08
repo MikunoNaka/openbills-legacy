@@ -25,12 +25,31 @@ interface Props {
 }
 
 const DocumentInfoForm: React.FC<Props> = (props) => {
+  const dummyPerson: Person = {
+    Name: "",
+    Address: "",
+    Phone: "",
+    Email: "",
+    
+    BillAddress: {
+      AddressLine: "",
+      City: "",
+      State: "",
+      PINCode: "",
+      Country: "India" // TODO: Get default from server
+    }
+  }
+
   const [invoiceNumber, setInvoiceNumber] = useState<number>(props.invoiceNumber);
   const [invoiceDate, setInvoiceDate] = useState(new Date());
+  const [selectedClient, setSelectedClient] = useState<Person>(dummyPerson);
+
   return (
     <div className={"DocumentInfoForm"}>
       <SelectClientForm 
         savedPeople={props.savedPeople}
+        selectedClient={selectedClient}
+        setSelectedClient={setSelectedClient}
       />
 
       <div className={"documentInfoChild"}>

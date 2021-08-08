@@ -8,7 +8,7 @@
 
 import React, { useState } from "react";
 import "./../Form.scss";
-import { Person } from "./../../../interfaces"
+import { Person, Address } from "./../../../interfaces"
 import axios from "axios";
 
 interface props {
@@ -18,9 +18,14 @@ interface props {
 
 const RegisterPersonForm: React.FC<props> = (props) => {
   const [newPersonName, setNewPersonName] = useState<string>("");
-  const [newPersonAddress, setNewPersonAddress] = useState<string>("");
-  const [newPersonEmail, setNewPersonEmail] = useState<string>("");
   const [newPersonPhone, setNewPersonPhone] = useState<string>("");
+  const [newPersonEmail, setNewPersonEmail] = useState<string>("");
+
+  const [newPersonBillAddressLine, setNewPersonBillAddressLine] = useState<string>("");
+  const [newPersonBillCity, setNewPersonBillCity] = useState<string>("");
+  const [newPersonBillState, setNewPersonBillState] = useState<string>("");
+  const [newPersonBillPINCode, setNewPersonBillPINCode] = useState<string>("");
+  const [newPersonBillCountry, setNewPersonBillCountry] = useState<string>("");
 
   const hideSelf = () => props.setVisibility(false);
 
@@ -32,9 +37,25 @@ const RegisterPersonForm: React.FC<props> = (props) => {
 
     const newClient: Person =  {
       Name: newPersonName,
-      Address: newPersonAddress,
       Phone: newPersonPhone,
-      Email: newPersonEmail
+      Email: newPersonEmail,
+
+      BillAddress: {
+        AddressLine: newPersonBillAddressLine,
+        City: newPersonBillCity,
+        State: newPersonBillState,
+        PINCode: newPersonBillPINCode,
+        Country: newPersonBillCountry
+      },
+
+      // currently same as BillAddress
+      ShipAddress: {
+        AddressLine: newPersonBillAddressLine,
+        City: newPersonBillCity,
+        State: newPersonBillState,
+        PINCode: newPersonBillPINCode,
+        Country: newPersonBillCountry
+      },
     }
 
     // TODO: show confirmation before being invisible
@@ -57,46 +78,84 @@ const RegisterPersonForm: React.FC<props> = (props) => {
       <div className={"floatingMenu"}>
         <div className={"formContainer"}>
           <form className={"floatingForm"} onSubmit={postForm}>
-            <div className={"wideForm"}>
-              <label>
-                Name: <input className={"wideInputBox"} 
-                  type="text" value={newPersonName} onChange={
-                    (event) => setNewPersonName(event.target.value)
-                  }
-                required />
-              </label>
+            <div className={"twoPaneForm"}>
+              <div className={"widePane formPane"}>
+                <label>
+                  Name: <input className={"wideInputBox"} 
+                    type="text" value={newPersonName} onChange={
+                      (event) => setNewPersonName(event.target.value)
+                    }
+                  required />
+                </label>
 
-              <label>
-                Phone: <input className={"wideInputBox"} 
-                  type="text" value={newPersonPhone} onChange={
-                    (event) => setNewPersonPhone(event.target.value)
-                  }
-                required />
-              </label>
+                <label>
+                  Phone: <input className={"wideInputBox"} 
+                    type="text" value={newPersonPhone} onChange={
+                      (event) => setNewPersonPhone(event.target.value)
+                    }
+                  required />
+                </label>
 
-              <label>
-                Email: <input className={"wideInputBox"} 
-                  type="text" value={newPersonEmail} onChange={
-                    (event) => setNewPersonEmail(event.target.value)
-                  }
-                required />
-              </label>
+                <label>
+                  Email: <input className={"wideInputBox"} 
+                    type="text" value={newPersonEmail} onChange={
+                      (event) => setNewPersonEmail(event.target.value)
+                    }
+                  required />
+                </label>
+              </div>
 
-              <label>
-                Address: <input className={"wideInputBox"} 
-                  type="text" value={newPersonAddress} onChange={
-                    (event) => setNewPersonAddress(event.target.value)
-                  }
-                required />
-              </label>
-            </div>
+              <div className={"widePane formPane"}>
+                <h3>Billing Address</h3>
 
-            <div className={"menu"}>
-              <input type="button" value="cancel" 
-              onClick={() => hideSelf()} />
+                <label>
+                  Address: <input className={"wideInputBox"} 
+                    type="text" value={newPersonBillAddressLine} onChange={
+                      (event) => setNewPersonBillAddressLine(event.target.value)
+                    }
+                  required />
+                </label>
 
-              <input type="submit" value="Register/Add" 
-              disabled={newPersonName === "" ? true : false} />
+                <label>
+                  City: <input className={"wideInputBox"} 
+                    type="text" value={newPersonBillCity} onChange={
+                      (event) => setNewPersonBillCity(event.target.value)
+                    }
+                  required />
+                </label>
+
+                <label>
+                  State: <input className={"wideInputBox"} 
+                    type="text" value={newPersonBillState} onChange={
+                      (event) => setNewPersonBillState(event.target.value)
+                    }
+                  required />
+                </label>
+
+                <label>
+                  PIN Code: <input className={"wideInputBox"} 
+                    type="text" value={newPersonBillPINCode} onChange={
+                      (event) => setNewPersonBillPINCode(event.target.value)
+                    }
+                  required />
+                </label>
+
+                <label>
+                  Country: <input className={"wideInputBox"} 
+                    type="text" value={newPersonBillCountry} onChange={
+                      (event) => setNewPersonBillCountry(event.target.value)
+                    }
+                  required />
+                </label>
+              </div>
+
+              <div className={"menu"}>
+                <input type="button" value="cancel" 
+                onClick={() => hideSelf()} />
+
+                <input type="submit" value="Register/Add" 
+                disabled={newPersonName === "" ? true : false} />
+              </div>
             </div>
           </form>
         </div>

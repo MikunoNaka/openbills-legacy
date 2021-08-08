@@ -44,9 +44,18 @@ func InitDB() {
     Name        TEXT,
     Phone       TEXT,
     Email       TEXT,
-    BillAddress BLOB,
-    ShipAddress BLOB,
-    GSTIN       TEXT)`,
+
+    BillAddressLine    TEXT,
+    BillAddressCity    TEXT,
+    BillAddressState   TEXT,
+    BillAddressPINCode TEXT,
+    BillAddressCountry TEXT,
+
+    ShipAddressLine    TEXT,
+    ShipAddressCity    TEXT,
+    ShipAddressState   TEXT,
+    ShipAddressPINCode TEXT,
+    ShipAddressCountry TEXT)`,
   )
   init_people.Exec()
 

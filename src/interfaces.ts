@@ -34,12 +34,22 @@ export interface NewItem {
   // category and brand
 }
 
+export interface Address {
+  AddressLine: string
+  City: string
+  State: string
+  PINCode: string
+  Country: string
+}
+
 export interface Person {
   ID?: number
   Name: string
-  Address: string
   Phone?: string
   Email?: string
+  BillAddress: Address
+  ShipAddress?: Address
+  Address?: string // to be removed
 }
 
 export interface Invoice {
