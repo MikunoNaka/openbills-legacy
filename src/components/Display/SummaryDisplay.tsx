@@ -7,30 +7,27 @@
 */
 
 import React, {Dispatch, SetStateAction} from "react";
-import { Item } from "./../../interfaces"
+import { Item, InvoiceSummary } from "./../../interfaces"
 import "./Display.scss";
 
-interface props {
+interface Props {
   items: Item[]
   setShowSubmitMenu: Dispatch<SetStateAction<boolean>>
 }
 
-interface FullSummary {
-  TotalRawPrice: number // total price without gst/discount
-  TotalDiscount: number // total amount of discount
-  TotalGST: number // total gst to be paid
-  TotalPriceAfterDiscount: number
-  TotalPriceAfterGST: number
-  TotalRoundedOff: number
+interface PropsTR {
+  items: Item[]
 }
 
-const getFullSummary = (items: Item[]): FullSummary => {
+const getSummary = (items: Item[]): InvoiceSummary => {
   var rawPrice: number = 0;
   var totalDiscount: number = 0;
   var totalGST: number = 0;
+  var totalQTY: number = 0;
 
   for (let i in items) {
     const item = items[i];
+    totalQTY += item.Quantity;
     rawPrice += item.TotalValue;
     totalDiscount += item.DiscountValue;
     totalGST += item.TotalGSTValue;
@@ -43,6 +40,7 @@ const getFullSummary = (items: Item[]): FullSummary => {
   ).toFixed(2)); // rounded off value in 0.00 format
 
   return {
+    TotalQuantity:           totalQTY,
     TotalRawPrice:           rawPrice,
     TotalDiscount:           totalDiscount,
     TotalGST:                totalGST,
@@ -52,8 +50,39 @@ const getFullSummary = (items: Item[]): FullSummary => {
   }
 }
 
-const SummaryDisplay: React.FC<props> = (props) => {
-  const summary: FullSummary = getFullSummary(props.items);
+export const SummaryDisplayTR: React.FC<PropsTR> = (props) => {
+  const summary: InvoiceSummary = getSummary(props.items);
+
+  return (
+    <tr className={"SummaryDisplayTR"}>
+      <td>Total</td>
+
+      <td className={"disabledBorder"}></td>
+      <td className={"disabledBorder"}></td>
+      <td className={"disabledBorder"}></td>
+
+      <td className={summary.TotalQuantity < 1 ? "disabledBorder" : ""}>
+        {summary.TotalQuantity}
+      </td>
+      <td className={summary.TotalRawPrice < 1 ? "disabledBorder" : ""}>
+        {summary.TotalRawPrice}
+      </td>
+      <td className={summary.TotalDiscount < 1 ? "disabledBorder" : ""}>
+        {summary.TotalDiscount}
+      </td>
+      <td className={summary.TotalGST < 1 ? "disabledBorder" : ""}>
+        {summary.TotalGST}
+      </td>
+      <td className={summary.TotalPriceAfterGST < 1 ? "disabledBorder" : ""}>
+        {summary.TotalPriceAfterGST}
+      </td>
+
+    </tr>
+  );
+}
+
+const SummaryDisplay: React.FC<Props> = (props) => {
+  const summary: InvoiceSummary = getSummary(props.items);
   return (
     <div className={"SummaryDisplay"}>
       <h1>Summary</h1>

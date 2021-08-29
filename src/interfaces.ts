@@ -59,3 +59,13 @@ export interface Invoice {
   Items: Item[]
   Transport: Transport
 }
+
+export interface InvoiceSummary {
+  TotalQuantity: number
+  TotalRawPrice: number // total price without gst/discount
+  TotalDiscount: number // total amount of discount
+  TotalGST: number // total gst to be paid
+  TotalPriceAfterDiscount: number
+  TotalPriceAfterGST: number
+  TotalRoundedOff: number
+}

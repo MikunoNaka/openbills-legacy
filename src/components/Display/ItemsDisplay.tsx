@@ -10,7 +10,7 @@ import React from "react";
 import { Item } from "./../../interfaces";
 import "./Display.scss";
 import DisplayItem from "./DisplayItem";
-// import {SummaryDisplayTR} from "./SummaryDisplay";
+import {SummaryDisplayTR} from "./SummaryDisplay";
 
 interface Props {
   items: Item[]
@@ -19,9 +19,6 @@ interface Props {
 
 const ItemsDisplay: React.FC<Props> = (props) => {
   const items = props.items;
-  // TODO: remove mutability
-  let itemNumber = 0;
-
   return (
     <table className={"ItemsDisplay"}>
       <tbody>
@@ -38,19 +35,17 @@ const ItemsDisplay: React.FC<Props> = (props) => {
         </tr>
 
         {items.map( 
-          (item) => {
-            itemNumber++
+          (item, index) => {
             return (
-              <DisplayItem key={itemNumber} itemNumber={itemNumber} item={item} defGSTValue={props.defGSTValue}/>
+              <DisplayItem key={index + 1} itemNumber={index + 1} item={item} defGSTValue={props.defGSTValue}/>
             );
           }
         )}
 
+        <SummaryDisplayTR items={props.items}/>
       </tbody>
     </table>
   );
-  // this goes right before </tbody>
-        //<SummaryDisplayTR items={props.items}/>
 }
 
 export default ItemsDisplay;
