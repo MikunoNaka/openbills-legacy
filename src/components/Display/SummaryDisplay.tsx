@@ -92,9 +92,11 @@ const SummaryDisplay: React.FC<props> = (props) => {
         </tbody>
       </table>
 
-      <button onClick={() => props.setShowSubmitMenu(true)}>
-        Submit
-      </button>
+      {props.items.length > 0 &&
+        <button className={"SubmitButton"} onClick={() => props.setShowSubmitMenu(true)}>
+          Submit (experimental)
+        </button>
+      }
     </div>
   );
 }

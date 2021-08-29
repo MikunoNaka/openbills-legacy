@@ -57,18 +57,6 @@ body {
   max-width: 1920px;
 }
 
-.BillingPageFlex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 27rem;
-}
-
-.BillingPageFlex div {
-  box-sizing: border-box;
-  border: 1px solid $border1;
-}
-
 .floatingMenuBG {
   height: 100%;
   width: 100%;
@@ -99,9 +87,5 @@ body {
     height: 80vh;
   
     padding: 0.5rem;
-  }
-  .BillingPageFlex {
-    flex-direction: column;
-    height: 35rem;
   }
 }

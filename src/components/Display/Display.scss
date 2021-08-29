@@ -58,8 +58,16 @@
 }
 
 .SummaryDisplay {
+  position: relative;
   width: 30%;
   padding: 0.5rem 2rem;
+}
+
+.SummaryDisplay .SubmitButton {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.3rem;
 }
 
 .SummaryDisplay h1 {
