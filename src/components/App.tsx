@@ -12,11 +12,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./Header/Header";
 import HomePage from "./Pages/HomePage";
 import BillingPage from "./Pages/BillingPage";
-import SearchBar from "./Util/SearchBar";
 
 const App: React.FC = () => (
   <>
-    <SearchBar/>
     <BrowserRouter>
       <Header/>
       <div className={"root-content"}>

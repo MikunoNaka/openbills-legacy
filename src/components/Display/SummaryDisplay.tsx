@@ -6,12 +6,13 @@
  * Copyright (c) 2021 Vidhu Kant Sharma
 */
 
-import React from "react";
+import React, {Dispatch, SetStateAction} from "react";
 import { Item } from "./../../interfaces"
 import "./Display.scss";
 
 interface props {
   items: Item[]
+  setShowSubmitMenu: Dispatch<SetStateAction<boolean>>
 }
 
 interface FullSummary {
@@ -50,25 +51,6 @@ const getFullSummary = (items: Item[]): FullSummary => {
     TotalRoundedOff:         totalRoundedOff
   }
 }
-
-// export const SummaryDisplayTR: React.FC<props> = (props) => {
-//   const summary = getBasicSummary(props.items);
-// 
-//   return (
-//     <tr className={"SummaryDisplayTR"}>
-//       <td>Total</td>
-//       <td className={"disabledBorder"}></td>
-//       <td className={"disabledBorder"}></td>
-//       <td>{summary.TotalQuantity}</td>
-//       <td className={"disabledBorder"}></td>
-//       <td className={"disabledBorder"}></td>
-//       <td className={"disabledBorder"}></td>
-//       <td className={"disabledBorder"}></td>
-//       <td className={"disabledBorder"}></td>
-//       <td>{summary.TotalRawPrice}</td>
-//     </tr>
-//   );
-// }
 
 const SummaryDisplay: React.FC<props> = (props) => {
   const summary: FullSummary = getFullSummary(props.items);
@@ -109,6 +91,10 @@ const SummaryDisplay: React.FC<props> = (props) => {
           </tr>
         </tbody>
       </table>
+
+      <button onClick={() => props.setShowSubmitMenu(true)}>
+        Submit
+      </button>
     </div>
   );
 }

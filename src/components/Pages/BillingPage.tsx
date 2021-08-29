@@ -113,11 +113,10 @@ const BillingPage: React.FC = () => {
           setShowTransportForm={setShowTransportForm}
         />
 
-        <button onClick={() => setShowSubmitMenu(true)}>
-          post (experimental)
-        </button>
-
-        <SummaryDisplay items={items}/>
+        <SummaryDisplay 
+          items={items}
+          setShowSubmitMenu={setShowSubmitMenu}
+        />
       </div>
     </>
   );

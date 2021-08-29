@@ -22,6 +22,7 @@ const TransportForm: React.FC<Props> = (props) => {
   const closeOnBGClicked = (event: any) =>
     event.target.className === "floatingMenuBG" && hideSelf();
 
+
   return (
     <div className={"floatingMenuBG"} onClick={closeOnBGClicked}>
       <div className={"smallFloatingMenu TransportForm"}>
