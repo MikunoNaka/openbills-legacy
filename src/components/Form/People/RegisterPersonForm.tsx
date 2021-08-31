@@ -21,11 +21,14 @@ const RegisterPersonForm: React.FC<props> = (props) => {
   const [newPersonPhone, setNewPersonPhone] = useState<string>("");
   const [newPersonEmail, setNewPersonEmail] = useState<string>("");
 
+  const [shipToBillAddress, setShipToBillAddress] = useState<boolean>(true);
+
   const [newPersonBillAddressLine, setNewPersonBillAddressLine] = useState<string>("");
   const [newPersonBillCity, setNewPersonBillCity] = useState<string>("");
   const [newPersonBillState, setNewPersonBillState] = useState<string>("");
   const [newPersonBillPINCode, setNewPersonBillPINCode] = useState<string>("");
   const [newPersonBillCountry, setNewPersonBillCountry] = useState<string>("");
+
 
   const hideSelf = () => props.setVisibility(false);
 
@@ -80,29 +83,32 @@ const RegisterPersonForm: React.FC<props> = (props) => {
           <form className={"floatingForm"} onSubmit={postForm}>
             <div className={"twoPaneForm"}>
               <div className={"widePane formPane"}>
-                <label>
-                  Name: <input className={"wideInputBox"} 
-                    type="text" value={newPersonName} onChange={
-                      (event) => setNewPersonName(event.target.value)
-                    }
-                  required />
-                </label>
+                <h3>Client Details</h3>
+                <div className={"inputs"}>
+                  <label>
+                    Name: <input className={"wideInputBox"} 
+                      type="text" value={newPersonName} onChange={
+                        (event) => setNewPersonName(event.target.value)
+                      }
+                    required />
+                  </label>
 
-                <label>
-                  Phone: <input className={"wideInputBox"} 
-                    type="text" value={newPersonPhone} onChange={
-                      (event) => setNewPersonPhone(event.target.value)
-                    }
-                  required />
-                </label>
+                  <label>
+                    Phone: <input className={"wideInputBox"} 
+                      type="text" value={newPersonPhone} onChange={
+                        (event) => setNewPersonPhone(event.target.value)
+                      }
+                    required />
+                  </label>
 
-                <label>
-                  Email: <input className={"wideInputBox"} 
-                    type="text" value={newPersonEmail} onChange={
-                      (event) => setNewPersonEmail(event.target.value)
-                    }
-                  required />
-                </label>
+                  <label>
+                    Email: <input className={"wideInputBox"} 
+                      type="text" value={newPersonEmail} onChange={
+                        (event) => setNewPersonEmail(event.target.value)
+                      }
+                    required />
+                  </label>
+                </div>
               </div>
 
               <div className={"widePane formPane"}>
@@ -146,6 +152,75 @@ const RegisterPersonForm: React.FC<props> = (props) => {
                       (event) => setNewPersonBillCountry(event.target.value)
                     }
                   required />
+                </label>
+              </div>
+
+              {shipToBillAddress || // TODO: Make it store different data
+                // TODO: maybe move it to its own prop
+                <div className={"widePane formPane"}>
+                  <h3>Shipping Address</h3>
+
+                  <label>
+                    Address: <input className={"wideInputBox"} 
+                      type="text" value={newPersonBillAddressLine} onChange={
+                        (event) => setNewPersonBillAddressLine(event.target.value)
+                      }
+                    required />
+                  </label>
+
+                  <label>
+                    City: <input className={"wideInputBox"} 
+                      type="text" value={newPersonBillCity} onChange={
+                        (event) => setNewPersonBillCity(event.target.value)
+                      }
+                    required />
+                  </label>
+
+                  <label>
+                    State: <input className={"wideInputBox"} 
+                      type="text" value={newPersonBillState} onChange={
+                        (event) => setNewPersonBillState(event.target.value)
+                      }
+                    required />
+                  </label>
+
+                  <label>
+                    PIN Code: <input className={"wideInputBox"} 
+                      type="text" value={newPersonBillPINCode} onChange={
+                        (event) => setNewPersonBillPINCode(event.target.value)
+                      }
+                    required />
+                  </label>
+
+                  <label>
+                    Country: <input className={"wideInputBox"} 
+                      type="text" value={newPersonBillCountry} onChange={
+                        (event) => setNewPersonBillCountry(event.target.value)
+                      }
+                    required />
+                  </label>
+                </div>
+              }
+
+              <div className={"options"}>
+                <label className={"menuLabel"}>
+                  <input 
+                    type="radio" 
+                    name={"shipToBillAddressRadio"} 
+                    checked={shipToBillAddress === true}
+                    onChange={() => setShipToBillAddress(true)}
+                  />
+                  Same shipping address as billing address 
+                </label>
+
+                <label className={"menuLabel"}>
+                  <input 
+                    type="radio" 
+                    name={"shipToBillAddressRadio"} 
+                    checked={shipToBillAddress === false}
+                    onChange={() => setShipToBillAddress(false)}
+                  />
+                  Use different shipping address
                 </label>
               </div>
 
