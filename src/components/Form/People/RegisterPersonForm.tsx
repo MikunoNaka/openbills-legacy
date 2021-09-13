@@ -9,6 +9,7 @@
 import React, { useState } from "react";
 import NewAddressPane from "./../Address/NewAddressPane"
 import { Person, Address } from "./../../../Interfaces/interfaces"
+import { DummyAddress } from "../../../Interfaces/dummies";
 import axios from "axios";
 import "./../Form.scss";
 
@@ -22,15 +23,10 @@ const RegisterPersonForm: React.FC<props> = (props) => {
   const [newPersonPhone, setNewPersonPhone] = useState<string>("");
   const [newPersonEmail, setNewPersonEmail] = useState<string>("");
 
+  const [newPersonBillAddress, setNewPersonBillAddress] = useState<Address>(DummyAddress);
+
   const [shipToBillAddress, setShipToBillAddress] = useState<boolean>(true);
 
-  const [newPersonBillAddress, setNewPersonBillAddress] = useState<Address>({
-    AddressLine: "",
-    City: "",
-    State: "",
-    PINCode: "",
-    Country: ""
-  })
 
   const hideSelf = () => props.setVisibility(false);
 

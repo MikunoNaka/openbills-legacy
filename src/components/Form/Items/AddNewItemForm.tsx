@@ -7,7 +7,8 @@
 */
 
 import React, { useState } from "react";
-import { Item } from "../../../Interfaces/interfaces";
+import { Item, NewItem } from "../../../Interfaces/interfaces";
+import { DummyNewItem } from "../../../Interfaces/dummies";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync } from '@fortawesome/free-solid-svg-icons'
 import "./../Form.scss";
@@ -31,18 +32,8 @@ const AddNewItemForm: React.FC<Props> = (props) => {
   const [itemBrand, setItemBrand] = useState<string>("");
   const [itemCategory, setItemCategory] = useState<string>("");
 
-  // default item object
-  const defaultItem: any = {
-    Description: "",
-    UnitPrice: 0.00,
-    TotalGST: props.defGSTValue,
-    HSN: "",
-    Brand: "",
-    Category: ""
-  }
-
   // store the current item to easily reset a value to the default one
-  const [currentItem, setCurrentItem] = useState<Item|any>(defaultItem);
+  const [currentItem, setCurrentItem] = useState<Item|NewItem>(DummyNewItem);
 
   // to be handled by DocumentInfo
   // check if client is in same state
@@ -80,7 +71,7 @@ const AddNewItemForm: React.FC<Props> = (props) => {
     setItemDiscountPercentage(0);
     setItemHSNValue("");
     setItemGSTPercentage(props.defGSTValue);
-    setCurrentItem(defaultItem);
+    setCurrentItem(DummyNewItem);
   }
 
   return (
