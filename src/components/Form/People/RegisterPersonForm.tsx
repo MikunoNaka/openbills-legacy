@@ -7,9 +7,10 @@
 */
 
 import React, { useState } from "react";
-import "./../Form.scss";
-import { Person } from "./../../../interfaces"
+import NewAddressPane from "./../Address/NewAddressPane"
+import { Person, Address } from "./../../../Interfaces/interfaces"
 import axios from "axios";
+import "./../Form.scss";
 
 interface props {
   setVisibility: any // this component's visibility
@@ -23,12 +24,13 @@ const RegisterPersonForm: React.FC<props> = (props) => {
 
   const [shipToBillAddress, setShipToBillAddress] = useState<boolean>(true);
 
-  const [newPersonBillAddressLine, setNewPersonBillAddressLine] = useState<string>("");
-  const [newPersonBillCity, setNewPersonBillCity] = useState<string>("");
-  const [newPersonBillState, setNewPersonBillState] = useState<string>("");
-  const [newPersonBillPINCode, setNewPersonBillPINCode] = useState<string>("");
-  const [newPersonBillCountry, setNewPersonBillCountry] = useState<string>("");
-
+  const [newPersonBillAddress, setNewPersonBillAddress] = useState<Address>({
+    AddressLine: "",
+    City: "",
+    State: "",
+    PINCode: "",
+    Country: ""
+  })
 
   const hideSelf = () => props.setVisibility(false);
 
@@ -43,26 +45,15 @@ const RegisterPersonForm: React.FC<props> = (props) => {
       Phone: newPersonPhone,
       Email: newPersonEmail,
 
-      BillAddress: {
-        AddressLine: newPersonBillAddressLine,
-        City: newPersonBillCity,
-        State: newPersonBillState,
-        PINCode: newPersonBillPINCode,
-        Country: newPersonBillCountry
-      },
-
-      // currently same as BillAddress
-      ShipAddress: {
-        AddressLine: newPersonBillAddressLine,
-        City: newPersonBillCity,
-        State: newPersonBillState,
-        PINCode: newPersonBillPINCode,
-        Country: newPersonBillCountry
-      },
+      BillAddress: newPersonBillAddress,
+      ShipAddress: shipToBillAddress 
+        ? newPersonBillAddress 
+        // TODO: use shipping address(es) instead
+        : newPersonBillAddress,
     }
 
     // TODO: show confirmation before being invisible
-    // TODO: Implement override protection
+    // TODO: Implement overwrite protection
     axios.post("/api/people/register", newClient)
       .then((res) => {
         console.log(res);
@@ -111,96 +102,7 @@ const RegisterPersonForm: React.FC<props> = (props) => {
                 </div>
               </div>
 
-              <div className={"widePane formPane"}>
-                <h3>Billing Address</h3>
-
-                <label>
-                  Address: <input className={"wideInputBox"} 
-                    type="text" value={newPersonBillAddressLine} onChange={
-                      (event) => setNewPersonBillAddressLine(event.target.value)
-                    }
-                  required />
-                </label>
-
-                <label>
-                  City: <input className={"wideInputBox"} 
-                    type="text" value={newPersonBillCity} onChange={
-                      (event) => setNewPersonBillCity(event.target.value)
-                    }
-                  required />
-                </label>
-
-                <label>
-                  State: <input className={"wideInputBox"} 
-                    type="text" value={newPersonBillState} onChange={
-                      (event) => setNewPersonBillState(event.target.value)
-                    }
-                  required />
-                </label>
-
-                <label>
-                  PIN Code: <input className={"wideInputBox"} 
-                    type="text" value={newPersonBillPINCode} onChange={
-                      (event) => setNewPersonBillPINCode(event.target.value)
-                    }
-                  required />
-                </label>
-
-                <label>
-                  Country: <input className={"wideInputBox"} 
-                    type="text" value={newPersonBillCountry} onChange={
-                      (event) => setNewPersonBillCountry(event.target.value)
-                    }
-                  required />
-                </label>
-              </div>
-
-              {shipToBillAddress || // TODO: Make it store different data
-                // TODO: maybe move it to its own prop
-                <div className={"widePane formPane"}>
-                  <h3>Shipping Address</h3>
-
-                  <label>
-                    Address: <input className={"wideInputBox"} 
-                      type="text" value={newPersonBillAddressLine} onChange={
-                        (event) => setNewPersonBillAddressLine(event.target.value)
-                      }
-                    required />
-                  </label>
-
-                  <label>
-                    City: <input className={"wideInputBox"} 
-                      type="text" value={newPersonBillCity} onChange={
-                        (event) => setNewPersonBillCity(event.target.value)
-                      }
-                    required />
-                  </label>
-
-                  <label>
-                    State: <input className={"wideInputBox"} 
-                      type="text" value={newPersonBillState} onChange={
-                        (event) => setNewPersonBillState(event.target.value)
-                      }
-                    required />
-                  </label>
-
-                  <label>
-                    PIN Code: <input className={"wideInputBox"} 
-                      type="text" value={newPersonBillPINCode} onChange={
-                        (event) => setNewPersonBillPINCode(event.target.value)
-                      }
-                    required />
-                  </label>
-
-                  <label>
-                    Country: <input className={"wideInputBox"} 
-                      type="text" value={newPersonBillCountry} onChange={
-                        (event) => setNewPersonBillCountry(event.target.value)
-                      }
-                    required />
-                  </label>
-                </div>
-              }
+              <NewAddressPane heading={"Billing Address"} address={newPersonBillAddress} setAddress={setNewPersonBillAddress}/>
 
               <div className={"options"}>
                 <label className={"menuLabel"}>
