@@ -7,7 +7,7 @@
 */
 
 import React, { Dispatch, SetStateAction } from "react";
-import { Transport, Item } from "./../../interfaces";
+import { Transport, Item } from "./../../Interfaces/interfaces";
 
 interface Props {
   setVisibility: Dispatch<SetStateAction<boolean>> // this component's visibility

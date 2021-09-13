@@ -9,8 +9,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "./../../../styles/datepicker.scss"; // custom datepicker css
-// import "react-datepicker/dist/react-datepicker.css";
-import { Person } from "./../../../interfaces";
+import { Person } from "./../../../Interfaces/interfaces";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import "./../Form.scss";

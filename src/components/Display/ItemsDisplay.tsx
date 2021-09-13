@@ -7,7 +7,7 @@
 */
 
 import React from "react";
-import { Item } from "./../../interfaces";
+import { Item } from "./../../Interfaces/interfaces";
 import "./Display.scss";
 import DisplayItem from "./DisplayItem";
 import {SummaryDisplayTR} from "./SummaryDisplay";

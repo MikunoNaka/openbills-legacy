@@ -7,7 +7,7 @@
 */
 
 import React, { useState } from "react";
-import { Item } from "../../../interfaces";
+import { Item } from "../../../Interfaces/interfaces";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync } from '@fortawesome/free-solid-svg-icons'
 import "./../Form.scss";

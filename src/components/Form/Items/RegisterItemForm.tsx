@@ -8,7 +8,7 @@
 
 import React, { useState, Dispatch, SetStateAction } from "react";
 import "./../Form.scss";
-import { NewItem } from "./../../../interfaces"
+import { NewItem } from "./../../../Interfaces/interfaces"
 import axios from "axios";
 
 interface props {

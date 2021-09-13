@@ -8,7 +8,7 @@
 
 import React, { useState, useEffect } from "react";
 import "./BillingPage.scss";
-import { Item, Person, Transport/*, Invoice*/ } from "../../interfaces";
+import { Item, Person, Transport/*, Invoice*/ } from "../../Interfaces/interfaces";
 import axios from "axios";
 
 import DocumentInfoForm from "./../Form/Document/DocumentInfoForm";

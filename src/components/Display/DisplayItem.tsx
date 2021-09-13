@@ -7,7 +7,7 @@
 */
 
 import React from "react";
-import { Item } from "./../../interfaces";
+import { Item } from "./../../Interfaces/interfaces";
 import "./Display.scss";
 
 interface Props {

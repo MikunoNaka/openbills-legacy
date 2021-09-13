@@ -7,7 +7,7 @@
 */
 
 import React from "react";
-import { Person } from "./../../interfaces";
+import { Person } from "./../../Interfaces/interfaces";
 import "./Display.scss";
 
 interface Props {

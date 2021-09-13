@@ -7,7 +7,7 @@
 */
 
 import React, {Dispatch, SetStateAction} from "react";
-import { Item, InvoiceSummary } from "./../../interfaces"
+import { Item, InvoiceSummary } from "./../../Interfaces/interfaces"
 import "./Display.scss";
 
 interface Props {

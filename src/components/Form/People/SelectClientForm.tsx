@@ -7,7 +7,7 @@
 */
 
 import React, { Dispatch, SetStateAction } from "react";
-import { Person } from "./../../../interfaces";
+import { Person } from "./../../../Interfaces/interfaces";
 import "./../Form.scss";
 
 import ClientInfoDisplay from "../../Display/ClientInfoDisplay";
